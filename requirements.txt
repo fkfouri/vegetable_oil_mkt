@@ -27,3 +27,4 @@ xlsxwriter>=3.0.3
 yfinance #Yahoo finantial
 investpy
 fredapi
+jupyter
