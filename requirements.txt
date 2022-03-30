@@ -1,0 +1,29 @@
+tensorflow
+seaborn
+pandas
+numpy
+matplotlib
+scipy
+sympy
+openpyxl
+plotly
+xgboost
+sklearn
+scikit-learn
+Jinja2
+tqdm
+nbformat
+# pysrequipark
+
+Nasdaq-Data-Link
+quantecon
+networkx 
+sphinx   #Doc generator
+
+
+xlrd # leitor excel
+xlsxwriter>=3.0.3
+
+yfinance #Yahoo finantial
+investpy
+fredapi
