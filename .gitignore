@@ -1,8 +1,30 @@
-*.env*
+*.env*/
+.vscode/
 .ipynb_checkpoints
-*.zip
-*.pkl
-__pycache__
+__pycache__/
 *.xlsx
-.metadata
-Example Workflows
+__*.xlsx
+
+
+## KNIME files
+.knimeLock
+.project
+.savedWithData
+workflowset.meta
+
+## KNIME directories containing node data
+internal/
+port_*/
+.metadata/
+internalTables/
+Example Workflows/
+
+# Packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
