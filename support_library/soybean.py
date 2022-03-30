@@ -9,6 +9,11 @@ from datetime import date, datetime
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
+try:
+    from .common import *
+except Exception:
+    from common import *
+
 # import support_library.common as common
 
 DATE_FORMAT = '%Y-%m-%d'
@@ -78,16 +83,9 @@ def get_spot(symbol):
     return df.iloc[:,:2].rename(columns={"close": f'{name}_spot_price' , "volume": f'{name}_spot_volume'})
 
 
-def remove_outliers(df, ref):
-    Q1 = df[ref].quantile(.25)
-    Q3 = df[ref].quantile(.75)
-    IIQ = Q3 - Q1
-    limite_inferior_latitude = Q1 - 1.5 * IIQ
-    limite_superior_latitude = Q3 + 1.5 * IIQ
-    return df[(df[ref] >= limite_inferior_latitude) & (df[ref]<= limite_superior_latitude)]
 
-
-def get_all():
+def get_all_prices():
+    """Todos os precos da soja"""
     df_soja = get_futures(symbol='zs')
     df_soja = pd.merge(df_soja, get_spot('zs'), how="left", left_index=True, right_index=True)
     df_soja = pd.merge(df_soja, get_futures(symbol='zl'), how="left", left_index=True, right_index=True)
@@ -99,10 +97,13 @@ def get_all():
     df_soja.dropna(inplace= True)
     return df_soja
 
+
+
+
 if __name__ == "__main__":
     # x = get_futures(symbol='zs')
     # x = get_spot(symbol='zm')
-    x = get_all()
+    x = get_all_prices()
 
 
     print(x)
