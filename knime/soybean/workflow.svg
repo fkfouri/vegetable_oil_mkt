@@ -111,7 +111,7 @@
                 <path d="M621 173 L652 173 L652 184 L621 184 L621 173 Z"/>
             </clipPath>
             <clipPath clipPathUnits="userSpaceOnUse" id="clipPath33">
-                <path d="M-1 -1 L1008 -1 L1008 740 L-1 740 L-1 -1 Z"/>
+                <path d="M-1 -1 L1429 -1 L1429 740 L-1 740 L-1 -1 Z"/>
             </clipPath>
         </defs>
         <g fill="white" font-family="&apos;Segoe UI&apos;"
@@ -748,10 +748,10 @@ TrFvOcRcC5wAAAAASUVORK5CYII=" xlink:actuate="onLoad"/>
             <polygon fill="black" clip-path="url(#clipPath32)"
                      points=" 635 174 644 178 635 183" stroke="none"/>
         </g>
-        <g stroke-linecap="butt" fill="rgb(150,150,150)"
+        <g stroke-linecap="butt" fill="rgb(75,75,75)"
            text-rendering="optimizeLegibility"
-           font-family="&apos;Segoe UI&apos;" stroke="rgb(150,150,150)"
-           stroke-width="2">
+           font-family="&apos;Segoe UI&apos;" stroke="rgb(75,75,75)"
+           stroke-width="3">
             <path fill="none"
                   d="M145 138 C147 138 151 138 153 138 C298 138 481 28 626 28 C628 28 632 28 634 28"
                   clip-path="url(#clipPath33)" fill-rule="evenodd"/>
@@ -759,10 +759,10 @@ TrFvOcRcC5wAAAAASUVORK5CYII=" xlink:actuate="onLoad"/>
                   d="M145 138 C147 138 151 138 153 138 C295 138 484 178 626 178 C628 178 632 178 634 178"
                   clip-path="url(#clipPath33)" fill-rule="evenodd"/>
             <path fill="none"
-                  d="M145 138 C147 138 151 138 153 138 C344 138 515 458 706 458 C708 458 712 458 714 458"
+                  d="M145 138 C147 138 151 138 153 138 C300 138 379 458 526 458 C528 458 532 458 534 458"
                   clip-path="url(#clipPath33)" fill-rule="evenodd"/>
             <path fill="none"
-                  d="M145 138 C147 138 151 138 153 138 C300 138 379 458 526 458 C528 458 532 458 534 458"
+                  d="M145 138 C147 138 151 138 153 138 C344 138 515 458 706 458 C708 458 712 458 714 458"
                   clip-path="url(#clipPath33)" fill-rule="evenodd"/>
         </g>
     </g>

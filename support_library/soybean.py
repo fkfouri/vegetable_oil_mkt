@@ -17,7 +17,7 @@ except Exception:
 # import support_library.common as common
 
 DATE_FORMAT = '%Y-%m-%d'
-MIN_DATE    = "2010-01-01"
+MIN_DATE    = "2001-01-01"
 TODAY       = date.today()
 TODAY_STR   = date.today().strftime(DATE_FORMAT)
 
@@ -45,7 +45,7 @@ def get_futures(symbol):
     df = df[df.index > pd.to_datetime(MIN_DATE, format=DATE_FORMAT)] 
     
     #remove outliers
-    df = remove_outliers(df, 'close')
+    # df = remove_outliers(df, 'close')
     
     return df.iloc[:,-2:].rename(columns={"close": f'{name}_future_price' , "volume": f'{name}_future_volume'})
 
@@ -78,7 +78,7 @@ def get_spot(symbol):
     df = df[df.index > pd.to_datetime(MIN_DATE, format=DATE_FORMAT)] 
     
     #remove outliers
-    df = remove_outliers(df, 'close')
+    # df = remove_outliers(df, 'close')
     
     return df.iloc[:,:2].rename(columns={"close": f'{name}_spot_price' , "volume": f'{name}_spot_volume'})
 
@@ -86,15 +86,15 @@ def get_spot(symbol):
 
 def get_all_prices():
     """Todos os precos da soja"""
-    df_soja = get_futures(symbol='zs')
-    df_soja = pd.merge(df_soja, get_spot('zs'), how="left", left_index=True, right_index=True)
-    df_soja = pd.merge(df_soja, get_futures(symbol='zl'), how="left", left_index=True, right_index=True)
-    df_soja = pd.merge(df_soja, get_spot(symbol='zl'), how="left", left_index=True, right_index=True)
+    df_soja = get_futures(symbol='zl')
+    df_soja = pd.merge(df_soja, get_spot('zl'), how="left", left_index=True, right_index=True)
+    df_soja = pd.merge(df_soja, get_futures(symbol='zs'), how="left", left_index=True, right_index=True)
+    df_soja = pd.merge(df_soja, get_spot(symbol='zs'), how="left", left_index=True, right_index=True)
 
-    df_soja = pd.merge(df_soja, get_futures(symbol='zm'), how="left", left_index=True, right_index=True)
-    df_soja = pd.merge(df_soja, get_spot(symbol='zm'), how="left", left_index=True, right_index=True)
+    # df_soja = pd.merge(df_soja, get_futures(symbol='zm'), how="left", left_index=True, right_index=True)
+    # df_soja = pd.merge(df_soja, get_spot(symbol='zm'), how="left", left_index=True, right_index=True)
     df_soja['date'] = df_soja.index
-    df_soja.dropna(inplace= True)
+    # df_soja.dropna(inplace= True)
     return df_soja
 
 
@@ -103,9 +103,9 @@ def get_all_prices():
 if __name__ == "__main__":
     # x = get_futures(symbol='zs')
     # x = get_spot(symbol='zm')
-    x = get_all_prices()
+    # x = get_all_prices()
 
-
-    print(x)
+    x = get_futures(symbol='zl')
     print(x.shape)
-    print(x.describe())
+    print(x.tail())
+    # print(x.describe())
