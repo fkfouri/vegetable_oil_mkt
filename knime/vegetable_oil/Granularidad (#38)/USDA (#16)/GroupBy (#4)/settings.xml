@@ -12,22 +12,22 @@
         </config>
         <config key="grouByColumns">
             <config key="InclList">
-                <entry key="array-size" type="xint" value="5"/>
-                <entry key="0" type="xstring" value="Commodity_Code"/>
-                <entry key="1" type="xstring" value="Commodity_Description"/>
-                <entry key="2" type="xstring" value="Market_Year"/>
-                <entry key="3" type="xstring" value="Attribute_Description"/>
-                <entry key="4" type="xstring" value="Unit_Description"/>
+                <entry key="array-size" type="xint" value="4"/>
+                <entry key="0" type="xstring" value="Commodity_Description"/>
+                <entry key="1" type="xstring" value="Market_Year"/>
+                <entry key="2" type="xstring" value="Attribute_Description"/>
+                <entry key="3" type="xstring" value="Unit_Description"/>
             </config>
             <config key="ExclList">
-                <entry key="array-size" type="xint" value="7"/>
-                <entry key="0" type="xstring" value="Country_Code"/>
-                <entry key="1" type="xstring" value="Country_Name"/>
-                <entry key="2" type="xstring" value="Calendar_Year"/>
-                <entry key="3" type="xstring" value="Month"/>
-                <entry key="4" type="xstring" value="Attribute_ID"/>
-                <entry key="5" type="xstring" value="Unit_ID"/>
-                <entry key="6" type="xstring" value="Value"/>
+                <entry key="array-size" type="xint" value="8"/>
+                <entry key="0" type="xstring" value="Commodity_Code"/>
+                <entry key="1" type="xstring" value="Country_Code"/>
+                <entry key="2" type="xstring" value="Country_Name"/>
+                <entry key="3" type="xstring" value="Calendar_Year"/>
+                <entry key="4" type="xstring" value="Month"/>
+                <entry key="5" type="xstring" value="Attribute_ID"/>
+                <entry key="6" type="xstring" value="Unit_ID"/>
+                <entry key="7" type="xstring" value="Value"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -118,12 +118,12 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 2596, Cols: 6"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 2332, Cols: 5"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="0e4626a9-edd8-4325-9eda-7966e24da3bf"/>
+        <entry key="file_store_id" type="xstring" value="f0a0093a-2bc6-4cea-a87d-a414d39e065e"/>
     </config>
 </config>
