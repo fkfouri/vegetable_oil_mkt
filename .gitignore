@@ -1,6 +1,7 @@
 *.env*/
 .vscode/
 .ipynb_checkpoints
+.meta
 __pycache__/
 *.xlsx
 __*.xlsx

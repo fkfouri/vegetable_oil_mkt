@@ -6,7 +6,13 @@
         <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
     </config>
     <config key="model">
-        <config key="all_columns"/>
+        <config key="all_columns">
+            <config key="0">
+                <entry key="old_column_name" type="xstring" value="Commodity_Description"/>
+                <entry key="new_column_name" type="xstring" value="commodity"/>
+                <entry key="new_column_type" type="xint" value="0"/>
+            </config>
+        </config>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="EXECUTED"/>
@@ -35,6 +41,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="d923eff2-a49c-476e-a849-bdd04ad38568"/>
+        <entry key="file_store_id" type="xstring" value="f10ae143-8df7-44a9-89ea-6b7caf7fa864"/>
     </config>
 </config>

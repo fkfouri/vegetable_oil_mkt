@@ -3,22 +3,44 @@ import pandas as pd
 CHOICE = 'linear'
     
 def up_sampling(df):
+    
+    col_year    = 'Market_Year'
+    col_value   = 'Value'
+    cols        = ['Commodity_Description', 'Reference', 'Attribute_Description']
+    
+    return __up_sampling(df, col_year, col_value, cols  )
+
+
+def up_sampling_oecd(df):
+    col_year    = 'Time'
+    col_value   = 'Value'
+    cols        = ['Commodity', 'Country', 'Variable']
+    
+    return __up_sampling(df, col_year, col_value, cols  )
+
+
+
+def __up_sampling(df, col_year, col_value, cols ):
+    all_cols    = cols + [col_year, col_value]
+    
+    df = df[all_cols].copy().sort_values(all_cols[:-1])
+    
     # Obtido a variação do periodo YoY
-    df['yoy'] = df.sort_values(['Commodity_Description', 'Reference', 'Attribute_Description', 'Market_Year']).groupby(['Commodity_Description','Reference','Attribute_Description'])['Value'].pct_change()
+    df['yoy'] = df.groupby(cols)[col_value].pct_change()
     df['yoy'].fillna(0, inplace=True)
 
     # Configurando o campo data para ser o ultimo dia no ano
-    df['date'] = df['Market_Year'].astype(str) + f'-1-1'
+    df['date'] = df[col_year].astype(str) + f'-1-1'
     df['date'] = pd.to_datetime(df['date'] , format='%Y-%m-%d')
     df['date'] = df['date'] + pd.DateOffset(years=1) + pd.Timedelta(days=-1) 
-    df['year_value'] = df['Value']
+    df['year_value'] = df[col_value]
     df.set_index(['date'], inplace = True)
  
     #Realizando o resample por mes
-    df_temp = df.groupby(['Commodity_Description','Reference','Attribute_Description'])[['Value', 'yoy', 'year_value']].resample('M').mean().reset_index()
+    df_temp = df.groupby(cols)[[col_value, 'yoy', 'year_value']].resample('M').mean().reset_index()
     df_temp.set_index(['date'], inplace = True) 
     
-    df_temp['Value']        = round((df_temp['Value']/12).interpolate(method=CHOICE, order=2), 2)
+    df_temp[col_value]      = round((df_temp[col_value]/12).interpolate(method=CHOICE, order=2), 2)
     df_temp['yoy']          = round((df_temp['yoy']).interpolate(method='bfill' ), 2)
     df_temp['year_value']   = round((df_temp['year_value']).interpolate(method='bfill' ), 2)
 
@@ -155,8 +177,15 @@ def fix2_volume(df, comp):
 
 
 if __name__ == '__main__':
-    df = pd.read_excel(r'E:\Projetos\vegetable_oil_mkt\dataset\__knime_producao_anual.xlsx')
-    df['Market_Year'] = df['Market_Year'].astype(int)
+    # df = pd.read_excel(r'E:\Projetos\vegetable_oil_mkt\dataset\__knime_producao_anual.xlsx')
+    # df['Market_Year'] = df['Market_Year'].astype(int)
+    # x = up_sampling(df)
     
-    x = up_sampling(df)
+    df = pd.read_csv(r'E:\Projetos\vegetable_oil_mkt\dataset\HIGH_AGLINK_2021_16032022104718005.csv')
+    print(df.shape)
+    df['Time'] = df['Time'].astype(int)
+    df = df[(df['Country'] == 'WORLD') & ( df['Commodity'] == 'Vegetable oils') ]
+    print(df.shape)
+    x = up_sampling_oecd(df) 
+    
     print(x)
