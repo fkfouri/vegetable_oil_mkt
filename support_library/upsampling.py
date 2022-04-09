@@ -1,5 +1,15 @@
 import pandas as pd
 
+#######################################################################
+# Usado pelo KNIME
+#
+# Tentativa de fazer o upsampling (Ano->Mes). 
+# Usado Interpolacao linear. 
+# - Ignora a sazonalidade
+# - O Agrupamento dos meses em anos não dá o valor original (Acho isso errado)
+#
+#######################################################################
+
 CHOICE = 'linear'
     
 def up_sampling(df):

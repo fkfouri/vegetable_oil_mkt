@@ -31,7 +31,7 @@
                     <entry key="EnabledStatus" type="xboolean" value="true"/>
                 </config>
                 <entry key="create_missing_folders" type="xboolean" value="false"/>
-                <entry key="if_path_exists" type="xstring" value="fail"/>
+                <entry key="if_path_exists" type="xstring" value="overwrite"/>
             </config>
             <entry key="column_delimiter" type="xstring" value=","/>
             <entry key="row_delimiter" type="xstring" isnull="true" value=""/>
@@ -64,11 +64,7 @@
         </config>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
-    <entry key="state" type="xstring" value="CONFIGURED"/>
-    <config key="nodecontainer_message">
-        <entry key="type" type="xstring" value="ERROR"/>
-        <entry key="message" type="xstring" value="Execute failed: Output file 'E:\Projetos\vegetable_oil_mkt\dataset\__by_month_vegetable_oil.csv' exists and must not be overwritten due to user settings."/>
-    </config>
+    <entry key="state" type="xstring" value="EXECUTED"/>
     <entry key="factory" type="xstring" value="org.knime.base.node.io.filehandling.csv.writer.CSVWriter2NodeFactory"/>
     <entry key="node-name" type="xstring" value="CSV Writer"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
@@ -85,11 +81,11 @@
         <config key="Data Table"/>
     </config>
     <entry key="name" type="xstring" value="CSV Writer"/>
-    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="hasContent" type="xboolean" value="true"/>
     <entry key="isInactive" type="xboolean" value="false"/>
     <config key="ports"/>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" value="155f0901-a4b8-45dd-a16b-1693746ced2d"/>
     </config>
 </config>
