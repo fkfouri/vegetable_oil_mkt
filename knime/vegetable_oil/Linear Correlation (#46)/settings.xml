@@ -74,10 +74,6 @@
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="EXECUTED"/>
-    <config key="nodecontainer_message">
-        <entry key="type" type="xstring" value="WARNING"/>
-        <entry key="message" type="xstring" value="Some numeric column(s) contained missing values: &quot;consumption_oecd&quot;, &quot;ending_stocks_oecd&quot;, &quot;exports_oecd&quot;, &quot;food_oecd&quot;, &lt;5 more&gt;...%%00010Some numeric column(s) have low variance (are constant): &quot;consumption_oecd&quot;, &quot;ending_stocks_oecd&quot;, &quot;exports_oecd&quot;, &quot;food_oecd&quot;, &lt;5 more&gt;..."/>
-    </config>
     <entry key="factory" type="xstring" value="org.knime.base.node.preproc.correlation.compute2.CorrelationCompute2NodeFactory"/>
     <entry key="node-name" type="xstring" value="Linear Correlation"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
@@ -129,6 +125,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="8121d4d4-c6d7-4c4a-9391-5e2522f410a7"/>
+        <entry key="file_store_id" type="xstring" value="182e2c16-f5ec-4a38-8451-3ae751d4a65f"/>
     </config>
 </config>

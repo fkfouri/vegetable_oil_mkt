@@ -26,18 +26,16 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <config key="leftTableJoinPredicate">
-            <entry key="array-size" type="xint" value="2"/>
-            <entry key="0" type="xstring" value="commodity"/>
-            <entry key="1" type="xstring" value="date"/>
+            <entry key="array-size" type="xint" value="1"/>
+            <entry key="0" type="xstring" value="date"/>
         </config>
         <config key="rightTableJoinPredicate_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_stringarray"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <config key="rightTableJoinPredicate">
-            <entry key="array-size" type="xint" value="2"/>
-            <entry key="0" type="xstring" value="commodity"/>
-            <entry key="1" type="xstring" value="date"/>
+            <entry key="array-size" type="xint" value="1"/>
+            <entry key="0" type="xstring" value="date"/>
         </config>
         <config key="compositionMode_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
@@ -97,18 +95,17 @@
         <config key="leftColumnSelectionConfig">
             <entry key="filter-type" type="xstring" value="STANDARD"/>
             <config key="included_names">
-                <entry key="array-size" type="xint" value="11"/>
+                <entry key="array-size" type="xint" value="10"/>
                 <entry key="0" type="xstring" value="date"/>
-                <entry key="1" type="xstring" value="commodity"/>
-                <entry key="2" type="xstring" value="consumption_oecd"/>
-                <entry key="3" type="xstring" value="ending_stocks_oecd"/>
-                <entry key="4" type="xstring" value="exports_oecd"/>
-                <entry key="5" type="xstring" value="food_oecd"/>
-                <entry key="6" type="xstring" value="food_fat_availability_oecd"/>
-                <entry key="7" type="xstring" value="human_consumption_per_capita_oecd"/>
-                <entry key="8" type="xstring" value="imports_oecd"/>
-                <entry key="9" type="xstring" value="other_use_oecd"/>
-                <entry key="10" type="xstring" value="production_oecd"/>
+                <entry key="1" type="xstring" value="vegetable_oils_consumption_oecd"/>
+                <entry key="2" type="xstring" value="vegetable_oils_ending_stocks_oecd"/>
+                <entry key="3" type="xstring" value="vegetable_oils_exports_oecd"/>
+                <entry key="4" type="xstring" value="vegetable_oils_food_oecd"/>
+                <entry key="5" type="xstring" value="vegetable_oils_food_fat_availability_oecd"/>
+                <entry key="6" type="xstring" value="vegetable_oils_human_consumption_per_capita_oecd"/>
+                <entry key="7" type="xstring" value="vegetable_oils_imports_oecd"/>
+                <entry key="8" type="xstring" value="vegetable_oils_other_use_oecd"/>
+                <entry key="9" type="xstring" value="vegetable_oils_production_oecd"/>
             </config>
             <config key="excluded_names">
                 <entry key="array-size" type="xint" value="0"/>
@@ -123,11 +120,11 @@
             <config key="datatype">
                 <config key="typelist">
                     <entry key="org.knime.core.data.time.localdate.LocalDateValue" type="xboolean" value="false"/>
-                    <entry key="org.knime.core.data.StringValue" type="xboolean" value="false"/>
                     <entry key="org.knime.core.data.DoubleValue" type="xboolean" value="false"/>
                     <entry key="org.knime.core.data.BooleanValue" type="xboolean" value="false"/>
                     <entry key="org.knime.core.data.IntValue" type="xboolean" value="false"/>
                     <entry key="org.knime.core.data.LongValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.StringValue" type="xboolean" value="false"/>
                     <entry key="org.knime.core.data.date.DateAndTimeValue" type="xboolean" value="false"/>
                 </config>
             </config>
@@ -149,7 +146,7 @@
                 <entry key="10" type="xstring" value="industrial_dom_cons_usda"/>
                 <entry key="11" type="xstring" value="production_usda"/>
                 <entry key="12" type="xstring" value="total_distribution_usda"/>
-                <entry key="13" type="xstring" value="total_Supply_usda"/>
+                <entry key="13" type="xstring" value="total_supply_usda"/>
             </config>
             <config key="excluded_names">
                 <entry key="array-size" type="xint" value="0"/>
@@ -195,7 +192,7 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 625, Cols: 23"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 372, Cols: 23"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
         <config key="port_2">
@@ -219,6 +216,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="49d7f8e7-1625-40a9-9d84-ded9bd3da672"/>
+        <entry key="file_store_id" type="xstring" value="7d3c7ab8-bbcb-4a5a-a904-1216badf5232"/>
     </config>
 </config>

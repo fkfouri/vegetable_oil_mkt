@@ -17,13 +17,13 @@
             </config>
             <config key="ExclList">
                 <entry key="array-size" type="xint" value="7"/>
-                <entry key="0" type="xstring" value="Country"/>
-                <entry key="1" type="xstring" value="Commodity"/>
+                <entry key="0" type="xstring" value="Commodity"/>
+                <entry key="1" type="xstring" value="Country"/>
                 <entry key="2" type="xstring" value="Variable"/>
-                <entry key="3" type="xstring" value="Time"/>
-                <entry key="4" type="xstring" value="Unit"/>
-                <entry key="5" type="xstring" value="PowerCode"/>
-                <entry key="6" type="xstring" value="Value"/>
+                <entry key="3" type="xstring" value="Value"/>
+                <entry key="4" type="xstring" value="yoy"/>
+                <entry key="5" type="xstring" value="year_value"/>
+                <entry key="6" type="xstring" value="dataset"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -37,11 +37,21 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="enableHilite" type="xboolean" value="false"/>
+        <config key="valueDelimiter_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="valueDelimiter" type="xstring" value=", "/>
         <config key="sortInMemory_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="sortInMemory" type="xboolean" value="false"/>
+        <config key="columnNamePolicy_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="columnNamePolicy" type="xstring" value="Keep original name(s)"/>
         <config key="aggregationColumn">
             <config key="columnNames">
                 <entry key="array-size" type="xint" value="1"/>
@@ -66,11 +76,6 @@
         <config key="aggregationOperatorSettings"/>
         <config key="patternAggregators"/>
         <config key="dataTypeAggregators"/>
-        <config key="columnNamePolicy_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="columnNamePolicy" type="xstring" value="Aggregation method (column name)"/>
         <config key="retainOrder_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -81,11 +86,6 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="inMemory" type="xboolean" value="false"/>
-        <config key="valueDelimiter_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="valueDelimiter" type="xstring" value=", "/>
         <config key="nodeVersion_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -98,18 +98,18 @@
         </config>
         <config key="pivotColumns">
             <config key="InclList">
-                <entry key="array-size" type="xint" value="1"/>
-                <entry key="0" type="xstring" value="Variable"/>
+                <entry key="array-size" type="xint" value="3"/>
+                <entry key="0" type="xstring" value="Commodity"/>
+                <entry key="1" type="xstring" value="Variable"/>
+                <entry key="2" type="xstring" value="dataset"/>
             </config>
             <config key="ExclList">
-                <entry key="array-size" type="xint" value="7"/>
+                <entry key="array-size" type="xint" value="5"/>
                 <entry key="0" type="xstring" value="date"/>
                 <entry key="1" type="xstring" value="Country"/>
-                <entry key="2" type="xstring" value="Commodity"/>
-                <entry key="3" type="xstring" value="Time"/>
-                <entry key="4" type="xstring" value="Unit"/>
-                <entry key="5" type="xstring" value="PowerCode"/>
-                <entry key="6" type="xstring" value="Value"/>
+                <entry key="2" type="xstring" value="Value"/>
+                <entry key="3" type="xstring" value="yoy"/>
+                <entry key="4" type="xstring" value="year_value"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -132,7 +132,7 @@
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="column_name_option" type="xstring" value="Pivot name+Aggregation name"/>
+        <entry key="column_name_option" type="xstring" value="Pivot name"/>
         <config key="sort_lexicographical_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -180,6 +180,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="d4fc67a2-1d9e-4c03-9b5b-626973b0569d"/>
+        <entry key="file_store_id" type="xstring" value="626b3557-05dc-4d33-b61c-68426747a6ac"/>
     </config>
 </config>
