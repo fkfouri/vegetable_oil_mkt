@@ -16,9 +16,10 @@
                 <entry key="0" type="xstring" value="date"/>
             </config>
             <config key="ExclList">
-                <entry key="array-size" type="xint" value="2"/>
+                <entry key="array-size" type="xint" value="3"/>
                 <entry key="0" type="xstring" value="commodity"/>
                 <entry key="1" type="xstring" value="price"/>
+                <entry key="2" type="xstring" value="dataset"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -46,7 +47,7 @@
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="columnNamePolicy" type="xstring" value="Column name (aggregation method)"/>
+        <entry key="columnNamePolicy" type="xstring" value="Keep original name(s)"/>
         <config key="aggregationColumn">
             <config key="columnNames">
                 <entry key="array-size" type="xint" value="1"/>
@@ -93,8 +94,9 @@
         </config>
         <config key="pivotColumns">
             <config key="InclList">
-                <entry key="array-size" type="xint" value="1"/>
+                <entry key="array-size" type="xint" value="2"/>
                 <entry key="0" type="xstring" value="commodity"/>
+                <entry key="1" type="xstring" value="dataset"/>
             </config>
             <config key="ExclList">
                 <entry key="array-size" type="xint" value="2"/>
@@ -122,7 +124,7 @@
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="column_name_option" type="xstring" value="Pivot name+Aggregation name"/>
+        <entry key="column_name_option" type="xstring" value="Pivot name"/>
         <config key="sort_lexicographical_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -170,6 +172,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="a9981025-7a6b-4ea9-87a7-62badeb1c313"/>
+        <entry key="file_store_id" type="xstring" value="46518daa-8066-43fa-a9e6-9b3fe916faa2"/>
     </config>
 </config>
