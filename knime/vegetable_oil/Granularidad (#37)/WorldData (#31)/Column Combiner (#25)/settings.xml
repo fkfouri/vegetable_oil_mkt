@@ -106,9 +106,9 @@
             </config>
         </config>
         <entry key="delimiter" type="xstring" value=""/>
-        <entry key="new_column_name" type="xstring" value="date"/>
         <entry key="is_quoting" type="xboolean" value="false"/>
         <entry key="replace_delimiter" type="xstring" value=""/>
+        <entry key="new_column_name" type="xstring" value="date"/>
         <entry key="remove_included_columns" type="xboolean" value="false"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
@@ -138,6 +138,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="d6e29cd7-e405-4654-b3cb-7beb238c3bfd"/>
+        <entry key="file_store_id" type="xstring" value="b3353e72-bffc-4e52-9254-73bbaf3b9d1c"/>
     </config>
 </config>

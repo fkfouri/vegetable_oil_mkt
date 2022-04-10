@@ -8,7 +8,7 @@
     <config key="model">
         <config key="rowFilter">
             <entry key="RowFilter_TypeID" type="xstring" value="StringComp_RowFilter"/>
-            <entry key="ColumnName" type="xstring" value="Attribute_Description"/>
+            <entry key="ColumnName" type="xstring" value="attribute"/>
             <entry key="include" type="xboolean" value="true"/>
             <entry key="deepFiltering" type="xboolean" value="false"/>
             <entry key="CaseSensitive" type="xboolean" value="false"/>
@@ -44,6 +44,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="a92f624a-8b7e-45c7-b5e1-308c610ebede"/>
+        <entry key="file_store_id" type="xstring" value="4eaf58de-098d-4f13-a67c-31da03ac536d"/>
     </config>
 </config>

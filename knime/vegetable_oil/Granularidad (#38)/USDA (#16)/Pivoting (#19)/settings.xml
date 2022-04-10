@@ -14,15 +14,16 @@
             <config key="InclList">
                 <entry key="array-size" type="xint" value="3"/>
                 <entry key="0" type="xstring" value="date"/>
-                <entry key="1" type="xstring" value="Commodity_Description"/>
-                <entry key="2" type="xstring" value="Reference"/>
+                <entry key="1" type="xstring" value="commodity"/>
+                <entry key="2" type="xstring" value="reference"/>
             </config>
             <config key="ExclList">
-                <entry key="array-size" type="xint" value="4"/>
-                <entry key="0" type="xstring" value="Attribute_Description"/>
-                <entry key="1" type="xstring" value="Value"/>
+                <entry key="array-size" type="xint" value="5"/>
+                <entry key="0" type="xstring" value="attribute"/>
+                <entry key="1" type="xstring" value="value"/>
                 <entry key="2" type="xstring" value="yoy"/>
                 <entry key="3" type="xstring" value="year_value"/>
+                <entry key="4" type="xstring" value="dataset"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -50,11 +51,11 @@
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="columnNamePolicy" type="xstring" value="Aggregation method (column name)"/>
+        <entry key="columnNamePolicy" type="xstring" value="Keep original name(s)"/>
         <config key="aggregationColumn">
             <config key="columnNames">
                 <entry key="array-size" type="xint" value="1"/>
-                <entry key="0" type="xstring" value="Value"/>
+                <entry key="0" type="xstring" value="value"/>
             </config>
             <config key="columnTypes">
                 <entry key="array-size" type="xint" value="1"/>
@@ -97,15 +98,16 @@
         </config>
         <config key="pivotColumns">
             <config key="InclList">
-                <entry key="array-size" type="xint" value="1"/>
-                <entry key="0" type="xstring" value="Attribute_Description"/>
+                <entry key="array-size" type="xint" value="2"/>
+                <entry key="0" type="xstring" value="attribute"/>
+                <entry key="1" type="xstring" value="dataset"/>
             </config>
             <config key="ExclList">
                 <entry key="array-size" type="xint" value="6"/>
                 <entry key="0" type="xstring" value="date"/>
-                <entry key="1" type="xstring" value="Commodity_Description"/>
-                <entry key="2" type="xstring" value="Reference"/>
-                <entry key="3" type="xstring" value="Value"/>
+                <entry key="1" type="xstring" value="commodity"/>
+                <entry key="2" type="xstring" value="reference"/>
+                <entry key="3" type="xstring" value="value"/>
                 <entry key="4" type="xstring" value="yoy"/>
                 <entry key="5" type="xstring" value="year_value"/>
             </config>
@@ -130,7 +132,7 @@
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="column_name_option" type="xstring" value="Pivot name+Aggregation name"/>
+        <entry key="column_name_option" type="xstring" value="Pivot name"/>
         <config key="sort_lexicographical_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -178,6 +180,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="574bf2f9-47da-4316-a540-3344d53b3e85"/>
+        <entry key="file_store_id" type="xstring" value="ebcce2d0-749a-476a-814e-2589750f1613"/>
     </config>
 </config>

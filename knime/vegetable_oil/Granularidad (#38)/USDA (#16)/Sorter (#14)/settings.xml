@@ -7,16 +7,12 @@
     </config>
     <config key="model">
         <config key="incllist">
-            <entry key="array-size" type="xint" value="3"/>
-            <entry key="0" type="xstring" value="Commodity_Description"/>
-            <entry key="1" type="xstring" value="date"/>
-            <entry key="2" type="xstring" value="Reference"/>
+            <entry key="array-size" type="xint" value="1"/>
+            <entry key="0" type="xstring" value="date"/>
         </config>
         <config key="sortOrder">
-            <entry key="array-size" type="xint" value="3"/>
+            <entry key="array-size" type="xint" value="1"/>
             <entry key="0" type="xboolean" value="false"/>
-            <entry key="1" type="xboolean" value="false"/>
-            <entry key="2" type="xboolean" value="false"/>
         </config>
         <entry key="sortinmemory" type="xboolean" value="false"/>
         <entry key="missingToEnd" type="xboolean" value="false"/>
@@ -48,6 +44,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="71fb7fcd-6d57-4292-920f-0a9ddaf4792a"/>
+        <entry key="file_store_id" type="xstring" value="4bf51805-53e3-485c-82d8-cb494b63be43"/>
     </config>
 </config>

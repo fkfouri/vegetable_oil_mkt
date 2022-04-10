@@ -8,6 +8,12 @@ import pandas as pd
 # - Ignora a sazonalidade
 # - O Agrupamento dos meses em anos não dá o valor original (Acho isso errado)
 #
+#
+# Sazonalidade: https://towardsdatascience.com/time-series-analysis-creating-synthetic-datasets-cf008208e014
+# time = np.arange(50)
+# values = np.where(time < 10, time**3, (time-9)**2)
+#
+# gerador de numero aleatorio np.random.radint(start,finish, size=100)
 #######################################################################
 
 CHOICE = 'linear'
@@ -15,8 +21,8 @@ CHOICE = 'linear'
 def up_sampling(df):
     
     col_year    = 'Market_Year'
-    col_value   = 'Value'
-    cols        = ['Commodity_Description', 'Reference', 'Attribute_Description']
+    col_value   = 'value'
+    cols        = ['commodity', 'reference', 'attribute']
     
     return __up_sampling(df, col_year, col_value, cols  )
 
