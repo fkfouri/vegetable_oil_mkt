@@ -50,6 +50,8 @@ def quantiles_v2(df: pd.DataFrame, labels: list):
     return df[['Sequence_ID','Close_Date'] + columns_production]
     
 
+    
+
 # Creating random sets of sequential rows (i.e. weeks) and calculating PIX variations WoW
 
 def get_random_sets(input_dataframe: pd.DataFrame, 
@@ -262,46 +264,46 @@ def build_transition_grid(input_dataframe: pd.DataFrame, unique_patterns):
     # log.debug(counts_fk)
 
     # create to/from grid
-    grid_Df = pd.DataFrame({'pairs':patterns, 'counts': counts})
+    grid_markov = pd.DataFrame({'pairs':patterns, 'counts': counts})
     
-    # return grid_Df
+    # return grid_markov
 
     ## Warning
-    # grid_Df['x'], grid_Df['y'] = grid_Df['pairs'].str.split(',').str
+    # grid_markov['x'], grid_markov['y'] = grid_markov['pairs'].str.split(',').str
     
-    grid_Df[['x', 'y']] = grid_Df['pairs'].str.split(',', n=1, expand=True)
+    grid_markov[['x', 'y']] = grid_markov['pairs'].str.split(',', n=1, expand=True)
     
-    # return grid_Df
+    # return grid_markov
 
-    grid_Df = grid_Df.pivot(index='x', columns='y', values='counts')
+    grid_markov = grid_markov.pivot(index='x', columns='y', values='counts')
     
-    # return grid_Df
+    # return grid_markov
 
-    # log.debug(f'Antes Columns :{grid_Df.columns}')
-    grid_Df.columns= [col for col in grid_Df.columns]
-    # log.debug(f'Depois Columns :{grid_Df.columns}')
+    # log.debug(f'Antes Columns :{grid_markov.columns}')
+    grid_markov.columns= [col for col in grid_markov.columns]
+    # log.debug(f'Depois Columns :{grid_markov.columns}')
     
-    # return grid_Df
+    # return grid_markov
    
 
     # replace all NaN with zeros
-    grid_Df.fillna(0, inplace=True)
+    grid_markov.fillna(0, inplace=True)
     
-    grid_Df['soma'] = grid_Df.sum(axis=1)
+    grid_markov['soma'] = grid_markov.sum(axis=1)
     
-    # return grid_Df
+    # return grid_markov
 
-    # grid_Df.rowSums(transition_dataframe) 
-    # grid_Df = grid_Df / grid_Df['soma']
+    # grid_markov.rowSums(transition_dataframe) 
+    # grid_markov = grid_markov / grid_markov['soma']
     
-    for col in grid_Df.columns:
-        grid_Df[col] = grid_Df[col]/grid_Df['soma']
+    for col in grid_markov.columns:
+        grid_markov[col] = grid_markov[col]/grid_markov['soma']
         
         
-    del grid_Df['soma']
+    del grid_markov['soma']
 
-    return grid_Df
-    # return (grid_Df)
+    return grid_markov
+    # return (grid_markov)
 
 # build_transition_grid(df5_pos, unique_patterns)
 
@@ -361,3 +363,95 @@ def safe_log(numerator, denominator):
         log_value = np.log(numerator / denominator)
         
     return log_value
+
+
+def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
+    '''
+    build the markov transition grid
+    '''
+    patterns  = []
+    counts    = []
+    counts_fk = {}
+    
+    #unique_patterns = unique_patterns[:3]
+    event_patterns  = [x for x in df2.columns if 'event_pattern' in x  ]
+    
+    # de
+    for from_event in unique_patterns:
+        # para
+        for to_event in unique_patterns:
+            
+            pattern_to_search = from_event + ',' + to_event # MMM,MlM
+            log.debug(pattern_to_search)
+            
+            # event_pattern_prices
+            # event_pattern_exports
+            # event_pattern_production
+            
+            for col in event_patterns:                
+                ids_matches = df[df[col].str.contains(pattern_to_search)]
+
+                found = 0
+                if len(ids_matches) > 0:
+                    Event_Pattern = '---'.join(ids_matches[col].values)
+                    found = Event_Pattern.count(pattern_to_search)
+
+                log.debug(f'pattern_to_search => {pattern_to_search} | ids_matches: {len(ids_matches)} | found: {found} ')
+                patterns.append(pattern_to_search)
+                counts.append(found)
+
+                counts_fk[pattern_to_search] = f'{len(ids_matches)}|{found}'
+            
+    
+    log.debug(f'patterns: {patterns}')
+    log.debug(f'counts: {counts}')
+    log.debug(f'counts_fk: {counts_fk}')
+
+    # create to/from grid
+    grid_markov = pd.DataFrame({'pairs':patterns, 'counts': counts})
+    log.debug(f'CRIACAO GRID: {grid_markov}')
+    
+    # group by, para remover as duplicacoes de multiplos patterns
+    grid_markov = grid_markov.groupby(['pairs'])['counts'].sum().to_frame().reset_index()
+    log.debug(f'GRID GROUPED: {grid_markov}')
+
+    # quebra em x,y a coluna combinada
+    grid_markov[['x', 'y']] = grid_markov['pairs'].str.split(',', n=1, expand=True)
+    log.debug(f'GRID X,Y: {grid_markov}')
+
+    # pivoteamento em x e y
+    grid_markov = grid_markov.pivot(index='x', columns='y', values='counts')
+    log.debug(f'GRID PIVOT: {grid_markov}')
+    
+    # Renomeia as colunas. Remove a referencia 'y'
+    grid_markov.columns= [col for col in grid_markov.columns]
+    log.debug(f'GRID RENAME COLUMNS :{grid_markov}')
+    
+    # replace all NaN with zeros
+    grid_markov.fillna(0, inplace=True)
+    log.debug(f'GRID FILLNA :{grid_markov}')
+    
+    # cria uma coluna temporaria para a soma da linha
+    grid_markov['soma'] = grid_markov.sum(axis=1)
+    log.debug(f'GRID SOMA :{grid_markov}')
+    
+    # return grid_markov
+
+    # grid_markov.rowSums(transition_dataframe) 
+    # grid_markov = grid_markov / grid_markov['soma']
+    
+    # calcula o percentual de cada valor sobre a soma    
+    for col in grid_markov.columns:
+        grid_markov[col] = grid_markov[col]/grid_markov['soma']
+    log.debug(f'GRID PERCENT :{grid_markov}')
+        
+        
+    # replace all NaN with zeros. Para o caso da divisao por zero (soma)
+    grid_markov.fillna(1/(x.shape[1] - 2), inplace=True)
+    log.debug(f'GRID FILLNA :{grid_markov}')
+    
+    
+    #Remove a coluna Soma    
+    del grid_markov['soma']
+
+    return grid_markov
