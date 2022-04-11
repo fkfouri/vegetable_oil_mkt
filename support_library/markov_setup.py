@@ -8,7 +8,46 @@ import logging
 log = logging.getLogger(__name__)
 
 
+def quantiles_v2(df: pd.DataFrame, labels: list):
+    df    = df.copy()
+    ref   = ''.join(labels).lower()
+    size  = len(labels)
 
+    columns_production  = []
+    columns_exports     = []
+    columns_prices      = []
+    for col in df.columns:
+        column_name         = f'{col}_qcut'
+        
+        if 'production_variation' in col:
+
+            df[column_name]     = pd.qcut(df[col], q=size, labels = labels)
+            columns_production.append(column_name)
+            
+        elif 'exports_variation' in col:
+            df[column_name]     = pd.qcut(df[col], q=size, labels = labels)
+            columns_exports.append(column_name)            
+            
+        elif 'price_variation' in col:
+            df[column_name]     = pd.qcut(df[col], q=size, labels = labels)
+            columns_prices.append(column_name)  
+            
+    def get_equation(columns):
+        return ' + '.join( [f'df["{col}"].astype(str)' for col in columns] )
+        
+    df['event_pattern_production']  = eval(get_equation(columns_production)) 
+    df['event_pattern_exports']     = eval(get_equation(columns_exports)) 
+    df['event_pattern_prices']      = eval(get_equation(columns_prices)) 
+    
+    columns_fixed   = list(df.columns[:4])
+    columns_sort    = sorted(list(df.columns[4:-3]))
+    columns_event   = sorted(list(df.columns[-3:]))
+    
+    columns_production.append('event_pattern')
+
+    return df[columns_fixed + columns_sort + columns_event].sort_values(by = ['Close_Date'], ascending=[False])
+    return df
+    return df[['Sequence_ID','Close_Date'] + columns_production]
     
 
 # Creating random sets of sequential rows (i.e. weeks) and calculating PIX variations WoW
