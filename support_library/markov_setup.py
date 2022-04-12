@@ -374,7 +374,7 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
     counts_fk = {}
     
     #unique_patterns = unique_patterns[:3]
-    event_patterns  = [x for x in df2.columns if 'event_pattern' in x  ]
+    event_patterns  = [x for x in df.columns if 'event_pattern' in x  ]
     
     # de
     for from_event in unique_patterns:
@@ -382,25 +382,29 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
         for to_event in unique_patterns:
             
             pattern_to_search = from_event + ',' + to_event # MMM,MlM
-            log.debug(pattern_to_search)
+            pattern_to_search_inv = to_event + ',' + from_event
+
             
             # event_pattern_prices
             # event_pattern_exports
             # event_pattern_production
             
             for col in event_patterns:                
-                ids_matches = df[df[col].str.contains(pattern_to_search)]
+                ids_matches = df[( df[col].str.contains(pattern_to_search    ) ) | 
+                                 ( df[col].str.contains(pattern_to_search_inv) ) ]
 
                 found = 0
                 if len(ids_matches) > 0:
                     Event_Pattern = '---'.join(ids_matches[col].values)
-                    found = Event_Pattern.count(pattern_to_search)
+                    found = Event_Pattern.count(pattern_to_search) + Event_Pattern.count(pattern_to_search_inv)
 
                 log.debug(f'pattern_to_search => {pattern_to_search} | ids_matches: {len(ids_matches)} | found: {found} ')
                 patterns.append(pattern_to_search)
+                patterns.append(pattern_to_search_inv)
                 counts.append(found)
 
                 counts_fk[pattern_to_search] = f'{len(ids_matches)}|{found}'
+                counts_fk[pattern_to_search_inv] = f'{len(ids_matches)}|{found}'
             
     
     log.debug(f'patterns: {patterns}')
@@ -447,11 +451,13 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
         
         
     # replace all NaN with zeros. Para o caso da divisao por zero (soma)
-    grid_markov.fillna(1/(x.shape[1] - 2), inplace=True)
+    grid_markov.fillna(1/(grid_markov.shape[1] - 2), inplace=True)
     log.debug(f'GRID FILLNA :{grid_markov}')
     
     
     #Remove a coluna Soma    
     del grid_markov['soma']
+    
+    log.debug(f'Prova dos Nove - Somatorio deve ser 1 | {grid_markov.T.sum()}')
 
     return grid_markov
