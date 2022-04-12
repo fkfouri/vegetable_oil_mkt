@@ -374,8 +374,9 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
     counts_fk = {}
     
     #unique_patterns = unique_patterns[:3]
-    event_patterns  = [x for x in df.columns if 'event_pattern' in x  ]
+    event_patterns  = [x for x in df.columns if 'events_pattern' in x  ]
     
+    stop = 0
     # de
     for from_event in unique_patterns:
         # para
@@ -383,33 +384,50 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
             
             pattern_to_search = from_event + ',' + to_event # MMM,MlM
             pattern_to_search_inv = to_event + ',' + from_event
-
             
-            # event_pattern_prices
-            # event_pattern_exports
-            # event_pattern_production
-            
-            for col in event_patterns:                
-                ids_matches = df[( df[col].str.contains(pattern_to_search    ) ) | 
-                                 ( df[col].str.contains(pattern_to_search_inv) ) ]
-
-                found = 0
-                if len(ids_matches) > 0:
-                    Event_Pattern = '---'.join(ids_matches[col].values)
-                    found = Event_Pattern.count(pattern_to_search) + Event_Pattern.count(pattern_to_search_inv)
-
-                log.debug(f'pattern_to_search => {pattern_to_search} | ids_matches: {len(ids_matches)} | found: {found} ')
+            #Insere o valor ja capturado anteriormente
+            if pattern_to_search_inv in patterns:
                 patterns.append(pattern_to_search)
-                patterns.append(pattern_to_search_inv)
+                counts.append(counts_fk[pattern_to_search_inv] )                
+                continue
+            
+            
+            for col in event_patterns:    
+                
+                if from_event == to_event:
+                    ids_matches = df[( df[col].str.contains(from_event) ) |
+                                     ( df[col].str.contains(to_event  ) ) ]  
+
+                    found = len(ids_matches) if len(ids_matches) > 0 else 1
+                    found = found
+                else:
+                    ids_matches = df[( df[col].str.contains(from_event) ) &
+                                     ( df[col].str.contains(to_event  ) ) ]
+                    
+                    found = len(ids_matches)                
+                
+                # if len(ids_matches) > 0:
+                #     Event_Pattern = '---'.join(ids_matches[col].values)
+                #     found = ( Event_Pattern.count(from_event) + Event_Pattern.count(to_event) )
+
+                log.debug(f'{col}==> {from_event} & {to_event} | ids_matches: {len(ids_matches)} | found: {found} ')
+                patterns.append(pattern_to_search)
+                # patterns.append(pattern_to_search_inv)
                 counts.append(found)
 
-                counts_fk[pattern_to_search] = f'{len(ids_matches)}|{found}'
-                counts_fk[pattern_to_search_inv] = f'{len(ids_matches)}|{found}'
+                counts_fk[pattern_to_search]        = found #f'{len(ids_matches)}|{found}'
+                counts_fk[pattern_to_search_inv]    = found #f'{len(ids_matches)}|{found}'
+                found=found
+                
+        stop +=1
+        if stop>5:
+            # break
+            None
             
     
-    log.debug(f'patterns: {patterns}')
-    log.debug(f'counts: {counts}')
-    log.debug(f'counts_fk: {counts_fk}')
+#     log.debug(f'patterns: {patterns}')
+#     log.debug(f'counts: {counts}')
+#     log.debug(f'counts_fk: {counts_fk}')
 
     # create to/from grid
     grid_markov = pd.DataFrame({'pairs':patterns, 'counts': counts})
@@ -430,7 +448,7 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
     # Renomeia as colunas. Remove a referencia 'y'
     grid_markov.columns= [col for col in grid_markov.columns]
     log.debug(f'GRID RENAME COLUMNS :{grid_markov}')
-    
+       
     # replace all NaN with zeros
     grid_markov.fillna(0, inplace=True)
     log.debug(f'GRID FILLNA :{grid_markov}')
@@ -438,22 +456,22 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
     # cria uma coluna temporaria para a soma da linha
     grid_markov['soma'] = grid_markov.sum(axis=1)
     log.debug(f'GRID SOMA :{grid_markov}')
-    
-    # return grid_markov
 
     # grid_markov.rowSums(transition_dataframe) 
     # grid_markov = grid_markov / grid_markov['soma']
     
     # calcula o percentual de cada valor sobre a soma    
     for col in grid_markov.columns:
-        grid_markov[col] = grid_markov[col]/grid_markov['soma']
+        grid_markov[col] = grid_markov[col]/grid_markov['soma'] 
     log.debug(f'GRID PERCENT :{grid_markov}')
         
-        
-    # replace all NaN with zeros. Para o caso da divisao por zero (soma)
-    grid_markov.fillna(1/(grid_markov.shape[1] - 2), inplace=True)
-    log.debug(f'GRID FILLNA :{grid_markov}')
-    
+    # Para o caso da divisao por soma zero. Sera criado um proporcional 1/total de colunas.
+    # Assim garantindo que a soma da linha da 1.
+    # O Total de colunas tem que ser respectivo de onde correu a combinacao. Ex. event_pattern_prices
+#     grid_markov.fillna(1/(grid_markov.shape[1] - 1), inplace=True)
+#     log.debug(f'GRID FILLNA :{grid_markov}')
+#     for idx in x[x[x.columns[0]].isna()].index:
+#         print(idx)
     
     #Remove a coluna Soma    
     del grid_markov['soma']
@@ -461,3 +479,47 @@ def build_transition_grid_v2(df: pd.DataFrame, unique_patterns):
     log.debug(f'Prova dos Nove - Somatorio deve ser 1 | {grid_markov.T.sum()}')
 
     return grid_markov
+
+
+
+def get_unique_patterns_V2(input_array: np.ndarray, **kwargs):
+    """ 
+    Aqui o 'get_labels' nao deve fazer parte... pois os unique patterns pode estar agrupado. Ex. AAA, ABC, etc
+    """
+    unique_patterns = []
+    for i in range(len(input_array)):
+
+        flat_list = [ item.split(',') for item in input_array ]
+        temp_patterns = ','.join(str(r) for v in flat_list for r in v)
+        unique_patterns += temp_patterns.split(',')
+                
+    unique_patterns = sorted(list( set(unique_patterns ) ))
+    return unique_patterns
+
+
+
+if __name__ == '__main__':
+    import importlib, sys, os
+    import logging
+    log = logging.getLogger(__name__)
+    logging.basicConfig(level=logging.DEBUG) 
+    
+    from pathlib import Path
+    sys.path.append( str( Path(__file__).parents[1] ) )
+
+    import pandas as pd
+
+    import support_library.markov_setup as mk
+    df = pd.read_excel('mkt/df6_neg.xlsx')
+    print(df.shape)
+
+
+    # unique_patterns = ['RRPRQQP', 'RRQPPPP', 'RRQPPPQ', 'RRQPPQR', 'RRQPPRP', 'RRQPQQQ', 'RRQPQQR', 'RRQPQRP', 'RRQPQRQ', 'RRQQPRR', 'RRQQRQR', 'RRQRQRR', 'RRQRRRP', 'RRQRRRR', 'RRRPPQP', 'RRRPPQQ', 'RRRPQQQ', 'RRRPQRQ', 'RRRPQRR', 'RRRPRRP', 'RRRPRRQ', 'RRRPRRR', 'RRRQQRQ', 'RRRQRRR', 'RRRRQQQ', 'RRRRQQR', 'RRRRQRQ', 'RRRRQRR', 'RRRRRRQ', 'RRRRRRR']
+    unique_patterns = ['JJLKKJJ', 'RRRPQQQ','EDEEDDD', 'KJLKKJJ', 'fabio']
+
+    unique_patterns = get_unique_patterns_V2(df['events_pattern'].values)
+    print(len(unique_patterns))
+
+    # logging.basicConfig(level=logging.DEBUG)
+    x = build_transition_grid_v2(df, unique_patterns)
+    print(x)
