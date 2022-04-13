@@ -56,11 +56,6 @@
                 </config>
             </config>
         </config>
-        <config key="columnPairsFilter_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
         <config key="possibleValuesCount_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -71,6 +66,11 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="pvalAlternative" type="xstring" value="TWO_SIDED"/>
+        <config key="columnPairsFilter_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="EXECUTED"/>
@@ -125,6 +125,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="ded6ecd5-0554-490e-89f0-b5e64d7f01cb"/>
+        <entry key="file_store_id" type="xstring" value="a3e29e9d-a9fc-42f4-b22f-7c2f5d6290b4"/>
     </config>
 </config>

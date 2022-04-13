@@ -7,7 +7,7 @@
     </config>
     <config key="model">
         <entry key="replaced-column" type="xstring" isnull="true" value=""/>
-        <entry key="column-value" type="xstring" value="vegetable_oil"/>
+        <entry key="column-value" type="xstring" value="vegetable-oil"/>
         <entry key="new-column-name" type="xstring" value="commodity"/>
         <entry key="column-type" type="xstring" value="STRING"/>
         <entry key="date-format" type="xstring" value="dd.MM.yyyy"/>
@@ -39,6 +39,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="45cad823-87d2-49b0-8733-94d3abc47802"/>
+        <entry key="file_store_id" type="xstring" value="ff2ac19c-2d58-4e2d-9320-831b314fe8eb"/>
     </config>
 </config>

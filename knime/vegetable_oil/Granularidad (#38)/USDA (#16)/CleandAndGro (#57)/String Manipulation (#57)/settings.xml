@@ -6,7 +6,7 @@
         <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
     </config>
     <config key="model">
-        <entry key="expression" type="xstring" value="replaceChars(lowerCase($Attribute_Description$),&quot; .&quot; ,&quot;_&quot; )"/>
+        <entry key="expression" type="xstring" value="replaceChars(lowerCase($Attribute_Description$),&quot; .&quot; ,&quot;-&quot; )"/>
         <entry key="replaced_column" type="xstring" value="Attribute_Description"/>
         <entry key="append_column" type="xboolean" value="true"/>
         <entry key="test_compilation_on_dialog_close" type="xboolean" value="true"/>
@@ -40,6 +40,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="28b30561-f767-46e6-8f9b-df14763ceda5"/>
+        <entry key="file_store_id" type="xstring" value="6aed08bd-4359-437e-97e6-4b922f1d4453"/>
     </config>
 </config>

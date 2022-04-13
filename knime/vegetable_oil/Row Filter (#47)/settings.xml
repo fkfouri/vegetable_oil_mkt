@@ -8,7 +8,7 @@
     <config key="model">
         <config key="rowFilter">
             <entry key="RowFilter_TypeID" type="xstring" value="MissingVal_RowFilter"/>
-            <entry key="ColumnName" type="xstring" value="vegetable_oil_total_supply_usda"/>
+            <entry key="ColumnName" type="xstring" value="vegetable-oil_total-supply_usda"/>
             <entry key="include" type="xboolean" value="false"/>
             <entry key="deepFiltering" type="xboolean" value="false"/>
         </config>
@@ -40,6 +40,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="36709b24-51bd-4989-8015-5e97f29b020e"/>
+        <entry key="file_store_id" type="xstring" value="e840b956-d69c-4fa6-b685-b0471fec7eae"/>
     </config>
 </config>

@@ -161,11 +161,6 @@
                 </config>
             </config>
         </config>
-        <config key="columnPairsFilter_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
         <config key="possibleValuesCount_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -176,12 +171,17 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="pvalAlternative" type="xstring" value="GREATER"/>
+        <config key="columnPairsFilter_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="EXECUTED"/>
     <config key="nodecontainer_message">
         <entry key="type" type="xstring" value="WARNING"/>
-        <entry key="message" type="xstring" value="Some numeric column(s) contained missing values: &quot;olive_crush&quot;, &quot;palm_crush&quot;, &quot;peanut_price&quot;, &quot;sunflower_price&quot;, &lt;1 more&gt;...%%00010Some numeric column(s) have low variance (are constant): &quot;olive_crush&quot;, &quot;olive_feed_waste_dom_cons&quot;, &quot;palm_crush&quot;"/>
+        <entry key="message" type="xstring" value="Some numeric column(s) contained missing values: &quot;olive_crush&quot;, &quot;palm_crush&quot;, &quot;peanut_price&quot;, &quot;sunflower_price&quot;, &lt;1 more&gt;...%%00010Some numeric column(s) have low variance (are constant): &quot;olive_crush&quot;, &quot;olive_feed-waste-dom-cons&quot;, &quot;palm_crush&quot;"/>
     </config>
     <entry key="factory" type="xstring" value="org.knime.base.node.preproc.correlation.compute2.CorrelationCompute2NodeFactory"/>
     <entry key="node-name" type="xstring" value="Linear Correlation"/>
@@ -234,6 +234,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="b2b1f737-5070-415a-88fe-3128536a16ba"/>
+        <entry key="file_store_id" type="xstring" value="e3e4dc75-d598-46d7-bc3b-ceec0c15c4a0"/>
     </config>
 </config>

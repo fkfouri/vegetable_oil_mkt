@@ -32,6 +32,11 @@
                 </config>
             </config>
         </config>
+        <config key="PrecisionNumer_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="PrecisionNumer" type="xint" value="2"/>
         <config key="AppendColumns_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -42,26 +47,21 @@
             <entry key="EnabledStatus" type="xboolean" value="false"/>
         </config>
         <entry key="ColumnSuffix" type="xstring" value=" (rounded)"/>
-        <config key="OutputType_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="OutputType" type="xstring" value="Double"/>
-        <config key="PrecisionNumer_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="PrecisionNumer" type="xint" value="2"/>
-        <config key="NumberMode_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="NumberMode" type="xstring" value="Decimal places"/>
         <config key="RoundingMode_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="RoundingMode" type="xstring" value="HALF_UP"/>
+        <config key="OutputType_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="OutputType" type="xstring" value="Double"/>
+        <config key="NumberMode_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="NumberMode" type="xstring" value="Decimal places"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="EXECUTED"/>
@@ -90,6 +90,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="72ff25e3-37f3-4bde-aca5-07bcb8e4da70"/>
+        <entry key="file_store_id" type="xstring" value="7333ce9f-fa4d-4d2d-b97f-9518ce246694"/>
     </config>
 </config>

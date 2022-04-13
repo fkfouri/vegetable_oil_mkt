@@ -39,7 +39,7 @@
             <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="valueDelimiter" type="xstring" value=", "/>
+        <entry key="valueDelimiter" type="xstring" value=","/>
         <config key="sortInMemory_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -64,7 +64,7 @@
             </config>
             <config key="aggregationMethod">
                 <entry key="array-size" type="xint" value="1"/>
-                <entry key="0" type="xstring" value="Mean"/>
+                <entry key="0" type="xstring" value="Sum_V2.5.2"/>
             </config>
             <config key="inclMissingVals">
                 <entry key="array-size" type="xint" value="1"/>
@@ -133,7 +133,7 @@
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="sort_lexicographical" type="xboolean" value="false"/>
+        <entry key="sort_lexicographical" type="xboolean" value="true"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="EXECUTED"/>
@@ -176,6 +176,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="c4fe1624-a519-4b87-8107-cdb5a15eed78"/>
+        <entry key="file_store_id" type="xstring" value="1b1d22de-04a6-4d56-87d6-4072455ec106"/>
     </config>
 </config>
