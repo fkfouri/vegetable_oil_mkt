@@ -9,7 +9,7 @@
         <config key="all_columns">
             <config key="0">
                 <entry key="old_column_name" type="xstring" value="ColumnValues"/>
-                <entry key="new_column_name" type="xstring" value="vegetable-oil_price"/>
+                <entry key="new_column_name" type="xstring" value="_fao_index"/>
                 <entry key="new_column_type" type="xint" value="0"/>
             </config>
         </config>
@@ -41,6 +41,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="f5a07c13-de45-45e1-b403-b419123db14e"/>
+        <entry key="file_store_id" type="xstring" value="ee6d4ccf-e4eb-4d7b-ab11-d504ba17f570"/>
     </config>
 </config>

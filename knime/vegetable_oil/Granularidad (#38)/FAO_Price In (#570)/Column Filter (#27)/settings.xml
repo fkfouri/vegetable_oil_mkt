@@ -10,18 +10,16 @@
             <entry key="filter-type" type="xstring" value="STANDARD"/>
             <config key="included_names">
                 <entry key="array-size" type="xint" value="2"/>
-                <entry key="0" type="xstring" value="date"/>
-                <entry key="1" type="xstring" value="price_index_fao"/>
+                <entry key="0" type="xstring" value="vegetable-oil_price"/>
+                <entry key="1" type="xstring" value="date"/>
             </config>
             <config key="excluded_names">
-                <entry key="array-size" type="xint" value="7"/>
+                <entry key="array-size" type="xint" value="5"/>
                 <entry key="0" type="xstring" value="RowIDs"/>
                 <entry key="1" type="xstring" value="ColumnNames"/>
-                <entry key="2" type="xstring" value="ColumnValues"/>
-                <entry key="3" type="xstring" value="Year"/>
-                <entry key="4" type="xstring" value="day"/>
-                <entry key="5" type="xstring" value="month"/>
-                <entry key="6" type="xstring" value="empty_A"/>
+                <entry key="2" type="xstring" value="Year"/>
+                <entry key="3" type="xstring" value="day"/>
+                <entry key="4" type="xstring" value="month"/>
             </config>
             <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
             <config key="name_pattern">
@@ -70,6 +68,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="57f89dcc-e56f-4a5d-84e8-63008132743c"/>
+        <entry key="file_store_id" type="xstring" value="bc2b38d3-275b-4c5e-926e-606d95f8ccd8"/>
     </config>
 </config>

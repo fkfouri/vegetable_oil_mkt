@@ -8,7 +8,7 @@
     <config key="model">
         <config key="rowFilter">
             <entry key="RowFilter_TypeID" type="xstring" value="MissingVal_RowFilter"/>
-            <entry key="ColumnName" type="xstring" value="vegetable-oil_price"/>
+            <entry key="ColumnName" type="xstring" value="date"/>
             <entry key="include" type="xboolean" value="false"/>
             <entry key="deepFiltering" type="xboolean" value="false"/>
         </config>
@@ -34,12 +34,12 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 266, Cols: 2"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 276, Cols: 2"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="f2ebc3a6-9b94-467f-b39d-99572c2766e3"/>
+        <entry key="file_store_id" type="xstring" value="89a29c78-4cce-4e18-8767-1245d95a7c03"/>
     </config>
 </config>
