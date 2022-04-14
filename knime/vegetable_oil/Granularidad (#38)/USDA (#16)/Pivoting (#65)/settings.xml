@@ -19,8 +19,8 @@
                 <entry key="array-size" type="xint" value="5"/>
                 <entry key="0" type="xstring" value="reference"/>
                 <entry key="1" type="xstring" value="commodity"/>
-                <entry key="2" type="xstring" value="attribute"/>
-                <entry key="3" type="xstring" value="dataset"/>
+                <entry key="2" type="xstring" value="dataset"/>
+                <entry key="3" type="xstring" value="attribute"/>
                 <entry key="4" type="xstring" value="value"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
@@ -96,16 +96,16 @@
         </config>
         <config key="pivotColumns">
             <config key="InclList">
-                <entry key="array-size" type="xint" value="3"/>
+                <entry key="array-size" type="xint" value="2"/>
                 <entry key="0" type="xstring" value="commodity"/>
                 <entry key="1" type="xstring" value="attribute"/>
-                <entry key="2" type="xstring" value="dataset"/>
             </config>
             <config key="ExclList">
-                <entry key="array-size" type="xint" value="3"/>
+                <entry key="array-size" type="xint" value="4"/>
                 <entry key="0" type="xstring" value="date"/>
                 <entry key="1" type="xstring" value="reference"/>
-                <entry key="2" type="xstring" value="value"/>
+                <entry key="2" type="xstring" value="dataset"/>
+                <entry key="3" type="xstring" value="value"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -176,6 +176,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="1b1d22de-04a6-4d56-87d6-4072455ec106"/>
+        <entry key="file_store_id" type="xstring" value="4434d430-8d7e-45e3-9e25-2909f1815e3c"/>
     </config>
 </config>

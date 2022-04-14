@@ -11,8 +11,8 @@
             <entry key="0" type="xstring" value="date"/>
             <entry key="1" type="xstring" value="reference"/>
             <entry key="2" type="xstring" value="commodity"/>
-            <entry key="3" type="xstring" value="attribute"/>
-            <entry key="4" type="xstring" value="dataset"/>
+            <entry key="3" type="xstring" value="dataset"/>
+            <entry key="4" type="xstring" value="attribute"/>
             <entry key="5" type="xstring" value="value"/>
             <entry key="6" type="xstring" value="&lt;any unknown new column&gt;"/>
         </config>
@@ -44,6 +44,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="1ac5fe2b-970a-47dc-b77a-2a8a485e1375"/>
+        <entry key="file_store_id" type="xstring" value="0e35ff6d-142d-4315-9356-1b657cefcc74"/>
     </config>
 </config>
