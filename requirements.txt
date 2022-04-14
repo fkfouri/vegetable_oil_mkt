@@ -31,3 +31,5 @@ fredapi
 jupyter
 
 numba
+pyarrow
+fastparquet

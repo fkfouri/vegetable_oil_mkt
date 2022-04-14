@@ -14,7 +14,7 @@
             <entry key="filter-type" type="xstring" value="STANDARD"/>
             <config key="included_names">
                 <entry key="array-size" type="xint" value="1"/>
-                <entry key="0" type="xstring" value="price_index_fao"/>
+                <entry key="0" type="xstring" value="ColumnValues"/>
             </config>
             <config key="excluded_names">
                 <entry key="array-size" type="xint" value="5"/>
@@ -73,6 +73,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="27d95678-80a5-4608-9a16-88c5b97eac1c"/>
+        <entry key="file_store_id" type="xstring" value="df689b26-6442-4309-bdd6-90809a53fb39"/>
     </config>
 </config>
