@@ -33,3 +33,4 @@ jupyter
 numba
 pyarrow
 fastparquet
+tabulate
