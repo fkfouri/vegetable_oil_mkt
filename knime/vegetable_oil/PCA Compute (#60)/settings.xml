@@ -6,41 +6,38 @@
         <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
     </config>
     <config key="model">
-        <config key="include-list_Internals">
+        <config key="used_columns_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_columnfilter"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <config key="include-list">
+        <config key="used_columns">
             <entry key="filter-type" type="xstring" value="STANDARD"/>
             <config key="included_names">
                 <entry key="array-size" type="xint" value="21"/>
-                <entry key="0" type="xstring" value="consumption_oecd"/>
-                <entry key="1" type="xstring" value="ending_stocks_oecd"/>
-                <entry key="2" type="xstring" value="exports_oecd"/>
-                <entry key="3" type="xstring" value="food_oecd"/>
-                <entry key="4" type="xstring" value="food_fat_availability_oecd"/>
-                <entry key="5" type="xstring" value="human_consumption_per_capita_oecd"/>
-                <entry key="6" type="xstring" value="imports_oecd"/>
-                <entry key="7" type="xstring" value="other_use_oecd"/>
-                <entry key="8" type="xstring" value="production_oecd"/>
-                <entry key="9" type="xstring" value="beginning_stocks_usda"/>
-                <entry key="10" type="xstring" value="crush_usda"/>
-                <entry key="11" type="xstring" value="domestic_consumption_usda"/>
-                <entry key="12" type="xstring" value="ending_stocks_usda"/>
-                <entry key="13" type="xstring" value="exports_usda"/>
-                <entry key="14" type="xstring" value="feed_waste_dom_cons_usda"/>
-                <entry key="15" type="xstring" value="food_use_dom_cons_usda"/>
-                <entry key="16" type="xstring" value="imports_usda"/>
-                <entry key="17" type="xstring" value="industrial_dom_cons_usda"/>
-                <entry key="18" type="xstring" value="production_usda"/>
-                <entry key="19" type="xstring" value="total_distribution_usda"/>
-                <entry key="20" type="xstring" value="total_Supply_usda"/>
+                <entry key="0" type="xstring" value="coconut_exports"/>
+                <entry key="1" type="xstring" value="coconut_price"/>
+                <entry key="2" type="xstring" value="coconut_production"/>
+                <entry key="3" type="xstring" value="palm-kernel_exports"/>
+                <entry key="4" type="xstring" value="palm-kernel_price"/>
+                <entry key="5" type="xstring" value="palm-kernel_production"/>
+                <entry key="6" type="xstring" value="palm_exports"/>
+                <entry key="7" type="xstring" value="palm_price"/>
+                <entry key="8" type="xstring" value="palm_production"/>
+                <entry key="9" type="xstring" value="peanut_exports"/>
+                <entry key="10" type="xstring" value="peanut_price"/>
+                <entry key="11" type="xstring" value="peanut_production"/>
+                <entry key="12" type="xstring" value="rapeseed_exports"/>
+                <entry key="13" type="xstring" value="rapeseed_price"/>
+                <entry key="14" type="xstring" value="rapeseed_production"/>
+                <entry key="15" type="xstring" value="soybean_exports"/>
+                <entry key="16" type="xstring" value="soybean_price"/>
+                <entry key="17" type="xstring" value="soybean_production"/>
+                <entry key="18" type="xstring" value="sunflower_exports"/>
+                <entry key="19" type="xstring" value="sunflower_price"/>
+                <entry key="20" type="xstring" value="sunflower_production"/>
             </config>
             <config key="excluded_names">
-                <entry key="array-size" type="xint" value="3"/>
-                <entry key="0" type="xstring" value="price_index_fao"/>
-                <entry key="1" type="xstring" value="commodity"/>
-                <entry key="2" type="xstring" value="Reference"/>
+                <entry key="array-size" type="xint" value="0"/>
             </config>
             <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
             <config key="name_pattern">
@@ -52,30 +49,19 @@
             <config key="datatype">
                 <config key="typelist">
                     <entry key="org.knime.core.data.DoubleValue" type="xboolean" value="false"/>
-                    <entry key="org.knime.core.data.StringValue" type="xboolean" value="false"/>
                 </config>
             </config>
         </config>
-        <config key="possibleValuesCount_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+        <config key="fail_on_missings_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
-        <entry key="possibleValuesCount" type="xint" value="50"/>
-        <config key="pvalAlternative_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="pvalAlternative" type="xstring" value="TWO_SIDED"/>
-        <config key="columnPairsFilter_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
+        <entry key="fail_on_missings" type="xboolean" value="false"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="CONFIGURED"/>
-    <entry key="factory" type="xstring" value="org.knime.base.node.preproc.correlation.compute2.CorrelationCompute2NodeFactory"/>
-    <entry key="node-name" type="xstring" value="Linear Correlation"/>
+    <entry key="factory" type="xstring" value="org.knime.base.node.mine.transformation.pca.compute.PCA2ComputeNodeFactory"/>
+    <entry key="node-name" type="xstring" value="PCA Compute"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
     <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.base"/>
     <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
@@ -85,7 +71,7 @@
     <entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
     <entry key="node-feature-version" type="xstring" value="4.5.2.v202203141441"/>
     <config key="factory_settings"/>
-    <entry key="name" type="xstring" value="Linear Correlation"/>
+    <entry key="name" type="xstring" value="PCA Compute"/>
     <entry key="hasContent" type="xboolean" value="false"/>
     <entry key="isInactive" type="xboolean" value="false"/>
     <config key="ports">

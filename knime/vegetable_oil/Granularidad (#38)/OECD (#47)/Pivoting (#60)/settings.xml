@@ -13,17 +13,16 @@
         <config key="grouByColumns">
             <config key="InclList">
                 <entry key="array-size" type="xint" value="1"/>
-                <entry key="0" type="xstring" value="date"/>
+                <entry key="0" type="xstring" value="Time"/>
             </config>
             <config key="ExclList">
-                <entry key="array-size" type="xint" value="7"/>
-                <entry key="0" type="xstring" value="Commodity"/>
-                <entry key="1" type="xstring" value="dataset"/>
-                <entry key="2" type="xstring" value="Country"/>
-                <entry key="3" type="xstring" value="Variable"/>
-                <entry key="4" type="xstring" value="Value"/>
-                <entry key="5" type="xstring" value="yoy"/>
-                <entry key="6" type="xstring" value="year_value"/>
+                <entry key="array-size" type="xint" value="6"/>
+                <entry key="0" type="xstring" value="Country"/>
+                <entry key="1" type="xstring" value="Commodity"/>
+                <entry key="2" type="xstring" value="Variable"/>
+                <entry key="3" type="xstring" value="Unit"/>
+                <entry key="4" type="xstring" value="PowerCode"/>
+                <entry key="5" type="xstring" value="Value"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -37,11 +36,21 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="enableHilite" type="xboolean" value="false"/>
+        <config key="valueDelimiter_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="valueDelimiter" type="xstring" value=", "/>
         <config key="sortInMemory_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="sortInMemory" type="xboolean" value="false"/>
+        <config key="columnNamePolicy_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="columnNamePolicy" type="xstring" value="Keep original name(s)"/>
         <config key="aggregationColumn">
             <config key="columnNames">
                 <entry key="array-size" type="xint" value="1"/>
@@ -66,11 +75,6 @@
         <config key="aggregationOperatorSettings"/>
         <config key="patternAggregators"/>
         <config key="dataTypeAggregators"/>
-        <config key="columnNamePolicy_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="columnNamePolicy" type="xstring" value="Keep original name(s)"/>
         <config key="retainOrder_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -81,11 +85,6 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="inMemory" type="xboolean" value="false"/>
-        <config key="valueDelimiter_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="valueDelimiter" type="xstring" value=", "/>
         <config key="nodeVersion_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -98,18 +97,17 @@
         </config>
         <config key="pivotColumns">
             <config key="InclList">
-                <entry key="array-size" type="xint" value="3"/>
+                <entry key="array-size" type="xint" value="2"/>
                 <entry key="0" type="xstring" value="Commodity"/>
-                <entry key="1" type="xstring" value="dataset"/>
-                <entry key="2" type="xstring" value="Variable"/>
+                <entry key="1" type="xstring" value="Variable"/>
             </config>
             <config key="ExclList">
                 <entry key="array-size" type="xint" value="5"/>
-                <entry key="0" type="xstring" value="date"/>
-                <entry key="1" type="xstring" value="Country"/>
-                <entry key="2" type="xstring" value="Value"/>
-                <entry key="3" type="xstring" value="yoy"/>
-                <entry key="4" type="xstring" value="year_value"/>
+                <entry key="0" type="xstring" value="Country"/>
+                <entry key="1" type="xstring" value="Time"/>
+                <entry key="2" type="xstring" value="Unit"/>
+                <entry key="3" type="xstring" value="PowerCode"/>
+                <entry key="4" type="xstring" value="Value"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -160,14 +158,14 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 372, Cols: 10"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 41, Cols: 10"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
         <config key="port_2">
             <entry key="index" type="xint" value="2"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 372, Cols: 2"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 41, Cols: 2"/>
             <entry key="port_dir_location" type="xstring" value="port_2"/>
         </config>
         <config key="port_3">
@@ -180,6 +178,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="1c69a36e-651b-410d-b111-0ebba8b29ab9"/>
+        <entry key="file_store_id" type="xstring" value="bf7b6437-6630-4304-a3f9-2af45a0d1bb1"/>
     </config>
 </config>

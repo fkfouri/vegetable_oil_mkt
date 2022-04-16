@@ -78,11 +78,7 @@
         <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
-    <entry key="state" type="xstring" value="EXECUTED"/>
-    <config key="nodecontainer_message">
-        <entry key="type" type="xstring" value="WARNING"/>
-        <entry key="message" type="xstring" value="Some numeric column(s) contained missing values: &quot;peanut_price&quot;, &quot;sunflower_price&quot;, &quot;rapeseed_price&quot;%%00010Some numeric column(s) have low variance (are constant): &quot;olive_feed-waste-dom-cons&quot;"/>
-    </config>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
     <entry key="factory" type="xstring" value="org.knime.base.node.preproc.correlation.compute2.CorrelationCompute2NodeFactory"/>
     <entry key="node-name" type="xstring" value="Linear Correlation"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
@@ -95,45 +91,24 @@
     <entry key="node-feature-version" type="xstring" value="4.5.2.v202203141441"/>
     <config key="factory_settings"/>
     <entry key="name" type="xstring" value="Linear Correlation"/>
-    <entry key="hasContent" type="xboolean" value="true"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
     <entry key="isInactive" type="xboolean" value="false"/>
     <config key="ports">
         <config key="port_1">
             <entry key="index" type="xint" value="1"/>
-            <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
-            <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 7260, Cols: 5"/>
-            <entry key="port_dir_location" type="xstring" value="port_1"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
         </config>
         <config key="port_2">
             <entry key="index" type="xint" value="2"/>
-            <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
-            <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 121, Cols: 121"/>
-            <entry key="port_dir_location" type="xstring" value="port_2"/>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
         </config>
         <config key="port_3">
             <entry key="index" type="xint" value="3"/>
-            <entry key="port_spec_class" type="xstring" value="org.knime.base.node.preproc.correlation.pmcc.PMCCPortObjectAndSpec"/>
-            <entry key="port_object_class" type="xstring" value="org.knime.base.node.preproc.correlation.pmcc.PMCCPortObjectAndSpec"/>
-            <entry key="port_object_summary" type="xstring" value="Correlation values on 121 columns"/>
-            <entry key="port_spec_location" type="xstring" value="spec/spec.zip"/>
-            <entry key="port_object_location" type="xstring" value="object/portobject.zip"/>
-            <entry key="port_dir_location" type="xstring" value="port_3"/>
-        </config>
-    </config>
-    <config key="internalObjects">
-        <entry key="location" type="xstring" value="internalTables"/>
-        <config key="content">
-            <config key="object_0">
-                <entry key="index" type="xint" value="0"/>
-                <entry key="type" type="xstring" value="table"/>
-                <entry key="table_dir_location" type="xstring" value="object_0"/>
-            </config>
+            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="f307e586-3d65-40a0-885b-f66199a63208"/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
     </config>
 </config>
