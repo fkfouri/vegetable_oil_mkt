@@ -17,7 +17,7 @@
                 <entry key="array-size" type="xint" value="5"/>
                 <entry key="0" type="xstring" value="RowIDs"/>
                 <entry key="1" type="xstring" value="ColumnNames"/>
-                <entry key="2" type="xstring" value="Year"/>
+                <entry key="2" type="xstring" value="year"/>
                 <entry key="3" type="xstring" value="day"/>
                 <entry key="4" type="xstring" value="month"/>
             </config>
@@ -62,12 +62,12 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 276, Cols: 2"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 396, Cols: 2"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="47ed2275-b6dc-4bc0-81be-aa409c3dec89"/>
+        <entry key="file_store_id" type="xstring" value="e80dbf7a-d7f3-466f-8991-1fc54984602b"/>
     </config>
 </config>

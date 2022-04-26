@@ -10,7 +10,7 @@
             <entry key="filter-type" type="xstring" value="STANDARD"/>
             <config key="included_names">
                 <entry key="array-size" type="xint" value="13"/>
-                <entry key="0" type="xstring" value="empty_B"/>
+                <entry key="0" type="xstring" value="Year"/>
                 <entry key="1" type="xstring" value="January"/>
                 <entry key="2" type="xstring" value="February"/>
                 <entry key="3" type="xstring" value="March"/>
@@ -25,9 +25,10 @@
                 <entry key="12" type="xstring" value="December"/>
             </config>
             <config key="excluded_names">
-                <entry key="array-size" type="xint" value="2"/>
+                <entry key="array-size" type="xint" value="3"/>
                 <entry key="0" type="xstring" value="empty_A"/>
-                <entry key="1" type="xstring" value="empty_O"/>
+                <entry key="1" type="xstring" value="average_year"/>
+                <entry key="2" type="xstring" value="empty_O"/>
             </config>
             <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
             <config key="name_pattern">
@@ -75,6 +76,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="9efd055b-befc-46c6-9a31-7d31def9051e"/>
+        <entry key="file_store_id" type="xstring" value="36519d5d-1c0b-4ce0-ad57-cf43b4d8ea97"/>
     </config>
 </config>

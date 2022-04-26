@@ -34,3 +34,7 @@ numba
 pyarrow
 fastparquet
 tabulate
+jupyter_contrib_nbextensions
+
+#IV 2SLS
+linearmodels

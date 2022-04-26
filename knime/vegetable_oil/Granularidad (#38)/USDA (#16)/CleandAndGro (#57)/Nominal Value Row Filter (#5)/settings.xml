@@ -15,9 +15,9 @@
             </config>
             <config key="excluded_names">
                 <entry key="array-size" type="xint" value="4"/>
-                <entry key="0" type="xstring" value="(PERCENT)"/>
+                <entry key="0" type="xstring" value="(MT/HA)"/>
                 <entry key="1" type="xstring" value="(1000 HA)"/>
-                <entry key="2" type="xstring" value="(MT/HA)"/>
+                <entry key="2" type="xstring" value="(PERCENT)"/>
                 <entry key="3" type="xstring" value="(RATIO)"/>
             </config>
             <entry key="enforce_option" type="xstring" value="EnforceInclusion"/>
@@ -52,12 +52,12 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 103830, Cols: 12"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 6064, Cols: 6"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="820416ea-0bdd-4cf6-8d55-9a16c8f593f3"/>
+        <entry key="file_store_id" type="xstring" value="c0774152-cc78-42a5-9bfe-a08cb2350719"/>
     </config>
 </config>

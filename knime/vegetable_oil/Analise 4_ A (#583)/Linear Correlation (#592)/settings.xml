@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <config key="include-list_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_columnfilter"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <config key="include-list">
+            <entry key="filter-type" type="xstring" value="STANDARD"/>
+            <config key="included_names">
+                <entry key="array-size" type="xint" value="36"/>
+                <entry key="0" type="xstring" value="worldbank_agriculture-forestry-and-fishing-value-added-perc-of-gdp"/>
+                <entry key="1" type="xstring" value="worldbank_cereal-production-metric-tons"/>
+                <entry key="2" type="xstring" value="worldbank_cereal-yield-kg-per-hectare"/>
+                <entry key="3" type="xstring" value="worldbank_co2-emissions-kg-per-ppp-$-of-gdp"/>
+                <entry key="4" type="xstring" value="worldbank_co2-emissions-kt"/>
+                <entry key="5" type="xstring" value="worldbank_co2-emissions-metric-tons-per-capita"/>
+                <entry key="6" type="xstring" value="worldbank_combustible-renewables-and-waste-perc-of-total-energy"/>
+                <entry key="7" type="xstring" value="worldbank_electric-power-consumption-kwh-per-capita"/>
+                <entry key="8" type="xstring" value="worldbank_energy-use-kg-of-oil-equivalent-per-capita"/>
+                <entry key="9" type="xstring" value="worldbank_exports-of-goods-and-services-perc-of-gdp"/>
+                <entry key="10" type="xstring" value="worldbank_fertility-rate-total-births-per-woman"/>
+                <entry key="11" type="xstring" value="worldbank_fertilizer-consumption-kilograms-per-hectare-of-arable-land"/>
+                <entry key="12" type="xstring" value="worldbank_fertilizer-consumption-perc-of-fertilizer-production"/>
+                <entry key="13" type="xstring" value="worldbank_foreign-direct-investment-net-inflows-bop-current-us$"/>
+                <entry key="14" type="xstring" value="worldbank_forest-area-sq-km"/>
+                <entry key="15" type="xstring" value="worldbank_fossil-fuel-energy-consumption-perc-of-total"/>
+                <entry key="16" type="xstring" value="worldbank_gdp-current-us$"/>
+                <entry key="17" type="xstring" value="worldbank_gdp-growth-annual-perc"/>
+                <entry key="18" type="xstring" value="worldbank_gdp-per-capita-ppp-current-international-$"/>
+                <entry key="19" type="xstring" value="worldbank_gdp-ppp-current-international-$"/>
+                <entry key="20" type="xstring" value="worldbank_gni-per-capita-atlas-method-current-us$"/>
+                <entry key="21" type="xstring" value="worldbank_gni-per-capita-ppp-current-international-$"/>
+                <entry key="22" type="xstring" value="worldbank_gni-ppp-current-international-$"/>
+                <entry key="23" type="xstring" value="worldbank_gross-capital-formation-perc-of-gdp"/>
+                <entry key="24" type="xstring" value="worldbank_inflation-gdp-deflator-annual-perc"/>
+                <entry key="25" type="xstring" value="worldbank_life-expectancy-at-birth-total-years"/>
+                <entry key="26" type="xstring" value="worldbank_mortality-rate-under-5-per-1000-live-births"/>
+                <entry key="27" type="xstring" value="worldbank_population-density-people-per-sq-km-of-land-area"/>
+                <entry key="28" type="xstring" value="worldbank_population-growth-annual-perc"/>
+                <entry key="29" type="xstring" value="worldbank_population-total"/>
+                <entry key="30" type="xstring" value="worldbank_surface-area-sq-km"/>
+                <entry key="31" type="xstring" value="worldbank_urban-population-growth-annual-perc"/>
+                <entry key="32" type="xstring" value="worldbank_agricultural-raw-materials-exports-perc-of-merchandise-exports"/>
+                <entry key="33" type="xstring" value="worldbank_tax-revenue-perc-of-gdp"/>
+                <entry key="34" type="xstring" value="worldbank_prevalence-of-underweight-weight-for-age-perc-of-children-under-5"/>
+                <entry key="35" type="xstring" value="worldbank_time-required-to-start-a-business-days"/>
+            </config>
+            <config key="excluded_names">
+                <entry key="array-size" type="xint" value="1"/>
+                <entry key="0" type="xstring" value="year"/>
+            </config>
+            <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
+            <config key="name_pattern">
+                <entry key="pattern" type="xstring" value=""/>
+                <entry key="type" type="xstring" value="Wildcard"/>
+                <entry key="caseSensitive" type="xboolean" value="true"/>
+                <entry key="excludeMatching" type="xboolean" value="false"/>
+            </config>
+            <config key="datatype">
+                <config key="typelist">
+                    <entry key="org.knime.core.data.IntValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.DoubleValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.StringValue" type="xboolean" value="false"/>
+                </config>
+            </config>
+        </config>
+        <config key="columnPairsFilter_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
+        <config key="possibleValuesCount_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="possibleValuesCount" type="xint" value="50"/>
+        <config key="pvalAlternative_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="pvalAlternative" type="xstring" value="GREATER"/>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="EXECUTED"/>
+    <config key="nodecontainer_message">
+        <entry key="type" type="xstring" value="WARNING"/>
+        <entry key="message" type="xstring" value="Some numeric column(s) contained missing values: &quot;coconut_exports&quot;, &quot;cottonseed_exports&quot;, &quot;olive_exports&quot;, &quot;palm_exports&quot;, &lt;53 more&gt;..."/>
+    </config>
+    <entry key="factory" type="xstring" value="org.knime.base.node.preproc.correlation.compute2.CorrelationCompute2NodeFactory"/>
+    <entry key="node-name" type="xstring" value="Linear Correlation"/>
+    <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.base"/>
+    <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+    <entry key="node-bundle-version" type="xstring" value="4.5.1.v202201171147"/>
+    <entry key="node-feature-name" type="xstring" value="KNIME Base nodes"/>
+    <entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.base.feature.group"/>
+    <entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+    <entry key="node-feature-version" type="xstring" value="4.5.2.v202203141441"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="Linear Correlation"/>
+    <entry key="hasContent" type="xboolean" value="true"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports">
+        <config key="port_1">
+            <entry key="index" type="xint" value="1"/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 2556, Cols: 5"/>
+            <entry key="port_dir_location" type="xstring" value="port_1"/>
+        </config>
+        <config key="port_2">
+            <entry key="index" type="xint" value="2"/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 72, Cols: 72"/>
+            <entry key="port_dir_location" type="xstring" value="port_2"/>
+        </config>
+        <config key="port_3">
+            <entry key="index" type="xint" value="3"/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.base.node.preproc.correlation.pmcc.PMCCPortObjectAndSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.base.node.preproc.correlation.pmcc.PMCCPortObjectAndSpec"/>
+            <entry key="port_object_summary" type="xstring" value="Correlation values on 72 columns"/>
+            <entry key="port_spec_location" type="xstring" value="spec/spec.zip"/>
+            <entry key="port_object_location" type="xstring" value="object/portobject.zip"/>
+            <entry key="port_dir_location" type="xstring" value="port_3"/>
+        </config>
+    </config>
+    <config key="internalObjects">
+        <entry key="location" type="xstring" value="internalTables"/>
+        <config key="content">
+            <config key="object_0">
+                <entry key="index" type="xint" value="0"/>
+                <entry key="type" type="xstring" value="table"/>
+                <entry key="table_dir_location" type="xstring" value="object_0"/>
+            </config>
+        </config>
+    </config>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" value="a1c918f0-0fc4-42cc-a40a-446afbde5450"/>
+    </config>
+</config>

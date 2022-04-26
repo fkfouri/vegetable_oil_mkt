@@ -35,21 +35,11 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="enableHilite" type="xboolean" value="false"/>
-        <config key="valueDelimiter_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="valueDelimiter" type="xstring" value=","/>
         <config key="sortInMemory_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="sortInMemory" type="xboolean" value="false"/>
-        <config key="columnNamePolicy_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="columnNamePolicy" type="xstring" value="Keep original name(s)"/>
         <config key="aggregationColumn">
             <config key="columnNames">
                 <entry key="array-size" type="xint" value="1"/>
@@ -74,6 +64,11 @@
         <config key="aggregationOperatorSettings"/>
         <config key="patternAggregators"/>
         <config key="dataTypeAggregators"/>
+        <config key="columnNamePolicy_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="columnNamePolicy" type="xstring" value="Keep original name(s)"/>
         <config key="retainOrder_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -84,6 +79,11 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="inMemory" type="xboolean" value="false"/>
+        <config key="valueDelimiter_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="valueDelimiter" type="xstring" value=","/>
         <config key="nodeVersion_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -156,14 +156,14 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 253, Cols: 13"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 373, Cols: 13"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
         <config key="port_2">
             <entry key="index" type="xint" value="2"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 253, Cols: 2"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 373, Cols: 2"/>
             <entry key="port_dir_location" type="xstring" value="port_2"/>
         </config>
         <config key="port_3">
@@ -176,6 +176,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="4434d430-8d7e-45e3-9e25-2909f1815e3c"/>
+        <entry key="file_store_id" type="xstring" value="856c46a8-cdc7-4a36-adac-a057c5d79459"/>
     </config>
 </config>

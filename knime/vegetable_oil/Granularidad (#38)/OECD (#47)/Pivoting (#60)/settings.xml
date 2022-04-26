@@ -13,16 +13,17 @@
         <config key="grouByColumns">
             <config key="InclList">
                 <entry key="array-size" type="xint" value="1"/>
-                <entry key="0" type="xstring" value="Time"/>
+                <entry key="0" type="xstring" value="year"/>
             </config>
             <config key="ExclList">
-                <entry key="array-size" type="xint" value="6"/>
-                <entry key="0" type="xstring" value="Country"/>
-                <entry key="1" type="xstring" value="Commodity"/>
-                <entry key="2" type="xstring" value="Variable"/>
-                <entry key="3" type="xstring" value="Unit"/>
-                <entry key="4" type="xstring" value="PowerCode"/>
-                <entry key="5" type="xstring" value="Value"/>
+                <entry key="array-size" type="xint" value="7"/>
+                <entry key="0" type="xstring" value="Commodity"/>
+                <entry key="1" type="xstring" value="dataset"/>
+                <entry key="2" type="xstring" value="Country"/>
+                <entry key="3" type="xstring" value="Variable"/>
+                <entry key="4" type="xstring" value="Value"/>
+                <entry key="5" type="xstring" value="Unit"/>
+                <entry key="6" type="xstring" value="PowerCode"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -97,17 +98,18 @@
         </config>
         <config key="pivotColumns">
             <config key="InclList">
-                <entry key="array-size" type="xint" value="2"/>
+                <entry key="array-size" type="xint" value="3"/>
                 <entry key="0" type="xstring" value="Commodity"/>
-                <entry key="1" type="xstring" value="Variable"/>
+                <entry key="1" type="xstring" value="dataset"/>
+                <entry key="2" type="xstring" value="Variable"/>
             </config>
             <config key="ExclList">
                 <entry key="array-size" type="xint" value="5"/>
                 <entry key="0" type="xstring" value="Country"/>
-                <entry key="1" type="xstring" value="Time"/>
-                <entry key="2" type="xstring" value="Unit"/>
-                <entry key="3" type="xstring" value="PowerCode"/>
-                <entry key="4" type="xstring" value="Value"/>
+                <entry key="1" type="xstring" value="Value"/>
+                <entry key="2" type="xstring" value="year"/>
+                <entry key="3" type="xstring" value="Unit"/>
+                <entry key="4" type="xstring" value="PowerCode"/>
             </config>
             <entry key="keep_all_columns_selected" type="xboolean" value="false"/>
         </config>
@@ -158,7 +160,7 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 41, Cols: 10"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 41, Cols: 15"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
         <config key="port_2">
@@ -172,12 +174,12 @@
             <entry key="index" type="xint" value="3"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 1, Cols: 10"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 1, Cols: 15"/>
             <entry key="port_dir_location" type="xstring" value="port_3"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="bf7b6437-6630-4304-a3f9-2af45a0d1bb1"/>
+        <entry key="file_store_id" type="xstring" value="d50ca838-7ce4-4460-89ab-3100615707c0"/>
     </config>
 </config>

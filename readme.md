@@ -30,6 +30,11 @@ source .env-linux/bin/activate
 - Remoção de kernel jupyter: `jupyter kernelspec uninstall unwanted-kernel`
 
 
+## Juputer Extension
+- ref: https://towardsdatascience.com/jupyter-notebook-extensions-517fa69d2231
+- `pip install jupyter_contrib_nbextensions`
+- `jupyter contrib nbextension install`
+
 
 
 https://www.google.com/search?q=supply+and+demand+python&rlz=1C1GCEB_pt-PTBR940BR940&oq=demmand+and+supply+python&aqs=chrome.1.69i57j0i22i30l2.11765j1j7&sourceid=chrome&ie=UTF-8
