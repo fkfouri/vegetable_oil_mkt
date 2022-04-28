@@ -69,11 +69,6 @@
                 </config>
             </config>
         </config>
-        <config key="columnPairsFilter_Internals">
-            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-            <entry key="EnabledStatus" type="xboolean" value="true"/>
-        </config>
-        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
         <config key="possibleValuesCount_Internals">
             <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
             <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -84,9 +79,18 @@
             <entry key="EnabledStatus" type="xboolean" value="true"/>
         </config>
         <entry key="pvalAlternative" type="xstring" value="GREATER"/>
+        <config key="columnPairsFilter_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="columnPairsFilter" type="xstring" value="COMPATIBLE_PAIRS"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
-    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <entry key="state" type="xstring" value="EXECUTED"/>
+    <config key="nodecontainer_message">
+        <entry key="type" type="xstring" value="WARNING"/>
+        <entry key="message" type="xstring" value="Some numeric column(s) contained missing values: &quot;coconut_exports&quot;, &quot;cottonseed_exports&quot;, &quot;olive_exports&quot;, &quot;palm_exports&quot;, &lt;16 more&gt;..."/>
+    </config>
     <entry key="factory" type="xstring" value="org.knime.base.node.preproc.correlation.compute2.CorrelationCompute2NodeFactory"/>
     <entry key="node-name" type="xstring" value="Linear Correlation"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
@@ -99,24 +103,45 @@
     <entry key="node-feature-version" type="xstring" value="4.5.2.v202203141441"/>
     <config key="factory_settings"/>
     <entry key="name" type="xstring" value="Linear Correlation"/>
-    <entry key="hasContent" type="xboolean" value="false"/>
+    <entry key="hasContent" type="xboolean" value="true"/>
     <entry key="isInactive" type="xboolean" value="false"/>
     <config key="ports">
         <config key="port_1">
             <entry key="index" type="xint" value="1"/>
-            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 595, Cols: 5"/>
+            <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
         <config key="port_2">
             <entry key="index" type="xint" value="2"/>
-            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 35, Cols: 35"/>
+            <entry key="port_dir_location" type="xstring" value="port_2"/>
         </config>
         <config key="port_3">
             <entry key="index" type="xint" value="3"/>
-            <entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.base.node.preproc.correlation.pmcc.PMCCPortObjectAndSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.base.node.preproc.correlation.pmcc.PMCCPortObjectAndSpec"/>
+            <entry key="port_object_summary" type="xstring" value="Correlation values on 35 columns"/>
+            <entry key="port_spec_location" type="xstring" value="spec/spec.zip"/>
+            <entry key="port_object_location" type="xstring" value="object/portobject.zip"/>
+            <entry key="port_dir_location" type="xstring" value="port_3"/>
+        </config>
+    </config>
+    <config key="internalObjects">
+        <entry key="location" type="xstring" value="internalTables"/>
+        <config key="content">
+            <config key="object_0">
+                <entry key="index" type="xint" value="0"/>
+                <entry key="type" type="xstring" value="table"/>
+                <entry key="table_dir_location" type="xstring" value="object_0"/>
+            </config>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" value="3f19239d-04fc-4118-83b9-384dee688803"/>
     </config>
 </config>

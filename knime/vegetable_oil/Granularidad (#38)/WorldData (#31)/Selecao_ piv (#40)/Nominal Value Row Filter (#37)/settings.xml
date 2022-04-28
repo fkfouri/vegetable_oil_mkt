@@ -6,23 +6,41 @@
         <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
     </config>
     <config key="model">
-        <config key="incllist">
-            <entry key="array-size" type="xint" value="2"/>
-            <entry key="0" type="xstring" value="commodity"/>
-            <entry key="1" type="xstring" value="date"/>
+        <entry key="selected_column" type="xstring" value="commodity"/>
+        <config key="filter config">
+            <entry key="filter-type" type="xstring" value="STANDARD"/>
+            <config key="included_names">
+                <entry key="array-size" type="xint" value="8"/>
+                <entry key="0" type="xstring" value="palm-kernel-oil"/>
+                <entry key="1" type="xstring" value="coconut-oil"/>
+                <entry key="2" type="xstring" value="palm-oil"/>
+                <entry key="3" type="xstring" value="crude-average"/>
+                <entry key="4" type="xstring" value="rapeseed-oil"/>
+                <entry key="5" type="xstring" value="groundnut-oil"/>
+                <entry key="6" type="xstring" value="soybean-oil"/>
+                <entry key="7" type="xstring" value="sunflower-oil"/>
+            </config>
+            <config key="excluded_names">
+                <entry key="array-size" type="xint" value="3"/>
+                <entry key="0" type="xstring" value="crude-wti"/>
+                <entry key="1" type="xstring" value="crude-dubai"/>
+                <entry key="2" type="xstring" value="crude-brent"/>
+            </config>
+            <entry key="enforce_option" type="xstring" value="EnforceInclusion"/>
+            <config key="name_pattern">
+                <entry key="pattern" type="xstring" value=""/>
+                <entry key="type" type="xstring" value="Wildcard"/>
+                <entry key="caseSensitive" type="xboolean" value="true"/>
+                <entry key="excludeMatching" type="xboolean" value="false"/>
+                <entry key="includeMissing" type="xboolean" value="false"/>
+            </config>
+            <entry key="include_missing" type="xboolean" value="false"/>
         </config>
-        <config key="sortOrder">
-            <entry key="array-size" type="xint" value="2"/>
-            <entry key="0" type="xboolean" value="false"/>
-            <entry key="1" type="xboolean" value="false"/>
-        </config>
-        <entry key="sortinmemory" type="xboolean" value="false"/>
-        <entry key="missingToEnd" type="xboolean" value="false"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="EXECUTED"/>
-    <entry key="factory" type="xstring" value="org.knime.base.node.preproc.sorter.SorterNodeFactory"/>
-    <entry key="node-name" type="xstring" value="Sorter"/>
+    <entry key="factory" type="xstring" value="org.knime.base.node.preproc.filter.nominal.NominalValueRowFilterNodeFactory"/>
+    <entry key="node-name" type="xstring" value="Nominal Value Row Filter"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
     <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.base"/>
     <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
@@ -32,7 +50,7 @@
     <entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
     <entry key="node-feature-version" type="xstring" value="4.5.2.v202203141441"/>
     <config key="factory_settings"/>
-    <entry key="name" type="xstring" value="Sorter"/>
+    <entry key="name" type="xstring" value="Nominal Value Row Filter"/>
     <entry key="hasContent" type="xboolean" value="true"/>
     <entry key="isInactive" type="xboolean" value="false"/>
     <config key="ports">
@@ -46,6 +64,6 @@
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="f5752ec0-5bc5-4df0-9000-7063036e8a23"/>
+        <entry key="file_store_id" type="xstring" value="b22019f6-fcbf-4a35-8704-45c417338283"/>
     </config>
 </config>

@@ -24,7 +24,7 @@
                 <config key="path">
                     <entry key="location_present" type="xboolean" value="true"/>
                     <entry key="file_system_type" type="xstring" value="LOCAL"/>
-                    <entry key="path" type="xstring" value="E:\Projetos\vegetable_oil_mkt\dataset\__by_month_full.csv"/>
+                    <entry key="path" type="xstring" value="E:\Projetos\vegetable_oil_mkt\dataset\__by_oil_and_instruments.csv"/>
                 </config>
                 <config key="filter_mode_Internals">
                     <entry key="SettingsModelID" type="xstring" value="SMID_FilterMode"/>
@@ -64,7 +64,7 @@
         </config>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
-    <entry key="state" type="xstring" value="EXECUTED"/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
     <entry key="factory" type="xstring" value="org.knime.base.node.io.filehandling.csv.writer.CSVWriter2NodeFactory"/>
     <entry key="node-name" type="xstring" value="CSV Writer"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
@@ -81,11 +81,11 @@
         <config key="Data Table"/>
     </config>
     <entry key="name" type="xstring" value="CSV Writer"/>
-    <entry key="hasContent" type="xboolean" value="true"/>
+    <entry key="hasContent" type="xboolean" value="false"/>
     <entry key="isInactive" type="xboolean" value="false"/>
     <config key="ports"/>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="61c76efa-1617-468d-a79a-d134ff482441"/>
+        <entry key="file_store_id" type="xstring" isnull="true" value=""/>
     </config>
 </config>
