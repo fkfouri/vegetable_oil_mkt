@@ -52,7 +52,7 @@
         <entry key="columnNamePolicy" type="xstring" value="Aggregation method (column name)"/>
         <config key="aggregationColumn">
             <config key="columnNames">
-                <entry key="array-size" type="xint" value="10"/>
+                <entry key="array-size" type="xint" value="11"/>
                 <entry key="0" type="xstring" value="ColumnValues"/>
                 <entry key="1" type="xstring" value="ColumnValues"/>
                 <entry key="2" type="xstring" value="ColumnValues"/>
@@ -63,9 +63,10 @@
                 <entry key="7" type="xstring" value="ColumnValues"/>
                 <entry key="8" type="xstring" value="ColumnValues"/>
                 <entry key="9" type="xstring" value="ColumnValues"/>
+                <entry key="10" type="xstring" value="ColumnValues"/>
             </config>
             <config key="columnTypes">
-                <entry key="array-size" type="xint" value="10"/>
+                <entry key="array-size" type="xint" value="11"/>
                 <config key="0">
                     <entry key="cell_class" type="xstring" value="org.knime.core.data.def.DoubleCell"/>
                     <entry key="is_null" type="xboolean" value="false"/>
@@ -106,9 +107,13 @@
                     <entry key="cell_class" type="xstring" value="org.knime.core.data.def.DoubleCell"/>
                     <entry key="is_null" type="xboolean" value="false"/>
                 </config>
+                <config key="10">
+                    <entry key="cell_class" type="xstring" value="org.knime.core.data.def.DoubleCell"/>
+                    <entry key="is_null" type="xboolean" value="false"/>
+                </config>
             </config>
             <config key="aggregationMethod">
-                <entry key="array-size" type="xint" value="10"/>
+                <entry key="array-size" type="xint" value="11"/>
                 <entry key="0" type="xstring" value="Mean"/>
                 <entry key="1" type="xstring" value="Minimum"/>
                 <entry key="2" type="xstring" value="Maximum"/>
@@ -119,9 +124,10 @@
                 <entry key="7" type="xstring" value="Geometric standard deviation"/>
                 <entry key="8" type="xstring" value="Standard deviation"/>
                 <entry key="9" type="xstring" value="Skewness"/>
+                <entry key="10" type="xstring" value="First"/>
             </config>
             <config key="inclMissingVals">
-                <entry key="array-size" type="xint" value="10"/>
+                <entry key="array-size" type="xint" value="11"/>
                 <entry key="0" type="xboolean" value="false"/>
                 <entry key="1" type="xboolean" value="false"/>
                 <entry key="2" type="xboolean" value="false"/>
@@ -132,6 +138,7 @@
                 <entry key="7" type="xboolean" value="false"/>
                 <entry key="8" type="xboolean" value="false"/>
                 <entry key="9" type="xboolean" value="false"/>
+                <entry key="10" type="xboolean" value="false"/>
             </config>
         </config>
         <config key="aggregationOperatorSettings">
@@ -183,12 +190,12 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 232, Cols: 12"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 232, Cols: 13"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="31ec3f43-9cf2-4a22-ac8c-7b8cc160f29d"/>
+        <entry key="file_store_id" type="xstring" value="b19710e4-4f82-41d1-a4d0-e7c672caca17"/>
     </config>
 </config>

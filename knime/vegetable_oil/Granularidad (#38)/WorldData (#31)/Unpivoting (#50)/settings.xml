@@ -13,7 +13,7 @@
         <config key="value_columns">
             <entry key="filter-type" type="xstring" value="STANDARD"/>
             <config key="included_names">
-                <entry key="array-size" type="xint" value="10"/>
+                <entry key="array-size" type="xint" value="11"/>
                 <entry key="0" type="xstring" value="Mean(ColumnValues)"/>
                 <entry key="1" type="xstring" value="Min*(ColumnValues)"/>
                 <entry key="2" type="xstring" value="Max*(ColumnValues)"/>
@@ -24,6 +24,7 @@
                 <entry key="7" type="xstring" value="Geom. standard deviation(ColumnValues)"/>
                 <entry key="8" type="xstring" value="Standard deviation(ColumnValues)"/>
                 <entry key="9" type="xstring" value="Skewness(ColumnValues)"/>
+                <entry key="10" type="xstring" value="First*(ColumnValues)"/>
             </config>
             <config key="excluded_names">
                 <entry key="array-size" type="xint" value="2"/>
@@ -65,7 +66,7 @@
                 <entry key="1" type="xstring" value="Year"/>
             </config>
             <config key="excluded_names">
-                <entry key="array-size" type="xint" value="10"/>
+                <entry key="array-size" type="xint" value="11"/>
                 <entry key="0" type="xstring" value="Mean(ColumnValues)"/>
                 <entry key="1" type="xstring" value="Min*(ColumnValues)"/>
                 <entry key="2" type="xstring" value="Max*(ColumnValues)"/>
@@ -76,8 +77,9 @@
                 <entry key="7" type="xstring" value="Geom. standard deviation(ColumnValues)"/>
                 <entry key="8" type="xstring" value="Standard deviation(ColumnValues)"/>
                 <entry key="9" type="xstring" value="Skewness(ColumnValues)"/>
+                <entry key="10" type="xstring" value="First*(ColumnValues)"/>
             </config>
-            <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
+            <entry key="enforce_option" type="xstring" value="EnforceInclusion"/>
             <config key="name_pattern">
                 <entry key="pattern" type="xstring" value=""/>
                 <entry key="type" type="xstring" value="Wildcard"/>
@@ -122,12 +124,12 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 2320, Cols: 5"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 2552, Cols: 5"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="dc4f0154-e844-45de-87f4-cabea1580fc9"/>
+        <entry key="file_store_id" type="xstring" value="f747f786-5580-40d6-b123-a72ab865a21e"/>
     </config>
 </config>
