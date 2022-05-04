@@ -2,7 +2,6 @@ globals [ ;variaveis globais
   ticket_counter;                      # contador de tickets
   ticket_counter_limit;
 
-
   price_palm
   price_palm_kernel
   price_rapeseed
@@ -10,7 +9,9 @@ globals [ ;variaveis globais
   price_sunflower
 ]
 
-breed [ commodities commodity];        # Conjunto de commodities
+breed [ commodities commodity];         # Define a especie/raca de commodities
+breed [ axies axie ];                   # Define os eixos X e Y
+breed [ curves curve ];                 # Define as curvas de oferta e demanda
 
 
 commodities-own [
@@ -23,6 +24,11 @@ commodities-own [
   strategy;
 ]
 
+curves-own [
+  intercept;                            # intercepto da curva
+  coef;                                 # coeficiente da curva
+  err;                                  # fator de erro
+]
 
 
 to setup
@@ -99,10 +105,43 @@ to create_agents
     set strategy strategy_one
   ]
 
-  ask turtles[
+  ask commodities[
     set size 6
     set label commodity_type
     set pression get_pression
+  ]
+
+  create-axies 1[; Eixo y | Preco
+    set heading 0;
+  ]
+
+  create-axies 1[; Eixo x | Quantidade
+    set heading 90;
+  ]
+
+  ask axies [
+    set color white;
+    set xcor -8;
+    set ycor -8;
+    set pen-mode "down";
+    set pen-size 2;
+    forward 18;
+  ]
+
+  create-curves 1[; Demanda
+    set xcor -8;
+    set ycor -8;
+  ]
+
+  create-curves 1[; Oferta
+
+  ]
+
+  ask curves[
+    set color yellow;
+    set pen-mode "down";
+    set pen-size 2;
+    set shape "dot"
   ]
 
 ;
@@ -137,12 +176,12 @@ to scenery_one
 end; scenery_one
 
 
-to-report tot_source []; Funcao que retorna o total volume de commodities
+to-report tot_supply []; Funcao que retorna o total volume de commodities
   report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
 end;
 
 to-report tot_demand []; Funcao que retorna o total de demanda commodities. Tentei fazer o incremento de 4% ao ano.
-  report tot_source +  (ticket_counter / 365) * 0.04 * tot_source;  tot_source * (ticket_counter - 1) * 0.04 / tot_source
+  report tot_supply +  (ticket_counter / 365) * 0.04 * tot_supply;  tot_supply * (ticket_counter - 1) * 0.04 / tot_supply
 end;
 
 to-report get_pression[]; Funcao que gera um randomico para [-2, -1, 0, 1, 2]
@@ -295,7 +334,7 @@ qty_rapeseed
 qty_rapeseed
 0
 100
-10.0
+62.5
 .5
 1
 Year Ktons
@@ -306,8 +345,8 @@ MONITOR
 5
 815
 66
-Vegetable total source
-tot_source
+Vegetable total supply
+tot_supply
 4
 1
 15
@@ -330,11 +369,11 @@ NIL
 1
 
 PLOT
-504
-355
-822
-627
-Demand & Source
+463
+301
+698
+474
+Demand & Supply
 Quantity
 Price
 0.0
@@ -346,7 +385,7 @@ false
 "" ""
 PENS
 "default" 1.0 0 -2674135 true "" "plotxy total_commodity"
-"Total" 1.0 0 -7500403 true "" "plot tot_source"
+"Total" 1.0 0 -7500403 true "" "plot tot_supply"
 
 BUTTON
 240
@@ -383,10 +422,10 @@ NIL
 1
 
 PLOT
-212
-507
-412
-657
+246
+316
+446
+466
 Quantity
 NIL
 NIL
@@ -398,7 +437,7 @@ true
 true
 "" ""
 PENS
-"source" 1.0 0 -16777216 true "" "plot tot_source"
+"supply" 1.0 0 -16777216 true "" "plot tot_supply"
 "demand" 1.0 0 -2674135 true "" "plot tot_demand"
 
 PLOT
@@ -421,10 +460,10 @@ PENS
 "pen-1" 1.0 0 -7500403 true "" "plot get_pression"
 
 MONITOR
-208
-416
-293
-461
+634
+74
+719
+119
 NIL
 get_pression
 17
@@ -847,7 +886,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.2.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
