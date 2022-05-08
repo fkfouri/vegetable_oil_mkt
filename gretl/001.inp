@@ -1,0 +1,29 @@
+# Log started 2022-05-04 09:12
+# Record of session commands.  Please note that this will
+# likely require editing if it is to be run as a script.
+open E:\Projetos\vegetable_oil_mkt\dataset\__by_oil_and_instruments.xlsx
+# model 1
+tsls soybean_price 0 soybean_exports ; 0 worldbank_gnipercapitapppcu
+# model 2
+tsls soybean_price 0 soybean_exports ; 0 worldbank_gnipercapitapppcu \
+  soybean_exports
+# model 3
+tsls soybean_price 0 soybean_exports palm_exports palmkernel_exports \
+  rapeseed_exports sunflower_exports ; 0 worldbank_gnipercapitapppcu \
+  soybean_exports sunflower_exports rapeseed_exports palmkernel_exports \
+  palm_exports
+# model 4
+tsls vegetableoil_oecd_worldprice 0 soybean_exports palm_exports \
+  palmkernel_exports rapeseed_exports sunflower_exports ; 0 \
+  worldbank_gnipercapitapppcu soybean_exports sunflower_exports \
+  rapeseed_exports palmkernel_exports palm_exports
+# model 5
+tsls vegetableoil_price 0 soybean_exports palm_exports palmkernel_exports \
+  rapeseed_exports sunflower_exports ; 0 worldbank_gnipercapitapppcu \
+  soybean_exports sunflower_exports rapeseed_exports palmkernel_exports \
+  palm_exports
+# model 6
+tsls vegetableoil_price 0 soybean_exports palm_exports palmkernel_exports \
+  rapeseed_exports sunflower_exports ; 0 worldbank_gnipercapitapppcu \
+  soybean_exports sunflower_exports rapeseed_exports palmkernel_exports \
+  palm_exports worldbank_populationtotal

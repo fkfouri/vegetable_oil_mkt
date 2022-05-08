@@ -11,7 +11,7 @@
         <entry key="lastEdited-when" type="xstring" isnull="true" value=""/>
     </config>
     <entry key="customDescription" type="xstring" value="Selecao, pivoteamento e filtro das commodities"/>
-    <entry key="state" type="xstring" value="EXECUTED"/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
     <config key="workflow_credentials"/>
     <config key="nodes">
         <config key="node_18">
