@@ -12,16 +12,20 @@ get_full     = lambda size: [ (chr(i + 65), f'{j / size} < x <= { (j+1) / size}'
 get_bins     = lambda _input_array, size:  np.round(np.linspace(_input_array.min(), _input_array.max(), size + 1), 6).tolist()
 
 
+
 def read_kwarg_list(kwargs, name, _else_conditions = None):
     if name in kwargs and isinstance(kwargs[name], list):
         return kwargs[name]
     return _else_conditions
+
+
 
 def read_kwarg_bool(kwargs, name):
     if name in kwargs and isinstance(kwargs[name], Boolean):
         return kwargs[name]
     return False
         
+    
     
 def convet_collection_to_dataframe(collection):
     """
