@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+    <entry key="node_file" type="xstring" value="settings.xml"/>
+    <config key="flow_stack"/>
+    <config key="internal_node_subsettings">
+        <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+    </config>
+    <config key="model">
+        <config key="includeMatchesInOutput_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="includeMatchesInOutput" type="xboolean" value="true"/>
+        <config key="includeLeftUnmatchedInOutput_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="includeLeftUnmatchedInOutput" type="xboolean" value="true"/>
+        <config key="includeRightUnmatchedInOutput_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="includeRightUnmatchedInOutput" type="xboolean" value="true"/>
+        <config key="leftTableJoinPredicate_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_stringarray"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <config key="leftTableJoinPredicate">
+            <entry key="array-size" type="xint" value="1"/>
+            <entry key="0" type="xstring" value="date"/>
+        </config>
+        <config key="rightTableJoinPredicate_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_stringarray"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <config key="rightTableJoinPredicate">
+            <entry key="array-size" type="xint" value="1"/>
+            <entry key="0" type="xstring" value="date"/>
+        </config>
+        <config key="compositionMode_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="compositionMode" type="xstring" value="MATCH_ALL"/>
+        <config key="mergeJoinColumns_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="mergeJoinColumns" type="xboolean" value="true"/>
+        <config key="dataCellComparisonMode_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="dataCellComparisonMode" type="xstring" value="STRICT"/>
+        <config key="outputUnmatchedRowsToSeparatePorts_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="outputUnmatchedRowsToSeparatePorts" type="xboolean" value="false"/>
+        <config key="rowKeyFactory_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="rowKeyFactory" type="xstring" value="CONCATENATE"/>
+        <config key="rowKeySeparator_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="rowKeySeparator" type="xstring" value="_"/>
+        <config key="duplicateHandling_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="duplicateHandling" type="xstring" value="APPEND_SUFFIX"/>
+        <config key="suffix_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="suffix" type="xstring" value=" (right)"/>
+        <config key="outputRowOrder_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="outputRowOrder" type="xstring" value="ARBITRARY"/>
+        <config key="maxOpenFiles_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="maxOpenFiles" type="xint" value="200"/>
+        <config key="enableHiliting_Internals">
+            <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+            <entry key="EnabledStatus" type="xboolean" value="true"/>
+        </config>
+        <entry key="enableHiliting" type="xboolean" value="false"/>
+        <config key="leftColumnSelectionConfig">
+            <entry key="filter-type" type="xstring" value="STANDARD"/>
+            <config key="included_names">
+                <entry key="array-size" type="xint" value="140"/>
+                <entry key="0" type="xstring" value="date"/>
+                <entry key="1" type="xstring" value="coconut_price"/>
+                <entry key="2" type="xstring" value="crude-average_price"/>
+                <entry key="3" type="xstring" value="palm_price"/>
+                <entry key="4" type="xstring" value="peanut_price"/>
+                <entry key="5" type="xstring" value="soybean_price"/>
+                <entry key="6" type="xstring" value="palm-kernel_price"/>
+                <entry key="7" type="xstring" value="rapeseed_price"/>
+                <entry key="8" type="xstring" value="sunflower_price"/>
+                <entry key="9" type="xstring" value="vegetable-oil_price"/>
+                <entry key="10" type="xstring" value="reference"/>
+                <entry key="11" type="xstring" value="coconut_beginning-stocks"/>
+                <entry key="12" type="xstring" value="cottonseed_beginning-stocks"/>
+                <entry key="13" type="xstring" value="olive_beginning-stocks"/>
+                <entry key="14" type="xstring" value="palm_beginning-stocks"/>
+                <entry key="15" type="xstring" value="palm-kernel_beginning-stocks"/>
+                <entry key="16" type="xstring" value="peanut_beginning-stocks"/>
+                <entry key="17" type="xstring" value="rapeseed_beginning-stocks"/>
+                <entry key="18" type="xstring" value="soybean_beginning-stocks"/>
+                <entry key="19" type="xstring" value="sunflower_beginning-stocks"/>
+                <entry key="20" type="xstring" value="coconut_crush"/>
+                <entry key="21" type="xstring" value="cottonseed_crush"/>
+                <entry key="22" type="xstring" value="olive_crush"/>
+                <entry key="23" type="xstring" value="palm_crush"/>
+                <entry key="24" type="xstring" value="palm-kernel_crush"/>
+                <entry key="25" type="xstring" value="peanut_crush"/>
+                <entry key="26" type="xstring" value="rapeseed_crush"/>
+                <entry key="27" type="xstring" value="soybean_crush"/>
+                <entry key="28" type="xstring" value="sunflower_crush"/>
+                <entry key="29" type="xstring" value="coconut_domestic-consumption"/>
+                <entry key="30" type="xstring" value="cottonseed_domestic-consumption"/>
+                <entry key="31" type="xstring" value="olive_domestic-consumption"/>
+                <entry key="32" type="xstring" value="palm_domestic-consumption"/>
+                <entry key="33" type="xstring" value="palm-kernel_domestic-consumption"/>
+                <entry key="34" type="xstring" value="peanut_domestic-consumption"/>
+                <entry key="35" type="xstring" value="rapeseed_domestic-consumption"/>
+                <entry key="36" type="xstring" value="soybean_domestic-consumption"/>
+                <entry key="37" type="xstring" value="sunflower_domestic-consumption"/>
+                <entry key="38" type="xstring" value="coconut_ending-stocks"/>
+                <entry key="39" type="xstring" value="cottonseed_ending-stocks"/>
+                <entry key="40" type="xstring" value="olive_ending-stocks"/>
+                <entry key="41" type="xstring" value="palm_ending-stocks"/>
+                <entry key="42" type="xstring" value="palm-kernel_ending-stocks"/>
+                <entry key="43" type="xstring" value="peanut_ending-stocks"/>
+                <entry key="44" type="xstring" value="rapeseed_ending-stocks"/>
+                <entry key="45" type="xstring" value="soybean_ending-stocks"/>
+                <entry key="46" type="xstring" value="sunflower_ending-stocks"/>
+                <entry key="47" type="xstring" value="coconut_exports"/>
+                <entry key="48" type="xstring" value="cottonseed_exports"/>
+                <entry key="49" type="xstring" value="olive_exports"/>
+                <entry key="50" type="xstring" value="palm_exports"/>
+                <entry key="51" type="xstring" value="palm-kernel_exports"/>
+                <entry key="52" type="xstring" value="peanut_exports"/>
+                <entry key="53" type="xstring" value="rapeseed_exports"/>
+                <entry key="54" type="xstring" value="soybean_exports"/>
+                <entry key="55" type="xstring" value="sunflower_exports"/>
+                <entry key="56" type="xstring" value="coconut_feed-waste-dom-cons"/>
+                <entry key="57" type="xstring" value="cottonseed_feed-waste-dom-cons"/>
+                <entry key="58" type="xstring" value="olive_feed-waste-dom-cons"/>
+                <entry key="59" type="xstring" value="palm_feed-waste-dom-cons"/>
+                <entry key="60" type="xstring" value="palm-kernel_feed-waste-dom-cons"/>
+                <entry key="61" type="xstring" value="peanut_feed-waste-dom-cons"/>
+                <entry key="62" type="xstring" value="rapeseed_feed-waste-dom-cons"/>
+                <entry key="63" type="xstring" value="soybean_feed-waste-dom-cons"/>
+                <entry key="64" type="xstring" value="sunflower_feed-waste-dom-cons"/>
+                <entry key="65" type="xstring" value="coconut_food-use-dom-cons"/>
+                <entry key="66" type="xstring" value="cottonseed_food-use-dom-cons"/>
+                <entry key="67" type="xstring" value="olive_food-use-dom-cons"/>
+                <entry key="68" type="xstring" value="palm_food-use-dom-cons"/>
+                <entry key="69" type="xstring" value="palm-kernel_food-use-dom-cons"/>
+                <entry key="70" type="xstring" value="peanut_food-use-dom-cons"/>
+                <entry key="71" type="xstring" value="rapeseed_food-use-dom-cons"/>
+                <entry key="72" type="xstring" value="soybean_food-use-dom-cons"/>
+                <entry key="73" type="xstring" value="sunflower_food-use-dom-cons"/>
+                <entry key="74" type="xstring" value="coconut_imports"/>
+                <entry key="75" type="xstring" value="cottonseed_imports"/>
+                <entry key="76" type="xstring" value="olive_imports"/>
+                <entry key="77" type="xstring" value="palm_imports"/>
+                <entry key="78" type="xstring" value="palm-kernel_imports"/>
+                <entry key="79" type="xstring" value="peanut_imports"/>
+                <entry key="80" type="xstring" value="rapeseed_imports"/>
+                <entry key="81" type="xstring" value="soybean_imports"/>
+                <entry key="82" type="xstring" value="sunflower_imports"/>
+                <entry key="83" type="xstring" value="coconut_industrial-dom-cons"/>
+                <entry key="84" type="xstring" value="cottonseed_industrial-dom-cons"/>
+                <entry key="85" type="xstring" value="olive_industrial-dom-cons"/>
+                <entry key="86" type="xstring" value="palm_industrial-dom-cons"/>
+                <entry key="87" type="xstring" value="palm-kernel_industrial-dom-cons"/>
+                <entry key="88" type="xstring" value="peanut_industrial-dom-cons"/>
+                <entry key="89" type="xstring" value="rapeseed_industrial-dom-cons"/>
+                <entry key="90" type="xstring" value="soybean_industrial-dom-cons"/>
+                <entry key="91" type="xstring" value="sunflower_industrial-dom-cons"/>
+                <entry key="92" type="xstring" value="coconut_production"/>
+                <entry key="93" type="xstring" value="cottonseed_production"/>
+                <entry key="94" type="xstring" value="olive_production"/>
+                <entry key="95" type="xstring" value="palm_production"/>
+                <entry key="96" type="xstring" value="palm-kernel_production"/>
+                <entry key="97" type="xstring" value="peanut_production"/>
+                <entry key="98" type="xstring" value="rapeseed_production"/>
+                <entry key="99" type="xstring" value="soybean_production"/>
+                <entry key="100" type="xstring" value="sunflower_production"/>
+                <entry key="101" type="xstring" value="coconut_total-distribution"/>
+                <entry key="102" type="xstring" value="cottonseed_total-distribution"/>
+                <entry key="103" type="xstring" value="olive_total-distribution"/>
+                <entry key="104" type="xstring" value="palm_total-distribution"/>
+                <entry key="105" type="xstring" value="palm-kernel_total-distribution"/>
+                <entry key="106" type="xstring" value="peanut_total-distribution"/>
+                <entry key="107" type="xstring" value="rapeseed_total-distribution"/>
+                <entry key="108" type="xstring" value="soybean_total-distribution"/>
+                <entry key="109" type="xstring" value="sunflower_total-distribution"/>
+                <entry key="110" type="xstring" value="coconut_total-supply"/>
+                <entry key="111" type="xstring" value="cottonseed_total-supply"/>
+                <entry key="112" type="xstring" value="olive_total-supply"/>
+                <entry key="113" type="xstring" value="palm_total-supply"/>
+                <entry key="114" type="xstring" value="palm-kernel_total-supply"/>
+                <entry key="115" type="xstring" value="peanut_total-supply"/>
+                <entry key="116" type="xstring" value="rapeseed_total-supply"/>
+                <entry key="117" type="xstring" value="soybean_total-supply"/>
+                <entry key="118" type="xstring" value="sunflower_total-supply"/>
+                <entry key="119" type="xstring" value="vegetable-oil_beginning-stocks"/>
+                <entry key="120" type="xstring" value="vegetable-oil_crush"/>
+                <entry key="121" type="xstring" value="vegetable-oil_domestic-consumption"/>
+                <entry key="122" type="xstring" value="vegetable-oil_ending-stocks"/>
+                <entry key="123" type="xstring" value="vegetable-oil_exports"/>
+                <entry key="124" type="xstring" value="vegetable-oil_feed-waste-dom-cons"/>
+                <entry key="125" type="xstring" value="vegetable-oil_food-use-dom-cons"/>
+                <entry key="126" type="xstring" value="vegetable-oil_imports"/>
+                <entry key="127" type="xstring" value="vegetable-oil_industrial-dom-cons"/>
+                <entry key="128" type="xstring" value="vegetable-oil_production"/>
+                <entry key="129" type="xstring" value="vegetable-oil_total-distribution"/>
+                <entry key="130" type="xstring" value="vegetable-oil_total-supply"/>
+                <entry key="131" type="xstring" value="vegetable-oil_oecd_consumption"/>
+                <entry key="132" type="xstring" value="vegetable-oil_oecd_ending-stocks"/>
+                <entry key="133" type="xstring" value="vegetable-oil_oecd_exports"/>
+                <entry key="134" type="xstring" value="vegetable-oil_oecd_food"/>
+                <entry key="135" type="xstring" value="vegetable-oil_oecd_food-fat-availability"/>
+                <entry key="136" type="xstring" value="vegetable-oil_oecd_human-consumption-per-capita"/>
+                <entry key="137" type="xstring" value="vegetable-oil_oecd_imports"/>
+                <entry key="138" type="xstring" value="vegetable-oil_oecd_other-use"/>
+                <entry key="139" type="xstring" value="vegetable-oil_oecd_production"/>
+            </config>
+            <config key="excluded_names">
+                <entry key="array-size" type="xint" value="0"/>
+            </config>
+            <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
+            <config key="name_pattern">
+                <entry key="pattern" type="xstring" value=""/>
+                <entry key="type" type="xstring" value="Wildcard"/>
+                <entry key="caseSensitive" type="xboolean" value="true"/>
+                <entry key="excludeMatching" type="xboolean" value="false"/>
+            </config>
+            <config key="datatype">
+                <config key="typelist">
+                    <entry key="org.knime.core.data.time.localdate.LocalDateValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.DoubleValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.StringValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.BooleanValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.IntValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.LongValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.date.DateAndTimeValue" type="xboolean" value="false"/>
+                </config>
+            </config>
+        </config>
+        <config key="rightColumnSelectionConfig">
+            <entry key="filter-type" type="xstring" value="STANDARD"/>
+            <config key="included_names">
+                <entry key="array-size" type="xint" value="49"/>
+                <entry key="0" type="xstring" value="date"/>
+                <entry key="1" type="xstring" value="africa_eastern_and_southern_GNI"/>
+                <entry key="2" type="xstring" value="east_asia_and_pacific_GNI"/>
+                <entry key="3" type="xstring" value="europe_and_central_asia_GNI"/>
+                <entry key="4" type="xstring" value="high_income_GNI"/>
+                <entry key="5" type="xstring" value="latin_america_and_caribbean_GNI"/>
+                <entry key="6" type="xstring" value="least_developed_countries_un_classification_GNI"/>
+                <entry key="7" type="xstring" value="low_income_GNI"/>
+                <entry key="8" type="xstring" value="lower_middle_income_GNI"/>
+                <entry key="9" type="xstring" value="middle_east_and_north_africa_GNI"/>
+                <entry key="10" type="xstring" value="middle_income_GNI"/>
+                <entry key="11" type="xstring" value="north_america_GNI"/>
+                <entry key="12" type="xstring" value="oecd_members_GNI"/>
+                <entry key="13" type="xstring" value="south_asia_GNI"/>
+                <entry key="14" type="xstring" value="sub-saharan_africa_GNI"/>
+                <entry key="15" type="xstring" value="upper_middle_income_GNI"/>
+                <entry key="16" type="xstring" value="world_GNI"/>
+                <entry key="17" type="xstring" value="africa_eastern_and_southern_GPD"/>
+                <entry key="18" type="xstring" value="east_asia_and_pacific_GPD"/>
+                <entry key="19" type="xstring" value="europe_and_central_asia_GPD"/>
+                <entry key="20" type="xstring" value="high_income_GPD"/>
+                <entry key="21" type="xstring" value="latin_america_and_caribbean_GPD"/>
+                <entry key="22" type="xstring" value="least_developed_countries_un_classification_GPD"/>
+                <entry key="23" type="xstring" value="low_income_GPD"/>
+                <entry key="24" type="xstring" value="lower_middle_income_GPD"/>
+                <entry key="25" type="xstring" value="middle_east_and_north_africa_GPD"/>
+                <entry key="26" type="xstring" value="middle_income_GPD"/>
+                <entry key="27" type="xstring" value="north_america_GPD"/>
+                <entry key="28" type="xstring" value="oecd_members_GPD"/>
+                <entry key="29" type="xstring" value="south_asia_GPD"/>
+                <entry key="30" type="xstring" value="sub-saharan_africa_GPD"/>
+                <entry key="31" type="xstring" value="upper_middle_income_GPD"/>
+                <entry key="32" type="xstring" value="world_GPD"/>
+                <entry key="33" type="xstring" value="africa_eastern_and_southern_income"/>
+                <entry key="34" type="xstring" value="east_asia_and_pacific_income"/>
+                <entry key="35" type="xstring" value="europe_and_central_asia_income"/>
+                <entry key="36" type="xstring" value="high_income_income"/>
+                <entry key="37" type="xstring" value="latin_america_and_caribbean_income"/>
+                <entry key="38" type="xstring" value="least_developed_countries_un_classification_income"/>
+                <entry key="39" type="xstring" value="low_income_income"/>
+                <entry key="40" type="xstring" value="lower_middle_income_income"/>
+                <entry key="41" type="xstring" value="middle_east_and_north_africa_income"/>
+                <entry key="42" type="xstring" value="middle_income_income"/>
+                <entry key="43" type="xstring" value="north_america_income"/>
+                <entry key="44" type="xstring" value="oecd_members_income"/>
+                <entry key="45" type="xstring" value="south_asia_income"/>
+                <entry key="46" type="xstring" value="sub-saharan_africa_income"/>
+                <entry key="47" type="xstring" value="upper_middle_income_income"/>
+                <entry key="48" type="xstring" value="world_income"/>
+            </config>
+            <config key="excluded_names">
+                <entry key="array-size" type="xint" value="0"/>
+            </config>
+            <entry key="enforce_option" type="xstring" value="EnforceExclusion"/>
+            <config key="name_pattern">
+                <entry key="pattern" type="xstring" value=""/>
+                <entry key="type" type="xstring" value="Wildcard"/>
+                <entry key="caseSensitive" type="xboolean" value="true"/>
+                <entry key="excludeMatching" type="xboolean" value="false"/>
+            </config>
+            <config key="datatype">
+                <config key="typelist">
+                    <entry key="org.knime.core.data.time.localdate.LocalDateValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.DoubleValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.BooleanValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.IntValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.LongValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.StringValue" type="xboolean" value="false"/>
+                    <entry key="org.knime.core.data.date.DateAndTimeValue" type="xboolean" value="false"/>
+                </config>
+            </config>
+        </config>
+    </config>
+    <entry key="customDescription" type="xstring" isnull="true" value=""/>
+    <entry key="state" type="xstring" value="EXECUTED"/>
+    <entry key="factory" type="xstring" value="org.knime.base.node.preproc.joiner3.Joiner3NodeFactory"/>
+    <entry key="node-name" type="xstring" value="Joiner"/>
+    <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
+    <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.base"/>
+    <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+    <entry key="node-bundle-version" type="xstring" value="4.5.1.v202201171147"/>
+    <entry key="node-feature-name" type="xstring" value="KNIME Base nodes"/>
+    <entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.base.feature.group"/>
+    <entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+    <entry key="node-feature-version" type="xstring" value="4.5.2.v202203141441"/>
+    <config key="factory_settings"/>
+    <entry key="name" type="xstring" value="Joiner"/>
+    <entry key="hasContent" type="xboolean" value="true"/>
+    <entry key="isInactive" type="xboolean" value="false"/>
+    <config key="ports">
+        <config key="port_1">
+            <entry key="index" type="xint" value="1"/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 377, Cols: 188"/>
+            <entry key="port_dir_location" type="xstring" value="port_1"/>
+        </config>
+        <config key="port_2">
+            <entry key="index" type="xint" value="2"/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.core.node.port.inactive.InactiveBranchPortObjectSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.core.node.port.inactive.InactiveBranchPortObject"/>
+            <entry key="port_object_summary" type="xstring" value="Inactive Port Object"/>
+            <entry key="port_spec_location" type="xstring" value="spec/spec.zip"/>
+            <entry key="port_object_location" type="xstring" value="object/portobject.zip"/>
+            <entry key="port_dir_location" type="xstring" value="port_2"/>
+        </config>
+        <config key="port_3">
+            <entry key="index" type="xint" value="3"/>
+            <entry key="port_spec_class" type="xstring" value="org.knime.core.node.port.inactive.InactiveBranchPortObjectSpec"/>
+            <entry key="port_object_class" type="xstring" value="org.knime.core.node.port.inactive.InactiveBranchPortObject"/>
+            <entry key="port_object_summary" type="xstring" value="Inactive Port Object"/>
+            <entry key="port_spec_location" type="xstring" value="spec/spec.zip"/>
+            <entry key="port_object_location" type="xstring" value="object/portobject.zip"/>
+            <entry key="port_dir_location" type="xstring" value="port_3"/>
+        </config>
+    </config>
+    <config key="filestores">
+        <entry key="file_store_location" type="xstring" isnull="true" value=""/>
+        <entry key="file_store_id" type="xstring" value="40df8a17-33cd-4a41-91f7-ca73da3076be"/>
+    </config>
+</config>

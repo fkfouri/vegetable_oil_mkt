@@ -1,0 +1,4 @@
+GNI, GNI_per_capita_PPP, NY.GNP.PCAP.PP.CD
+income, Adjusted_net_national_income_per_capita, NY.ADJ.NNTY.PC.CD
+GPD, GDP_per_capita_PPP, NY.GDP.PCAP.PP.CD
+expectancy, Life_expectancy_at_birth_total, SP.DYN.LE00.IN

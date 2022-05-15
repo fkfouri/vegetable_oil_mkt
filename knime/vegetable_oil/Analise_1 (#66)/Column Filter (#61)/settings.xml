@@ -9,7 +9,7 @@
         <config key="column-filter">
             <entry key="filter-type" type="xstring" value="STANDARD"/>
             <config key="included_names">
-                <entry key="array-size" type="xint" value="30"/>
+                <entry key="array-size" type="xint" value="46"/>
                 <entry key="0" type="xstring" value="date"/>
                 <entry key="1" type="xstring" value="reference"/>
                 <entry key="2" type="xstring" value="coconut_exports"/>
@@ -40,9 +40,25 @@
                 <entry key="27" type="xstring" value="vegetable-oil_production"/>
                 <entry key="28" type="xstring" value="vegetable-oil_oecd_exports"/>
                 <entry key="29" type="xstring" value="vegetable-oil_oecd_production"/>
+                <entry key="30" type="xstring" value="africa_eastern_and_southern_income"/>
+                <entry key="31" type="xstring" value="east_asia_and_pacific_income"/>
+                <entry key="32" type="xstring" value="europe_and_central_asia_income"/>
+                <entry key="33" type="xstring" value="high_income_income"/>
+                <entry key="34" type="xstring" value="latin_america_and_caribbean_income"/>
+                <entry key="35" type="xstring" value="least_developed_countries_un_classification_income"/>
+                <entry key="36" type="xstring" value="low_income_income"/>
+                <entry key="37" type="xstring" value="lower_middle_income_income"/>
+                <entry key="38" type="xstring" value="middle_east_and_north_africa_income"/>
+                <entry key="39" type="xstring" value="middle_income_income"/>
+                <entry key="40" type="xstring" value="north_america_income"/>
+                <entry key="41" type="xstring" value="oecd_members_income"/>
+                <entry key="42" type="xstring" value="south_asia_income"/>
+                <entry key="43" type="xstring" value="sub-saharan_africa_income"/>
+                <entry key="44" type="xstring" value="upper_middle_income_income"/>
+                <entry key="45" type="xstring" value="world_income"/>
             </config>
             <config key="excluded_names">
-                <entry key="array-size" type="xint" value="109"/>
+                <entry key="array-size" type="xint" value="142"/>
                 <entry key="0" type="xstring" value="coconut_beginning-stocks"/>
                 <entry key="1" type="xstring" value="coconut_crush"/>
                 <entry key="2" type="xstring" value="coconut_domestic-consumption"/>
@@ -152,6 +168,39 @@
                 <entry key="106" type="xstring" value="vegetable-oil_oecd_human-consumption-per-capita"/>
                 <entry key="107" type="xstring" value="vegetable-oil_oecd_imports"/>
                 <entry key="108" type="xstring" value="vegetable-oil_oecd_other-use"/>
+                <entry key="109" type="xstring" value="crude-average_price"/>
+                <entry key="110" type="xstring" value="africa_eastern_and_southern_GNI"/>
+                <entry key="111" type="xstring" value="east_asia_and_pacific_GNI"/>
+                <entry key="112" type="xstring" value="europe_and_central_asia_GNI"/>
+                <entry key="113" type="xstring" value="high_income_GNI"/>
+                <entry key="114" type="xstring" value="latin_america_and_caribbean_GNI"/>
+                <entry key="115" type="xstring" value="least_developed_countries_un_classification_GNI"/>
+                <entry key="116" type="xstring" value="low_income_GNI"/>
+                <entry key="117" type="xstring" value="lower_middle_income_GNI"/>
+                <entry key="118" type="xstring" value="middle_east_and_north_africa_GNI"/>
+                <entry key="119" type="xstring" value="middle_income_GNI"/>
+                <entry key="120" type="xstring" value="north_america_GNI"/>
+                <entry key="121" type="xstring" value="oecd_members_GNI"/>
+                <entry key="122" type="xstring" value="south_asia_GNI"/>
+                <entry key="123" type="xstring" value="sub-saharan_africa_GNI"/>
+                <entry key="124" type="xstring" value="upper_middle_income_GNI"/>
+                <entry key="125" type="xstring" value="world_GNI"/>
+                <entry key="126" type="xstring" value="africa_eastern_and_southern_GPD"/>
+                <entry key="127" type="xstring" value="east_asia_and_pacific_GPD"/>
+                <entry key="128" type="xstring" value="europe_and_central_asia_GPD"/>
+                <entry key="129" type="xstring" value="high_income_GPD"/>
+                <entry key="130" type="xstring" value="latin_america_and_caribbean_GPD"/>
+                <entry key="131" type="xstring" value="least_developed_countries_un_classification_GPD"/>
+                <entry key="132" type="xstring" value="low_income_GPD"/>
+                <entry key="133" type="xstring" value="lower_middle_income_GPD"/>
+                <entry key="134" type="xstring" value="middle_east_and_north_africa_GPD"/>
+                <entry key="135" type="xstring" value="middle_income_GPD"/>
+                <entry key="136" type="xstring" value="north_america_GPD"/>
+                <entry key="137" type="xstring" value="oecd_members_GPD"/>
+                <entry key="138" type="xstring" value="south_asia_GPD"/>
+                <entry key="139" type="xstring" value="sub-saharan_africa_GPD"/>
+                <entry key="140" type="xstring" value="upper_middle_income_GPD"/>
+                <entry key="141" type="xstring" value="world_GPD"/>
             </config>
             <entry key="enforce_option" type="xstring" value="EnforceInclusion"/>
             <config key="name_pattern">
@@ -194,12 +243,12 @@
             <entry key="index" type="xint" value="1"/>
             <entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
             <entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-            <entry key="port_object_summary" type="xstring" value="Rows: 377, Cols: 30"/>
+            <entry key="port_object_summary" type="xstring" value="Rows: 377, Cols: 46"/>
             <entry key="port_dir_location" type="xstring" value="port_1"/>
         </config>
     </config>
     <config key="filestores">
         <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-        <entry key="file_store_id" type="xstring" value="f1a0269d-05e7-4e6b-bf58-04bc100f49a5"/>
+        <entry key="file_store_id" type="xstring" value="3852a4cd-f9c6-461f-b938-058a9f6129d5"/>
     </config>
 </config>

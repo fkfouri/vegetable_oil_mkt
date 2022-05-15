@@ -8,10 +8,14 @@
         <entry key="authored-by" type="xstring" value="fkfouri"/>
         <entry key="authored-when" type="xstring" value="2022-04-02 19:00:21 -0300"/>
         <entry key="lastEdited-by" type="xstring" value="fkfouri"/>
-        <entry key="lastEdited-when" type="xstring" value="2022-05-07 09:29:49 -0300"/>
+        <entry key="lastEdited-when" type="xstring" value="2022-05-15 07:43:42 -0300"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="IDLE"/>
+    <config key="nodecontainer_message">
+        <entry key="type" type="xstring" value="ERROR"/>
+        <entry key="message" type="xstring" value="Granularidade Mensal 0:38: USDA 0:38:16: Contains an unconnected node (&quot;Column Rename (Regex) 0:38:16:52&quot;)"/>
+    </config>
     <config key="workflow_credentials"/>
     <config key="nodes">
         <config key="node_38">
@@ -218,7 +222,7 @@
         <entry key="workflow.editor.ShowGrid" type="xboolean" value="false"/>
         <entry key="workflow.editor.gridX" type="xint" value="20"/>
         <entry key="workflow.editor.gridY" type="xint" value="20"/>
-        <entry key="workflow.editor.zoomLevel" type="xdouble" value="1.0"/>
+        <entry key="workflow.editor.zoomLevel" type="xdouble" value="0.75"/>
         <entry key="workflow.editor.curvedConnections" type="xboolean" value="true"/>
         <entry key="workflow.editor.connectionWidth" type="xint" value="2"/>
     </config>

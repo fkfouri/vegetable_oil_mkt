@@ -35,6 +35,14 @@ def up_sampling_oecd(df):
     return __up_sampling(df, col_year, col_value, cols  )
 
 
+def up_sampling_world_bank(df):
+    col_year    = 'year'
+    col_value   = 'value'
+    cols        = ['country', 'variable']
+    
+    return __up_sampling(df, col_year, col_value, cols  )
+
+
 
 def __up_sampling(df, col_year, col_value, cols ):
     all_cols    = cols + [col_year, col_value]

@@ -11,7 +11,11 @@
         <entry key="lastEdited-when" type="xstring" isnull="true" value=""/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
-    <entry key="state" type="xstring" value="EXECUTED"/>
+    <entry key="state" type="xstring" value="CONFIGURED"/>
+    <config key="nodecontainer_message">
+        <entry key="type" type="xstring" value="ERROR"/>
+        <entry key="message" type="xstring" value="Linear Regression Learner 0:66:64: Missing value support disabled, see node configuration dialog."/>
+    </config>
     <config key="workflow_credentials"/>
     <config key="annotations">
         <config key="annotation_0">
