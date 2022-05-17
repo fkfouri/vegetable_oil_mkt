@@ -7,6 +7,16 @@ globals [ ;variaveis globais
   price_rapeseed
   price_soybean
   price_sunflower
+
+  disturber;                            # agente que causa pertubacao
+  initial;                              # lista inicial
+  count_distuber;                       # contador de periodos de disturbio
+  count_distuber_limit;                 # prazo para o disturbio ser absorvido
+
+  share_initial;
+  deficit;                              # quantidade deficity
+
+
 ]
 
 breed [ commodities commodity];         # Define a especie/raca de commodities
@@ -39,10 +49,22 @@ to setup
   clear-output;                                  # limpa o command center
 ;  random-seed 45;                                # para sempre gerar a mesma amostragem
   set ticket_counter_limit 1000;                 # define o limite do counter, para condicao de stop
+  set count_distuber_limit 20;
 
   create_agents
   reset-ticks ;reset time/simulation
+
+  set initial (list qty_palm qty_soybean)
+  set share_initial (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) )
+
+  reset_variables
 end; setup
+
+to reset_variables
+  set disturber           "None"
+  set deficit               0
+  set count_distuber        0
+end;
 
 
 to go
@@ -53,11 +75,61 @@ to go
 ;    if commodity_type = ""
 ;  ]
 
+  set disturber get_disturber;
 
   tick;                                     # tick
   set ticket_counter ticket_counter + 1;    # incremento do counter
   print ticket_counter
 end; go
+
+
+
+to-report get_disturber[];
+ ; ( foreach initial
+ ;   [ x -> show (word x " -> " round x) ]
+ ; )
+  let current (list qty_palm qty_soybean)
+
+
+  ;( foreach initial current
+  ;  [ [a b] -> if (a != b) [show (word a " -> " b)] ]
+  ;)
+
+  let i -1;
+
+  (ifelse
+    item 0 initial != item 0 current [
+      set disturber "palm"
+      set i 0
+
+    ]
+    item 1 initial != item 1 current [
+      set disturber "soy"
+      set i 1
+    ]
+    ;
+    [
+      set disturber "None"
+      set i -1
+    ]
+  )
+
+
+  if (i >= 0) [set deficit item i initial - item i current ];           # captura o delta deficit
+
+  if (disturber != "None") [set count_distuber count_distuber + 1 ];    # incrementa o contador
+
+  if (count_distuber >= count_distuber_limit ) [;                       # limite de pertubacao
+    set initial (list qty_palm qty_soybean);                            # novo patarmar apos pertubacao
+    set count_distuber 0;                                               #
+  ] ; apos um ciclo limpar o disturber
+
+
+
+  report disturber
+end
+
+
 
 
 to create_agents
@@ -171,11 +243,15 @@ to scenery_one
   set qty_palm            4000
   set qty_palm_kernel     260
   set qty_rapeseed        530
-  set qty_soybean         (1600)
+  set qty_soybean         (1640)
   set qty_sunflower       (940)
   set income              730
   set fertilizer          390
+
+  reset_variables
 end; scenery_one
+
+
 
 
 to-report tot_supply []; Funcao que retorna o total volume de commodities
@@ -214,8 +290,14 @@ to-report calc_value[#term_0 #term_1 #term_2 #exo1 #exo2];
   report #term_0 + (#term_1 * #exo1) + (#term_2 * #exo2)
 end
 
+to-report calc_price[#term_0 #term_1 #term_2 #qty #exo1];
+  report (#qty - #term_0 - (#term_2 * #exo1)) / #term_1
+end
+
 
 to-report soy_analysis[];
+  let qty qty_soybean;
+
   let π0 62.31979354738984
   let π1 0.6575061794593828
   let π2 0.9783530310857801
@@ -237,6 +319,7 @@ to-report soy_analysis[];
   ;let demand calc_value α0 α1 α2 Q income
   ;let source calc_value β0 β1 β2 Q fertilizer
 
+  let demand calc_price α0 α1 α2 qty income
   report 0
 end;
 
@@ -251,49 +334,79 @@ to-report get_soy_price[];
   let π4 0.38522674032676246
   let π5 -0.27406553067139683
 
-
-
   let P calc_value π0 π1 π2 income fertilizer
   let Q calc_value π3 π4 π5 income fertilizer
 
+  ;let α0 1265.1
+  ;let α1 -0.2801
+  ;let α2 0.5694
+  ;let β0 1211.1
+  ;let β1 0.5859
+  ;let β2 -0.8473
 
-  let alfa_0 1265.1
-  let alfa_1 -0.2801
-  let alfa_2 0.5694
-  let exo1 730.62
+  let α0 4516.1
+  let α1 -3.5698
+  let α2 2.0327
 
-  let beta_0 1211.1
-  let beta_1 0.5859
-  let beta_2 -0.8473
-  let exo2 388.5
+  let β0 -2067.1
+  let β1 1.7068
+  let β2 1.4461
 
-  let demand calc_value alfa_0 alfa_1 alfa_2 qty income
-  let source calc_value beta_0 beta_1 beta_2 qty fertilizer
+  let demand calc_price α0 α1 α2 qty income
+  let source calc_value β0 β1 β2 qty fertilizer
 
-  report round (demand + source) / 2
+
+  let _price 0
+
+  (ifelse
+    disturber = "soy" [
+      ; desloca a oferta
+      set _price calc_value β0 β1 β2 qty fertilizer
+    ]
+    ;
+    [
+      ; desloca a demanda
+      set _price calc_price α0 α1 α2 qty income
+    ]
+  )
+
+  ; report round (demand + source) / 2
+  report round demand
 end
 
 
 to-report get_palm_price[];
   let qty qty_palm;
 
-  let alfa_0 -1016.1;
-  let alfa_1 -1.5209;
-  let alfa_2 8.0809;
-  let exo1 income ;730.62
+  let α0 -668.11;
+  let α1 -0.6575;
+  let α2 5.3132;
 
-  let beta_0 -1364.6
-  let beta_1 11.125
-  let beta_2 -10.127
-  let exo2 fertilizer ;388.5
+  let β0 122.66
+  let β1 0.9103
+  let β2 0.0899
 
-  let demand calc_value alfa_0 alfa_1 alfa_2 qty income
-  let source calc_value beta_0 beta_1 beta_2 qty fertilizer
+  let _price 0
+  let demand calc_value α0 α1 α2 qty income
+  ;let _price calc_value β0 β1 β2 qty fertilizer
 
-  report round (demand + source) / 2
+  (ifelse
+    disturber = "palm" [
+      ; desloca a oferta
+      set _price calc_value β0 β1 β2 qty fertilizer
+    ]
+    ;
+    [
+      ; desloca a demanda
+      set _price calc_value α0 α1 α2 qty income
+    ]
+  )
+
+
+  ; report round (demand + source) / 2
+  report round _price
+
 end
-
-
 
 
 
@@ -303,23 +416,19 @@ to-report total_volume[];
   let soy get_soy_price * qty_soybean
   let palm get_palm_price * qty_palm
 
-  report soy;+ palm
+  report soy + palm
 end
 
 
 to-report total_qty []; Funcao que retorna o total volume de commodities
   ; report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
-  report qty_soybean; + qty_palm
+  report qty_soybean + qty_palm
 end;
 
-to-report new_price[];
 
+to-report price_proxy[];
   report total_volume / total_qty
 end
-
-
-
-
 
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -390,9 +499,9 @@ SLIDER
 390
 qty_palm
 qty_palm
-0
+500
 5000
-1590.0
+4000.0
 10
 1
 Year Ktons
@@ -420,9 +529,9 @@ SLIDER
 390
 qty_soybean
 qty_soybean
-0
+500
 3000
-990.0
+1640.0
 10
 1
 Year Ktons
@@ -437,7 +546,7 @@ qty_sunflower
 qty_sunflower
 0
 2000
-1290.0
+940.0
 10
 1
 Year Ktons
@@ -446,7 +555,7 @@ VERTICAL
 SLIDER
 190
 130
-227
+223
 390
 qty_rapeseed
 qty_rapeseed
@@ -464,7 +573,7 @@ MONITOR
 815
 66
 Vegetable total supply
-tot_supply
+total_qty
 4
 1
 15
@@ -487,10 +596,10 @@ NIL
 1
 
 PLOT
-463
-301
-698
-474
+606
+315
+969
+536
 Price per oil
 Quantity
 Price
@@ -499,12 +608,11 @@ Price
 0.0
 500.0
 true
-false
+true
 "" ""
 PENS
-"soybean" 1.0 0 -14400903 true "" "plot get_soy_price"
-"proxy" 1.0 0 -2674135 true "" "plot new_price"
-"palm" 1.0 0 -14719608 true "" "plot get_palm_price"
+"soybean" 1.0 0 -14439633 true "" "plot get_soy_price"
+"palm" 1.0 0 -14070903 true "" "plot get_palm_price"
 
 BUTTON
 240
@@ -543,8 +651,8 @@ NIL
 PLOT
 246
 316
-446
-466
+586
+533
 Quantity
 NIL
 NIL
@@ -557,26 +665,10 @@ true
 "" ""
 PENS
 "supply" 1.0 0 -16777216 true "" "plot tot_supply"
-"demand" 1.0 0 -2674135 true "" "plot tot_demand"
-
-PLOT
-639
-123
-839
-273
-plot 1
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot count turtles"
-"pen-1" 1.0 0 -7500403 true "" "plot get_pression"
+"demand" 1.0 0 -10899396 true "" "plot tot_demand"
+"proxy" 1.0 0 -2674135 true "" "plot total_qty"
+"soybean" 1.0 0 -14454117 true "" "plot qty_soybean"
+"palm" 1.0 0 -14070903 true "" "plot qty_palm"
 
 MONITOR
 634
@@ -637,10 +729,10 @@ NIL
 HORIZONTAL
 
 MONITOR
-918
-87
-1010
-132
+993
+10
+1085
+55
 NIL
 get_soy_price
 17
@@ -648,15 +740,45 @@ get_soy_price
 11
 
 MONITOR
-927
-153
-1024
-198
+993
+57
+1090
+102
 NIL
 get_palm_price
 17
 1
 11
+
+MONITOR
+874
+10
+985
+71
+NIL
+get_disturber
+17
+1
+15
+
+PLOT
+628
+147
+828
+297
+Market Share
+NIL
+NIL
+0.0
+10.0
+0.0
+100.0
+false
+true
+"" ""
+PENS
+"soybean" 1.0 0 -16777216 true "" "plot qty_soybean * 100 / total_qty"
+"palm" 1.0 0 -7500403 true "" "plot qty_palm * 100 / total_qty"
 
 @#$#@#$#@
 ## WHAT IS IT?
