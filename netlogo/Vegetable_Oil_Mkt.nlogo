@@ -168,11 +168,13 @@ to scenery_one
   ;#########################################
   ; Quantidades de cada commodity do Cenario 1
   ;#########################################
-  set qty_palm            50
-  set qty_palm_kernel     20
-  set qty_rapeseed        10
-  set qty_soybean         (35)
-  set qty_sunflower       (10)
+  set qty_palm            4000
+  set qty_palm_kernel     260
+  set qty_rapeseed        530
+  set qty_soybean         (1600)
+  set qty_sunflower       (940)
+  set income              730
+  set fertilizer          390
 end; scenery_one
 
 
@@ -203,6 +205,122 @@ to-report xy_draw [];
 
   report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
 end;
+
+
+
+;############################################################################################################################
+
+to-report calc_value[#term_0 #term_1 #term_2 #exo1 #exo2];
+  report #term_0 + (#term_1 * #exo1) + (#term_2 * #exo2)
+end
+
+
+to-report soy_analysis[];
+  let π0 62.31979354738984
+  let π1 0.6575061794593828
+  let π2 0.9783530310857801
+  let π3 -464.1162227304298
+  let π4 0.38522674032676246
+  let π5 -0.27406553067139683
+
+  let α0 1265.1
+  let α1 -0.2801
+  let α2 0.5694
+  let β0 1211.1
+  let β1 0.5859
+  let β2 -0.8473
+
+  let qo qty_soybean
+  let qd calc_value π3 π4 π5 income fertilizer
+  let P calc_value π0 π1 π2 income fertilizer
+
+  ;let demand calc_value α0 α1 α2 Q income
+  ;let source calc_value β0 β1 β2 Q fertilizer
+
+  report 0
+end;
+
+
+to-report get_soy_price[];
+  let qty qty_soybean;
+
+  let π0 62.31979354738984
+  let π1 0.6575061794593828
+  let π2 0.9783530310857801
+  let π3 -464.1162227304298
+  let π4 0.38522674032676246
+  let π5 -0.27406553067139683
+
+
+
+  let P calc_value π0 π1 π2 income fertilizer
+  let Q calc_value π3 π4 π5 income fertilizer
+
+
+  let alfa_0 1265.1
+  let alfa_1 -0.2801
+  let alfa_2 0.5694
+  let exo1 730.62
+
+  let beta_0 1211.1
+  let beta_1 0.5859
+  let beta_2 -0.8473
+  let exo2 388.5
+
+  let demand calc_value alfa_0 alfa_1 alfa_2 qty income
+  let source calc_value beta_0 beta_1 beta_2 qty fertilizer
+
+  report round (demand + source) / 2
+end
+
+
+to-report get_palm_price[];
+  let qty qty_palm;
+
+  let alfa_0 -1016.1;
+  let alfa_1 -1.5209;
+  let alfa_2 8.0809;
+  let exo1 income ;730.62
+
+  let beta_0 -1364.6
+  let beta_1 11.125
+  let beta_2 -10.127
+  let exo2 fertilizer ;388.5
+
+  let demand calc_value alfa_0 alfa_1 alfa_2 qty income
+  let source calc_value beta_0 beta_1 beta_2 qty fertilizer
+
+  report round (demand + source) / 2
+end
+
+
+
+
+
+
+
+to-report total_volume[];
+  let soy get_soy_price * qty_soybean
+  let palm get_palm_price * qty_palm
+
+  report soy;+ palm
+end
+
+
+to-report total_qty []; Funcao que retorna o total volume de commodities
+  ; report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
+  report qty_soybean; + qty_palm
+end;
+
+to-report new_price[];
+
+  report total_volume / total_qty
+end
+
+
+
+
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 340
@@ -273,9 +391,9 @@ SLIDER
 qty_palm
 qty_palm
 0
-100
-50.0
-.5
+5000
+1590.0
+10
 1
 Year Ktons
 VERTICAL
@@ -288,9 +406,9 @@ SLIDER
 qty_palm_kernel
 qty_palm_kernel
 0
-100
-20.0
-.5
+400
+260.0
+10
 1
 Year Ktons
 VERTICAL
@@ -303,9 +421,9 @@ SLIDER
 qty_soybean
 qty_soybean
 0
-100
-35.0
-.5
+3000
+990.0
+10
 1
 Year Ktons
 VERTICAL
@@ -318,9 +436,9 @@ SLIDER
 qty_sunflower
 qty_sunflower
 0
-100
-10.0
-.5
+2000
+1290.0
+10
 1
 Year Ktons
 VERTICAL
@@ -328,14 +446,14 @@ VERTICAL
 SLIDER
 190
 130
-223
+227
 390
 qty_rapeseed
 qty_rapeseed
 0
-100
-62.5
-.5
+800
+530.0
+10
 1
 Year Ktons
 VERTICAL
@@ -373,7 +491,7 @@ PLOT
 301
 698
 474
-Demand & Supply
+Price per oil
 Quantity
 Price
 0.0
@@ -384,8 +502,9 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -2674135 true "" "plotxy total_commodity"
-"Total" 1.0 0 -7500403 true "" "plot tot_supply"
+"soybean" 1.0 0 -14400903 true "" "plot get_soy_price"
+"proxy" 1.0 0 -2674135 true "" "plot new_price"
+"palm" 1.0 0 -14719608 true "" "plot get_palm_price"
 
 BUTTON
 240
@@ -466,6 +585,75 @@ MONITOR
 119
 NIL
 get_pression
+17
+1
+11
+
+BUTTON
+236
+120
+334
+153
+Run medium
+every 0.1 [go]
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SLIDER
+25
+456
+197
+489
+income
+income
+300
+900
+730.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+28
+506
+200
+539
+fertilizer
+fertilizer
+100
+1500
+390.0
+1
+1
+NIL
+HORIZONTAL
+
+MONITOR
+918
+87
+1010
+132
+NIL
+get_soy_price
+17
+1
+11
+
+MONITOR
+927
+153
+1024
+198
+NIL
+get_palm_price
 17
 1
 11
