@@ -54,16 +54,17 @@ to setup
   create_agents
   reset-ticks ;reset time/simulation
 
-  set initial (list qty_palm qty_soybean)
-  set share_initial (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) )
-
   reset_variables
+
 end; setup
 
+
 to reset_variables
-  set disturber           "None"
+  set disturber            "None"
   set deficit               0
   set count_distuber        0
+  set initial              (list qty_palm qty_soybean)
+  set share_initial        (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) )
 end;
 
 
@@ -362,6 +363,8 @@ to-report get_soy_price[];
     disturber = "soy" [
       ; desloca a oferta
       set _price calc_value β0 β1 β2 qty fertilizer
+      show (word "soy price: " _price)
+
     ]
     ;
     [
@@ -376,7 +379,7 @@ end
 
 
 to-report get_palm_price[];
-  let qty qty_palm;
+
 
   let α0 -668.11;
   let α1 -0.6575;
@@ -387,17 +390,20 @@ to-report get_palm_price[];
   let β2 0.0899
 
   let _price 0
-  let demand calc_value α0 α1 α2 qty income
+  ; let demand calc_value α0 α1 α2 qty income
   ;let _price calc_value β0 β1 β2 qty fertilizer
 
   (ifelse
     disturber = "palm" [
       ; desloca a oferta
+      let qty qty_palm;
       set _price calc_value β0 β1 β2 qty fertilizer
     ]
     ;
     [
       ; desloca a demanda
+      let qty qty_palm + deficit
+;      show (word "palm qty: " qty_palm " -> " qty)
       set _price calc_value α0 α1 α2 qty income
     ]
   )
@@ -501,7 +507,7 @@ qty_palm
 qty_palm
 500
 5000
-4000.0
+3380.0
 10
 1
 Year Ktons
@@ -699,10 +705,10 @@ NIL
 1
 
 SLIDER
-25
-456
-197
-489
+27
+403
+199
+436
 income
 income
 300
@@ -714,10 +720,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-28
-506
-200
-539
+26
+441
+198
+474
 fertilizer
 fertilizer
 100
@@ -779,6 +785,17 @@ true
 PENS
 "soybean" 1.0 0 -16777216 true "" "plot qty_soybean * 100 / total_qty"
 "palm" 1.0 0 -7500403 true "" "plot qty_palm * 100 / total_qty"
+
+MONITOR
+949
+164
+1006
+209
+NIL
+deficit
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
