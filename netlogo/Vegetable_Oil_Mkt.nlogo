@@ -14,7 +14,7 @@ globals [ ;variaveis globais
   count_distuber_limit;                 # prazo para o disturbio ser absorvido
 
   share_initial;
-  deficit;                              # quantidade deficity
+  deficit;                              # quantidade deficit
 
 
 ]
@@ -27,11 +27,21 @@ breed [ curves curve ];                 # Define as curvas de oferta e demanda
 commodities-own [
   quantity;                             # quantidade/volume em ktons do equilibrio
   price;                                # preco em USD/Ktons do equilibrio
+  dist   ;                              # agente que causa pertubacao
   bearish;                              # comportamento em bearish 'Queda'
   bullish;                              # comportamento em bulish 'subida'
   pression;                             # p<-1 é descida, p>1 é subida e -1<p<1 é sidewalk
   commodity_type;                       # tipo de commodity
-  strategy;
+
+  a0 ;
+  a1 ;
+  a2 ;
+  a3 ;
+  b0 ;
+  b1 ;
+  b2 ;
+  b3 ;
+
 ]
 
 curves-own [
@@ -49,7 +59,7 @@ to setup
   clear-output;                                  # limpa o command center
 ;  random-seed 45;                                # para sempre gerar a mesma amostragem
   set ticket_counter_limit 1000;                 # define o limite do counter, para condicao de stop
-  set count_distuber_limit 20;
+  set count_distuber_limit 5;
 
   create_agents
   reset-ticks ;reset time/simulation
@@ -77,6 +87,7 @@ to go
 ;  ]
 
   set disturber get_disturber;
+  if (disturber != "None") [set count_distuber count_distuber + 1 ];    # incrementa o contador. Colocado aqui para incrementar somente no ticker
 
   tick;                                     # tick
   set ticket_counter ticket_counter + 1;    # incremento do counter
@@ -102,27 +113,33 @@ to-report get_disturber[];
     item 0 initial != item 0 current [
       set disturber "palm"
       set i 0
+      ask turtle 0 [ set dist True]
 
     ]
     item 1 initial != item 1 current [
       set disturber "soy"
       set i 1
+      ask turtle 3 [ set dist True]
     ]
     ;
     [
       set disturber "None"
       set i -1
+      ask commodities[
+        set dist False
+      ]
     ]
   )
 
 
   if (i >= 0) [set deficit item i initial - item i current ];           # captura o delta deficit
 
-  if (disturber != "None") [set count_distuber count_distuber + 1 ];    # incrementa o contador
+
 
   if (count_distuber >= count_distuber_limit ) [;                       # limite de pertubacao
     set initial (list qty_palm qty_soybean);                            # novo patarmar apos pertubacao
     set count_distuber 0;                                               #
+    set deficit 0
   ] ; apos um ciclo limpar o disturber
 
 
@@ -141,6 +158,10 @@ to create_agents
     set xcor -12
     set ycor 12
     set commodity_type "Palm"
+    set a0 3600
+    set a1 -0.625
+    set b0 600
+    set b1 0.125
   ]
 
   create-commodities 1 [
@@ -165,7 +186,10 @@ to create_agents
     set xcor 12;
     set ycor 0;
     set commodity_type "Soybean";
-    set strategy strategy_two;
+    set a0 2400
+    set a1 -0.5
+    set b0 1000
+    set b1 0.2
   ]
 
 
@@ -175,13 +199,13 @@ to create_agents
     set xcor 12
     set ycor -12
     set commodity_type "Sunflower"
-    set strategy strategy_one
   ]
 
   ask commodities[
     set size 6
     set label commodity_type
     set pression get_pression
+    set dist False
   ]
 
   create-axies 1[; Eixo y | Preco
@@ -244,7 +268,7 @@ to scenery_one
   set qty_palm            4000
   set qty_palm_kernel     260
   set qty_rapeseed        530
-  set qty_soybean         (1640)
+  set qty_soybean         2000 ;(1640)
   set qty_sunflower       (940)
   set income              730
   set fertilizer          390
@@ -260,7 +284,7 @@ to-report tot_supply []; Funcao que retorna o total volume de commodities
 end;
 
 to-report tot_demand []; Funcao que retorna o total de demanda commodities. Tentei fazer o incremento de 4% ao ano.
-  report tot_supply +  (ticket_counter / 365) * 0.04 * tot_supply;  tot_supply * (ticket_counter - 1) * 0.04 / tot_supply
+  report tot_supply + (ticket_counter / 365) * 0.04 * tot_supply;  tot_supply * (ticket_counter - 1) * 0.04 / tot_supply
 end;
 
 to-report get_pression[]; Funcao que gera um randomico para [-2, -1, 0, 1, 2]
@@ -295,6 +319,169 @@ to-report calc_price[#term_0 #term_1 #term_2 #qty #exo1];
   report (#qty - #term_0 - (#term_2 * #exo1)) / #term_1
 end
 
+to-report get_soy_price[];
+  let turtle_id 3
+  let qty qty_soybean
+  let _disturber "soy"
+
+  ;let _price get_price turtle_id _disturber qty
+  ;report _price
+
+  let _price 0
+
+  let _a0 [a0] of turtle turtle_id
+  let _a1 [a1] of turtle turtle_id
+  let _b0 [b0] of turtle turtle_id
+  let _b1 [b1] of turtle turtle_id
+
+  (ifelse disturber = _disturber
+    [
+      ; ==================================================
+      ; calcula o novo preco da demanda
+      ; ==================================================
+      set _price calc_price_v2 _a0 _a1 qty
+      ; show (word "soy palm: " _a0 " " _a1 "x" qty)
+
+      ; ==================================================
+      ; desloca a oferta e encontra o novo intercept
+      ; ==================================================
+      let __b0 calc_intercept _b1 qty _price
+      ask turtle turtle_id [ set b0 __b0]
+    ]
+    ;
+    [ ; desloca a demanda
+      set _price calc_price_v2 _b0 _b1 qty
+    ]
+  )
+
+  ask turtle turtle_id [ set price _price]
+  ask turtle turtle_id [ set quantity qty]
+  report round _price
+end
+
+to-report get_palm_price[];
+  let turtle_id 0
+  let qty qty_palm
+  let _disturber "palm"
+
+  ; let _price get_price turtle_id _disturber qty
+  ; report _price
+
+  let _price 0
+
+  let _a0 [a0] of turtle turtle_id
+  let _a1 [a1] of turtle turtle_id
+  let _b0 [b0] of turtle turtle_id
+  let _b1 [b1] of turtle turtle_id
+
+  (ifelse disturber = _disturber
+    [
+      ; ==================================================
+      ; ANALISE 1
+      ; calcula o novo preco da demanda
+      ; ==================================================
+      set _price calc_price_v2 _a0 _a1 qty
+      ; show (word "soy palm: " _a0 " " _a1 "x" qty)
+
+      ; ==================================================
+      ; ANALISE 1
+      ; desloca a oferta e encontra o novo intercept
+      ; ==================================================
+      let __b0 calc_intercept _b1 qty _price
+      ask turtle turtle_id [ set b0 __b0]
+
+      ; ============================================================
+      ; ANALISE 2
+      ; o deficit gera o deslocamento da demanda em outra commodity
+      ; ============================================================
+
+    ]
+    ;
+    [ ; desloca a demanda
+
+      if (deficit > qty * .1) or (deficit < qty * .1)[
+        show (word "aqui: " deficit " " qty  " " (qty * .1) )
+      ]
+
+      set _price calc_price_v2 _b0 _b1 qty
+    ]
+  )
+
+  ask turtle turtle_id [ set price _price]
+  ask turtle turtle_id [ set quantity qty]
+  report round _price
+end
+
+
+to-report calc_price_v2[#term_0 #term_1 #qty ];
+ report #term_0 + (#term_1 * #qty)
+end
+
+to-report calc_intercept[#term_1 #qty #price];
+ report #price - (#term_1 * #qty)
+end
+
+
+to-report get_price[turtle_id _disturber qty];
+  let _price 0
+
+  let _a0 [a0] of turtle turtle_id
+  let _a1 [a1] of turtle turtle_id
+  let _b0 [b0] of turtle turtle_id
+  let _b1 [b1] of turtle turtle_id
+
+  (ifelse disturber = _disturber
+    [
+      ; ==================================================
+      ; calcula o novo preco da demanda
+      ; ==================================================
+      set _price calc_price_v2 _a0 _a1 qty
+      ; show (word "soy palm: " _a0 " " _a1 "x" qty)
+
+      ; ==================================================
+      ; desloca a oferta e encontra o novo intercept
+      ; ==================================================
+      let __b0 calc_intercept _b1 qty _price
+      ask turtle turtle_id [ set b0 __b0]
+    ]
+    ;
+    [ ; desloca a demanda
+      set _price calc_price_v2 _b0 _b1 qty
+    ]
+  )
+
+  ask turtle turtle_id [ set price _price]
+  ask turtle turtle_id [ set quantity qty]
+  report round _price
+end
+
+
+to-report total_volume[];
+  let soy get_soy_price * qty_soybean
+  let palm get_palm_price * qty_palm
+
+  report soy + palm
+end
+
+
+to-report total_qty []; Funcao que retorna o total volume de commodities
+  ; report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
+  report qty_soybean + qty_palm
+end;
+
+
+to-report price_proxy[];
+  report total_volume / total_qty
+end
+
+
+
+
+;#####################################################333
+; OBSOLETO
+;#######################################################
+
+
 
 to-report soy_analysis[];
   let qty qty_soybean;
@@ -325,60 +512,8 @@ to-report soy_analysis[];
 end;
 
 
-to-report get_soy_price[];
-  let qty qty_soybean;
 
-  let π0 62.31979354738984
-  let π1 0.6575061794593828
-  let π2 0.9783530310857801
-  let π3 -464.1162227304298
-  let π4 0.38522674032676246
-  let π5 -0.27406553067139683
-
-  let P calc_value π0 π1 π2 income fertilizer
-  let Q calc_value π3 π4 π5 income fertilizer
-
-  ;let α0 1265.1
-  ;let α1 -0.2801
-  ;let α2 0.5694
-  ;let β0 1211.1
-  ;let β1 0.5859
-  ;let β2 -0.8473
-
-  let α0 4516.1
-  let α1 -3.5698
-  let α2 2.0327
-
-  let β0 -2067.1
-  let β1 1.7068
-  let β2 1.4461
-
-  let demand calc_price α0 α1 α2 qty income
-  let source calc_value β0 β1 β2 qty fertilizer
-
-
-  let _price 0
-
-  (ifelse
-    disturber = "soy" [
-      ; desloca a oferta
-      set _price calc_value β0 β1 β2 qty fertilizer
-      show (word "soy price: " _price)
-
-    ]
-    ;
-    [
-      ; desloca a demanda
-      set _price calc_price α0 α1 α2 qty income
-    ]
-  )
-
-  ; report round (demand + source) / 2
-  report round demand
-end
-
-
-to-report get_palm_price[];
+to-report get_palm_price_v1[];
 
 
   let α0 -668.11;
@@ -393,8 +528,7 @@ to-report get_palm_price[];
   ; let demand calc_value α0 α1 α2 qty income
   ;let _price calc_value β0 β1 β2 qty fertilizer
 
-  (ifelse
-    disturber = "palm" [
+  (ifelse  disturber = "palm" [
       ; desloca a oferta
       let qty qty_palm;
       set _price calc_value β0 β1 β2 qty fertilizer
@@ -413,29 +547,6 @@ to-report get_palm_price[];
   report round _price
 
 end
-
-
-
-
-
-to-report total_volume[];
-  let soy get_soy_price * qty_soybean
-  let palm get_palm_price * qty_palm
-
-  report soy + palm
-end
-
-
-to-report total_qty []; Funcao que retorna o total volume de commodities
-  ; report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
-  report qty_soybean + qty_palm
-end;
-
-
-to-report price_proxy[];
-  report total_volume / total_qty
-end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 340
@@ -507,7 +618,7 @@ qty_palm
 qty_palm
 500
 5000
-3380.0
+4000.0
 10
 1
 Year Ktons
@@ -537,7 +648,7 @@ qty_soybean
 qty_soybean
 500
 3000
-1640.0
+2000.0
 10
 1
 Year Ktons
@@ -673,7 +784,7 @@ PENS
 "supply" 1.0 0 -16777216 true "" "plot tot_supply"
 "demand" 1.0 0 -10899396 true "" "plot tot_demand"
 "proxy" 1.0 0 -2674135 true "" "plot total_qty"
-"soybean" 1.0 0 -14454117 true "" "plot qty_soybean"
+"soybean" 1.0 0 -955883 true "" "plot qty_soybean"
 "palm" 1.0 0 -14070903 true "" "plot qty_palm"
 
 MONITOR
@@ -1213,7 +1324,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.2
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
