@@ -7,7 +7,7 @@ globals [ ;variaveis globais
   count_distuber;                       # contador de periodos de disturbio
   count_distuber_limit;                 # prazo para o disturbio ser absorvido
 
-  share_initial;
+  ;share_initial;
   deficit;                              # quantidade deficit
   adjusted;
 
@@ -15,8 +15,6 @@ globals [ ;variaveis globais
 ]
 
 breed [ commodities commodity];         # Define a especie/raca de commodities
-breed [ axies axie ];                   # Define os eixos X e Y
-breed [ curves curve ];                 # Define as curvas de oferta e demanda
 
 
 commodities-own [
@@ -31,12 +29,6 @@ commodities-own [
   b1 ;
   ;b2 ;
   ;b3 ;
-]
-
-curves-own [
-  intercept;                            # intercepto da curva
-  coef;                                 # coeficiente da curva
-  err;                                  # fator de erro
 ]
 
 
@@ -62,9 +54,8 @@ to reset_variables
   set disturber            "None"
   set deficit               0
   set count_distuber        0
-  set initial              (list qty_palm qty_soybean qty_rapeseed)
-  set share_initial        (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) (qty_rapeseed * 100 / total_qty)
-  )
+  set initial              (list qty_palm qty_soybean qty_rapeseed qty_sunflower)
+  ;set share_initial        (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) (qty_rapeseed * 100 / total_qty) )
   set adjusted             False
 end;
 
@@ -93,7 +84,7 @@ to-report get_disturber[];
  ; ( foreach initial
  ;   [ x -> show (word x " -> " round x) ]
  ; )
-  let current (list qty_palm qty_soybean qty_rapeseed)
+  let current (list qty_palm qty_soybean qty_rapeseed qty_sunflower)
 
 
   ;( foreach initial current
@@ -115,6 +106,10 @@ to-report get_disturber[];
       set disturber "Rapeseed"
       set i 2
     ]
+    item 3 initial != item 3 current [
+      set disturber "Sunflower"
+      set i 3
+    ]
     ;
     [
       set disturber "None"
@@ -130,7 +125,7 @@ to-report get_disturber[];
 
 
   if (count_distuber >= count_distuber_limit ) [;                       # limite de pertubacao
-    set initial (list qty_palm qty_soybean qty_rapeseed);                            # novo patarmar apos pertubacao
+    set initial (list qty_palm qty_soybean qty_rapeseed qty_sunflower);                            # novo patarmar apos pertubacao
     set count_distuber 0;                                               #
     set deficit 0
   ] ; apos um ciclo limpar o disturber
@@ -144,12 +139,13 @@ end
 
 
 to create_agents
+  let pos 8
 
   create-commodities 1 [
     set shape "acorn"
     set color green
-    set xcor -12
-    set ycor 12
+    set xcor pos * -1
+    set ycor pos
     set label "Palm"
     set a0 3600
     set a1 -0.625
@@ -161,8 +157,8 @@ to create_agents
   create-commodities 1 [
     set shape "plant";
     set color green;
-    set xcor -12;
-    set ycor -12;
+    set xcor pos * -1;
+    set ycor pos * -1;
     set label "Soybean";
     set a0 2400
     set a1 -0.5
@@ -173,8 +169,8 @@ to create_agents
   create-commodities 1 [
     set shape "rapeseed"
     set color yellow
-    set xcor 12
-    set ycor 12
+    set xcor pos
+    set ycor pos
     set label "Rapeseed"
     set a0 1900
     set a1 -0.45
@@ -185,9 +181,13 @@ to create_agents
   create-commodities 1 [
     set shape "flower"
     set color yellow
-    set xcor 12
-    set ycor -12
+    set xcor pos
+    set ycor pos * -1
     set label "Sunflower"
+    set a0 1800
+    set a1 -0.45
+    set b0 1100
+    set b1 0.4
   ]
 
   ask commodities[
@@ -197,38 +197,7 @@ to create_agents
     ;set dist False
   ]
 
-  create-axies 1[; Eixo y | Preco
-    set heading 0;
-  ]
 
-  create-axies 1[; Eixo x | Quantidade
-    set heading 90;
-  ]
-
-  ask axies [
-    set color white;
-    set xcor -8;
-    set ycor -8;
-    set pen-mode "down";
-    set pen-size 2;
-    forward 18;
-  ]
-
-  create-curves 1[; Demanda
-    set xcor -8;
-    set ycor -8;
-  ]
-
-  create-curves 1[; Oferta
-
-  ]
-
-  ask curves[
-    set color yellow;
-    set pen-mode "down";
-    set pen-size 2;
-    set shape "dot"
-  ]
 
 end
 
@@ -280,6 +249,7 @@ to-report get_palm_price[];
   report [price] of turtle turtle_id
 end
 
+
 to-report get_rape_price[];
   let turtle_id (item 0 ([who] of commodities with [label = "Rapeseed"]) )
   let qty qty_rapeseed
@@ -287,6 +257,16 @@ to-report get_rape_price[];
   market_analysis turtle_id qty
   report [price] of turtle turtle_id
 end
+
+
+to-report get_sun_price[];
+  let turtle_id (item 0 ([who] of commodities with [label = "Sunflower"]) )
+  let qty qty_sunflower
+
+  market_analysis turtle_id qty
+  report [price] of turtle turtle_id
+end
+
 ;############################################################################################################################
 
 
@@ -366,7 +346,7 @@ to market_analysis[turtle_id qty];
 
   if ([price] of turtle turtle_id <= 0) [
     let _price calc_price_by_balance _a0 _a1 _b0 _b1
-    ask turtle turtle_id [ set price _price]
+    ask turtle turtle_id [ set price (precision _price 2)]
   ]
 
 end
@@ -393,7 +373,7 @@ to shift_supply[turtle_id qty]
   ; atualiza commodity
   ; ==================================================
   ask turtle turtle_id [ set b0 _intercept]
-  ask turtle turtle_id [ set price _price]
+  ask turtle turtle_id [ set price (precision _price 2)]
   ask turtle turtle_id [ set quantity qty]
 end
 
@@ -420,7 +400,7 @@ to shift_demand[turtle_id qty]
   ; atualiza commodity
   ; ==================================================
   ask turtle turtle_id [ set a0 _intercept]
-  ask turtle turtle_id [ set price _price]
+  ask turtle turtle_id [ set price (precision _price 2)]
   ask turtle turtle_id [ set quantity qty]
 
   ;show (word "novo qtd: " qty " " _intercept " " turtle_id " - price:" _price)
@@ -449,16 +429,15 @@ to-report total_volume[];
   let soybean get_soy_price * qty_soybean
   let palm get_palm_price * qty_palm
   let rapeseed get_rape_price * qty_rapeseed
+  let sunflower get_sun_price * qty_sunflower
 
-  report soybean + palm + rapeseed
+  report soybean + palm + rapeseed + sunflower
 end
 
 
 to-report total_qty []; Funcao que retorna o total volume de commodities
-  ; report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
-
   let mylist [who] of commodities with [a1 != 0]
-  report qty_soybean + qty_palm + qty_rapeseed
+  report qty_soybean + qty_palm + qty_rapeseed + qty_sunflower
 end;
 
 
@@ -551,7 +530,7 @@ end
 
 
 to-report tot_supply []; Funcao que retorna o total volume de commodities
-  report qty_sunflower + qty_soybean + qty_palm + qty_rapeseed
+  report  qty_soybean + qty_palm + qty_rapeseed + qty_sunflower
 end;
 
 to-report tot_demand []; Funcao que retorna o total de demanda commodities. Tentei fazer o incremento de 4% ao ano.
@@ -561,22 +540,6 @@ end;
 to-report get_pression[]; Funcao que gera um randomico para [-2, -1, 0, 1, 2]
  report random 5 - 2;
 end
-
-to-report strategy_one[];
-  report 200 + qty_soybean
-end
-
-to-report strategy_two[];
-  report 500 + qty_sunflower
-end
-
-to-report xy_draw [];
-  ;#########################################
-  ; Funcao que retorna o total volume de commodities
-  ;#########################################
-
-  report qty_sunflower + qty_soybean + qty_palm + qty_rapeseed
-end;
 @#$#@#$#@
 GRAPHICS-WINDOW
 336
@@ -648,7 +611,7 @@ qty_palm
 qty_palm
 500
 5000
-3600.0
+1200.0
 10
 1
 Year Ktons
@@ -663,7 +626,7 @@ qty_soybean
 qty_soybean
 500
 3000
-1200.0
+2000.0
 10
 1
 Year Ktons
@@ -746,6 +709,7 @@ PENS
 "Soybean" 1.0 0 -14439633 true "" "plot get_soy_price"
 "Palm" 1.0 0 -14070903 true "" "plot get_palm_price"
 "Rapessed" 1.0 0 -955883 true "" "plot get_rape_price"
+"Sunflower" 1.0 0 -6459832 true "" "plot get_sun_price"
 
 BUTTON
 240
@@ -797,11 +761,11 @@ true
 true
 "" ""
 PENS
-"supply" 1.0 0 -16777216 true "" "plot tot_supply"
-"demand" 1.0 0 -10899396 true "" "plot tot_demand"
-"proxy" 1.0 0 -2674135 true "" "plot total_qty"
-"soybean" 1.0 0 -955883 true "" "plot qty_soybean"
-"palm" 1.0 0 -14070903 true "" "plot qty_palm"
+"Soybean" 1.0 0 -14439633 true "" "plot qty_soybean"
+"Palm" 1.0 0 -14070903 true "" "plot qty_palm"
+"Rapessed" 1.0 0 -955883 true "" "plot qty_rapeseed"
+"Sunflower" 1.0 0 -6459832 true "" "plot qty_sunflower"
+"Proxy" 1.0 0 -2674135 true "" "plot total_qty"
 
 MONITOR
 634
@@ -867,7 +831,7 @@ MONITOR
 1101
 104
 Soybean Price
-round item 0 ([price] of commodities with [label = \"Soybean\"])
+item 0 ([price] of commodities with [label = \"Soybean\"])
 17
 1
 11
@@ -878,7 +842,7 @@ MONITOR
 1090
 57
 Palm Price
-round item 0 ([price] of commodities with [label = \"Palm\"])
+item 0 ([price] of commodities with [label = \"Palm\"])
 17
 1
 11
@@ -903,15 +867,17 @@ Market Share
 NIL
 NIL
 0.0
-10.0
+100.0
 0.0
 100.0
-false
+true
 true
 "" ""
 PENS
-"soybean" 1.0 0 -16777216 true "" "plot qty_soybean * 100 / total_qty"
-"palm" 1.0 0 -7500403 true "" "plot qty_palm * 100 / total_qty"
+"Soybean" 1.0 0 -14439633 true "" "plot qty_soybean * 100 / total_qty"
+"Palm" 1.0 0 -14070903 true "" "plot qty_palm * 100 / total_qty"
+"Rapessed" 1.0 0 -955883 true "" "plot qty_rapeseed * 100 / total_qty"
+"Sunflower" 1.0 0 -6459832 true "" "plot qty_sunflower * 100 / total_qty"
 
 MONITOR
 872
@@ -964,7 +930,18 @@ MONITOR
 1090
 153
 Rapessed Price
-round item 0 ([price] of commodities with [label = \"Rapeseed\"])
+item 0 ([price] of commodities with [label = \"Rapeseed\"])
+17
+1
+11
+
+MONITOR
+991
+158
+1089
+203
+Sunflower Price
+item 0 ([price] of commodities with [label = \"Sunflower\"])
 17
 1
 11
