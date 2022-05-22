@@ -164,12 +164,17 @@ to create_agents
     set b1 0.125
   ]
 
+
   create-commodities 1 [
-    set shape "palm-kernel"
-    set color orange + 2
-    set xcor -12
-    set ycor 0
-    set label "Palm-Kernel"
+    set shape "plant";
+    set color green;
+    set xcor -12;
+    set ycor -12;
+    set label "Soybean";
+    set a0 2400
+    set a1 -0.5
+    set b0 1000
+    set b1 0.2
   ]
 
   create-commodities 1 [
@@ -179,19 +184,6 @@ to create_agents
     set ycor 12
     set label "Rapeseed"
   ]
-
-  create-commodities 1 [
-    set shape "plant";
-    set color green;
-    set xcor 12;
-    set ycor 0;
-    set label "Soybean";
-    set a0 2400
-    set a1 -0.5
-    set b0 1000
-    set b1 0.2
-  ]
-
 
   create-commodities 1 [
     set shape "flower"
@@ -241,23 +233,6 @@ to create_agents
     set shape "dot"
   ]
 
-;
-;  ;#########################################
-;  ;Paper Producers (Customers)
-;  ;#########################################
-;  create-ordered-major_customers number_of_major_customers [
-;    forward 8
-;    facexy 0 0
-;    set color 107
-;    set size 5
-;    set shape "circle"
-;    ifelse major_customers_margins = "High" [set market_pressure market_pressure + (15 / number_of_major_customers) ] [
-;      ifelse major_customers_margins = "Healthy" [set market_pressure market_pressure - 0] [ set market_pressure market_pressure - (15 / number_of_major_customers)]
-;    ]
-;  ]
-
-
-
 end
 
 
@@ -266,7 +241,6 @@ to scenery_one
   ; Quantidades de cada commodity do Cenario 1
   ;#########################################
   set qty_palm            4000
-  set qty_palm_kernel     260
   set qty_rapeseed        530
   set qty_soybean         2000 ;(1640)
   set qty_sunflower       (940)
@@ -279,33 +253,6 @@ end; scenery_one
 
 
 
-to-report tot_supply []; Funcao que retorna o total volume de commodities
-  report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
-end;
-
-to-report tot_demand []; Funcao que retorna o total de demanda commodities. Tentei fazer o incremento de 4% ao ano.
-  report tot_supply + (ticket_counter / 365) * 0.04 * tot_supply;  tot_supply * (ticket_counter - 1) * 0.04 / tot_supply
-end;
-
-to-report get_pression[]; Funcao que gera um randomico para [-2, -1, 0, 1, 2]
- report random 5 - 2;
-end
-
-to-report strategy_one[];
-  report 200 + qty_soybean
-end
-
-to-report strategy_two[];
-  report 500 + qty_sunflower
-end
-
-to-report xy_draw [];
-  ;#########################################
-  ; Funcao que retorna o total volume de commodities
-  ;#########################################
-
-  report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
-end;
 
 
 
@@ -360,6 +307,8 @@ to-report get_soy_price[];
   report [price] of turtle turtle_id
 end
 
+
+
 to-report get_palm_price[];
   let turtle_id 0
   let qty qty_palm
@@ -390,7 +339,7 @@ to-report get_palm_price[];
       ; commodity.
       ; ==================================================
 ;      let mylist is
-      ;show count commodities with [commodity_type = "Sunflower"]
+      ;show count commodities with [commodity_type != "Palm"]
 
       let _turtle2 3
       let original_qty ([quantity] of turtle _turtle2)
@@ -610,6 +559,36 @@ to-report get_palm_price_v1[];
   report round _price
 
 end
+
+
+
+to-report tot_supply []; Funcao que retorna o total volume de commodities
+  report qty_sunflower + qty_soybean + qty_palm + qty_rapeseed
+end;
+
+to-report tot_demand []; Funcao que retorna o total de demanda commodities. Tentei fazer o incremento de 4% ao ano.
+  report tot_supply + (ticket_counter / 365) * 0.04 * tot_supply;  tot_supply * (ticket_counter - 1) * 0.04 / tot_supply
+end;
+
+to-report get_pression[]; Funcao que gera um randomico para [-2, -1, 0, 1, 2]
+ report random 5 - 2;
+end
+
+to-report strategy_one[];
+  report 200 + qty_soybean
+end
+
+to-report strategy_two[];
+  report 500 + qty_sunflower
+end
+
+to-report xy_draw [];
+  ;#########################################
+  ; Funcao que retorna o total volume de commodities
+  ;#########################################
+
+  report qty_sunflower + qty_soybean + qty_palm + qty_rapeseed
+end;
 @#$#@#$#@
 GRAPHICS-WINDOW
 340
@@ -688,10 +667,10 @@ Year Ktons
 VERTICAL
 
 SLIDER
-110
-130
-143
-390
+66
+127
+99
+387
 qty_soybean
 qty_soybean
 500
@@ -955,21 +934,6 @@ deficit
 17
 1
 11
-
-SLIDER
-70
-130
-103
-390
-qty_palm_kernel
-qty_palm_kernel
-0
-400
-260.0
-10
-1
-Year Ktons
-VERTICAL
 
 @#$#@#$#@
 ## WHAT IS IT?
