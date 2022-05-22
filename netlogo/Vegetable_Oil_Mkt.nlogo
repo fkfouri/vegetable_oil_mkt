@@ -22,11 +22,6 @@ breed [ curves curve ];                 # Define as curvas de oferta e demanda
 commodities-own [
   quantity;                             # quantidade/volume em ktons do equilibrio
   price;                                # preco em USD/Ktons do equilibrio
-  ; dist   ;                              # agente que causa pertubacao
-  ;bearish;                              # comportamento em bearish 'Queda'
-  ;bullish;                              # comportamento em bulish 'subida'
-  ;pression;                             # p<-1 é descida, p>1 é subida e -1<p<1 é sidewalk
-
 
   a0 ;
   a1 ;
@@ -36,8 +31,6 @@ commodities-own [
   b1 ;
   ;b2 ;
   ;b3 ;
-
-  ;commodity_type;                       # tipo de commodity
 ]
 
 curves-own [
@@ -70,7 +63,8 @@ to reset_variables
   set deficit               0
   set count_distuber        0
   set initial              (list qty_palm qty_soybean qty_rapeseed)
-  set share_initial        (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) )
+  set share_initial        (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) (qty_rapeseed * 100 / total_qty)
+  )
   set adjusted             False
 end;
 
@@ -238,6 +232,7 @@ to create_agents
 
 end
 
+;############################################################################################################################
 
 to scenery_one
   ;#########################################
@@ -268,15 +263,6 @@ end
 
 
 ;############################################################################################################################
-
-to-report calc_value[#term_0 #term_1 #term_2 #exo1 #exo2];
-  report #term_0 + (#term_1 * #exo1) + (#term_2 * #exo2)
-end
-
-to-report calc_price[#term_0 #term_1 #term_2 #qty #exo1];
-  report (#qty - #term_0 - (#term_2 * #exo1)) / #term_1
-end
-
 to-report get_soy_price[];
   let turtle_id (item 0 ([who] of commodities with [label = "Soybean"]) )
   let qty qty_soybean
@@ -290,7 +276,6 @@ to-report get_palm_price[];
   let turtle_id (item 0 ([who] of commodities with [label = "Palm"]) )
   let qty qty_palm
 
-
   market_analysis turtle_id qty
   report [price] of turtle turtle_id
 end
@@ -299,11 +284,10 @@ to-report get_rape_price[];
   let turtle_id (item 0 ([who] of commodities with [label = "Rapeseed"]) )
   let qty qty_rapeseed
 
-
   market_analysis turtle_id qty
   report [price] of turtle turtle_id
 end
-
+;############################################################################################################################
 
 
 to market_analysis[turtle_id qty];
@@ -329,23 +313,35 @@ to market_analysis[turtle_id qty];
       ; o deficit gera o deslocamento da demanda em outra commodity.
       ; ==================================================
       let mylist [who] of commodities with [label != _disturber and quantity > 0]
+
+      let sum_qty 0
+      ( foreach mylist
+        [ _comm ->
+          set sum_qty (sum_qty + ([quantity] of turtle _comm))
+        ]
+      )
+
       ; show count commodities with [commodity_type != "Palm"]
       ; show [who] of commodities with [label != "Palm"]
       ; show [who] of commodities with [label != "Palm" and quantity > 0]
 
-      show (word "Disturber:" _disturber " adjusted:" adjusted  )
+      show (word "Disturber:" _disturber " adjusted:" adjusted  " sum_qty:" sum_qty )
 
       if (deficit != 0) and (adjusted = True)[
         ( foreach mylist
           [ [_turtle_to_update] ->
 
+            let turtle_label  ([label] of turtle _turtle_to_update)
+
             ; obtem a quantidade original
             let original_qty ([quantity] of turtle _turtle_to_update)
 
-            show (word "deficitA:" deficit " adjusted:" adjusted " WHO?" [label] of turtle _turtle_to_update  )
-
             ; calcula a qual seria a nova quantidade demandada
-            let new_qty original_qty - deficit
+            ;let new_qty original_qty - deficit
+            let new_qty round (original_qty - (original_qty / sum_qty) * deficit )
+
+
+            show (word "deficitA:" deficit " adjusted:" adjusted " WHO?" turtle_label " new_qty:"  new_qty )
 
             ; deslocamento da demanda
             shift_demand _turtle_to_update new_qty
@@ -432,7 +428,6 @@ to shift_demand[turtle_id qty]
 end
 
 
-
 to-report calc_price_v2[#term_0 #term_1 #qty ];
  report #term_0 + (#term_1 * #qty)
 end
@@ -451,10 +446,11 @@ end
 
 
 to-report total_volume[];
-  let soy get_soy_price * qty_soybean
+  let soybean get_soy_price * qty_soybean
   let palm get_palm_price * qty_palm
+  let rapeseed get_rape_price * qty_rapeseed
 
-  report soy + palm
+  report soybean + palm + rapeseed
 end
 
 
@@ -462,7 +458,7 @@ to-report total_qty []; Funcao que retorna o total volume de commodities
   ; report qty_sunflower + qty_soybean + qty_palm + qty_palm_kernel + qty_rapeseed
 
   let mylist [who] of commodities with [a1 != 0]
-  report qty_soybean + qty_palm
+  report qty_soybean + qty_palm + qty_rapeseed
 end;
 
 
@@ -477,6 +473,14 @@ end
 ; OBSOLETO
 ;#######################################################
 
+
+to-report calc_value[#term_0 #term_1 #term_2 #exo1 #exo2];
+  report #term_0 + (#term_1 * #exo1) + (#term_2 * #exo2)
+end
+
+to-report calc_price[#term_0 #term_1 #term_2 #qty #exo1];
+  report (#qty - #term_0 - (#term_2 * #exo1)) / #term_1
+end
 
 
 to-report soy_analysis[];
@@ -644,7 +648,7 @@ qty_palm
 qty_palm
 500
 5000
-4580.0
+3600.0
 10
 1
 Year Ktons
@@ -659,7 +663,7 @@ qty_soybean
 qty_soybean
 500
 3000
-2090.0
+1200.0
 10
 1
 Year Ktons
@@ -689,7 +693,7 @@ qty_rapeseed
 qty_rapeseed
 0
 800
-460.0
+530.0
 10
 1
 Year Ktons
@@ -863,7 +867,7 @@ MONITOR
 1101
 104
 Soybean Price
-item 0 ([price] of commodities with [label = \"Soybean\"])
+round item 0 ([price] of commodities with [label = \"Soybean\"])
 17
 1
 11
@@ -874,7 +878,7 @@ MONITOR
 1090
 57
 Palm Price
-item 0 ([price] of commodities with [label = \"Palm\"])
+round item 0 ([price] of commodities with [label = \"Palm\"])
 17
 1
 11
@@ -953,6 +957,17 @@ NIL
 NIL
 NIL
 1
+
+MONITOR
+993
+108
+1090
+153
+Rapessed Price
+round item 0 ([price] of commodities with [label = \"Rapeseed\"])
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
