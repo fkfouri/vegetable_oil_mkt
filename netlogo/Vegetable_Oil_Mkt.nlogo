@@ -2,12 +2,6 @@ globals [ ;variaveis globais
   ticket_counter;                      # contador de tickets
   ticket_counter_limit;
 
-  price_palm
-  price_palm_kernel
-  price_rapeseed
-  price_soybean
-  price_sunflower
-
   disturber;                            # agente que causa pertubacao
   initial;                              # lista inicial
   count_distuber;                       # contador de periodos de disturbio
@@ -15,6 +9,7 @@ globals [ ;variaveis globais
 
   share_initial;
   deficit;                              # quantidade deficit
+  adjusted;
 
 
 ]
@@ -28,20 +23,21 @@ commodities-own [
   quantity;                             # quantidade/volume em ktons do equilibrio
   price;                                # preco em USD/Ktons do equilibrio
   dist   ;                              # agente que causa pertubacao
-  bearish;                              # comportamento em bearish 'Queda'
-  bullish;                              # comportamento em bulish 'subida'
-  pression;                             # p<-1 é descida, p>1 é subida e -1<p<1 é sidewalk
-  commodity_type;                       # tipo de commodity
+  ;bearish;                              # comportamento em bearish 'Queda'
+  ;bullish;                              # comportamento em bulish 'subida'
+  ;pression;                             # p<-1 é descida, p>1 é subida e -1<p<1 é sidewalk
+
 
   a0 ;
   a1 ;
-  a2 ;
-  a3 ;
+  ;a2 ;
+  ;a3 ;
   b0 ;
   b1 ;
-  b2 ;
-  b3 ;
+  ;b2 ;
+  ;b3 ;
 
+  ;commodity_type;                       # tipo de commodity
 ]
 
 curves-own [
@@ -75,6 +71,7 @@ to reset_variables
   set count_distuber        0
   set initial              (list qty_palm qty_soybean)
   set share_initial        (list (qty_palm * 100 / total_qty) (qty_soybean * 100 / total_qty) )
+  set adjusted             False
 end;
 
 
@@ -132,7 +129,10 @@ to-report get_disturber[];
   )
 
 
-  if (i >= 0) [set deficit item i initial - item i current ];           # captura o delta deficit
+  if (i >= 0) [
+    set deficit (item i current - item i initial)
+    set adjusted True
+  ];           # captura o delta deficit
 
 
 
@@ -157,7 +157,7 @@ to create_agents
     set color green
     set xcor -12
     set ycor 12
-    set commodity_type "Palm"
+    set label "Palm"
     set a0 3600
     set a1 -0.625
     set b0 600
@@ -169,7 +169,7 @@ to create_agents
     set color orange + 2
     set xcor -12
     set ycor 0
-    set commodity_type "Palm-Kernel"
+    set label "Palm-Kernel"
   ]
 
   create-commodities 1 [
@@ -177,7 +177,7 @@ to create_agents
     set color yellow
     set xcor 12
     set ycor 12
-    set commodity_type "Rapeseed"
+    set label "Rapeseed"
   ]
 
   create-commodities 1 [
@@ -185,7 +185,7 @@ to create_agents
     set color green;
     set xcor 12;
     set ycor 0;
-    set commodity_type "Soybean";
+    set label "Soybean";
     set a0 2400
     set a1 -0.5
     set b0 1000
@@ -198,13 +198,13 @@ to create_agents
     set color yellow
     set xcor 12
     set ycor -12
-    set commodity_type "Sunflower"
+    set label "Sunflower"
   ]
 
   ask commodities[
     set size 6
-    set label commodity_type
-    set pression get_pression
+    ;set label commodity_type
+    ;set pression get_pression
     set dist False
   ]
 
@@ -351,12 +351,13 @@ to-report get_soy_price[];
     ;
     [ ; desloca a demanda
       set _price calc_price_v2 _b0 _b1 qty
+      ask turtle turtle_id [ set price _price]
+      ask turtle turtle_id [ set quantity qty]
     ]
   )
 
-  ask turtle turtle_id [ set price _price]
-  ask turtle turtle_id [ set quantity qty]
-  report round _price
+
+  report [price] of turtle turtle_id
 end
 
 to-report get_palm_price[];
@@ -377,40 +378,107 @@ to-report get_palm_price[];
   (ifelse disturber = _disturber
     [
       ; ==================================================
-      ; ANALISE 1
-      ; calcula o novo preco da demanda
+      ; ANALISE 1 - Mercado PALM
+      ; calcula o novo preco devido shock supply
       ; ==================================================
-      set _price calc_price_v2 _a0 _a1 qty
-      ; show (word "soy palm: " _a0 " " _a1 "x" qty)
+      shift_supply turtle_id qty
 
       ; ==================================================
-      ; ANALISE 1
-      ; desloca a oferta e encontra o novo intercept
+      ; ANALISE 2 - Mercado Soy
       ; ==================================================
-      let __b0 calc_intercept _b1 qty _price
-      ask turtle turtle_id [ set b0 __b0]
+      ; o deficit gera o deslocamento da demanda em outra
+      ; commodity.
+      ; ==================================================
+;      let mylist is
+      ;show count commodities with [commodity_type = "Sunflower"]
 
-      ; ============================================================
-      ; ANALISE 2
-      ; o deficit gera o deslocamento da demanda em outra commodity
-      ; ============================================================
+      let _turtle2 3
+      let original_qty ([quantity] of turtle _turtle2)
+
+      show (word "deficitA:" deficit " adjusted:" adjusted  )
+      if (deficit != 0) and (adjusted = True)[
+        let new_qty original_qty - deficit
+        shift_demand _turtle2 new_qty
+        set adjusted False
+
+      ]
+      show (word "deficitB:" deficit " adjusted:" adjusted  )
+      shift_supply _turtle2 original_qty
 
     ]
     ;
     [ ; desloca a demanda
-
-      if (deficit > qty * .1) or (deficit < qty * .1)[
-        show (word "aqui: " deficit " " qty  " " (qty * .1) )
+      ; if (deficit > qty * .1) or (deficit < qty * .1)
+      if (deficit != 0)[
+        show (word "teste: " deficit " " qty  " " (qty * .1) )
       ]
 
       set _price calc_price_v2 _b0 _b1 qty
+      ask turtle turtle_id [ set price _price]
+      ask turtle turtle_id [ set quantity qty]
     ]
   )
 
+
+  report [price] of turtle turtle_id
+end
+
+
+to shift_supply[turtle_id qty]
+  let _a0 [a0] of turtle turtle_id
+  let _a1 [a1] of turtle turtle_id
+  let _b0 [b0] of turtle turtle_id
+  let _b1 [b1] of turtle turtle_id
+
+  ; ==================================================
+  ; calcula o novo preco pela curva da DEMANDA
+  ; ==================================================
+  let _price calc_price_v2 _a0 _a1 qty
+
+  ; ==================================================
+  ; desloca a OFERTA e encontra o novo intercept
+  ; ==================================================
+  let _intercept calc_intercept _b1 qty _price
+  ;show (word "_price: " _price " _intercept:" _intercept)
+
+  ; ==================================================
+  ; atualiza commodity
+  ; ==================================================
+  ask turtle turtle_id [ set b0 _intercept]
   ask turtle turtle_id [ set price _price]
   ask turtle turtle_id [ set quantity qty]
-  report round _price
 end
+
+
+
+to shift_demand[turtle_id qty]
+  let _a0 [a0] of turtle turtle_id
+  let _a1 [a1] of turtle turtle_id
+  let _b0 [b0] of turtle turtle_id
+  let _b1 [b1] of turtle turtle_id
+
+  ; ==================================================
+  ; calcula o novo preco pela curva da OFERTA
+  ; ==================================================
+  let _price calc_price_v2 _b0 _b1 qty
+
+  ; ==================================================
+  ; desloca a DEMANDA e encontra o novo intercept
+  ; ==================================================
+  let _intercept calc_intercept _a1 qty _price
+  ;show (word "_price: " _price " _intercept:" _intercept " qty:" qty)
+
+  ; ==================================================
+  ; atualiza commodity
+  ; ==================================================
+  ask turtle turtle_id [ set a0 _intercept]
+  ask turtle turtle_id [ set price _price]
+  ask turtle turtle_id [ set quantity qty]
+
+  ;show (word "novo qtd: " qty " " _intercept " " turtle_id " - price:" _price)
+  ;show (word "novo qtd: " qty " b1:" _b1 " b0:" _b0 " - price:" _price)
+end
+
 
 
 to-report calc_price_v2[#term_0 #term_1 #qty ];
@@ -420,6 +488,11 @@ end
 to-report calc_intercept[#term_1 #qty #price];
  report #price - (#term_1 * #qty)
 end
+
+to-report calc_price_by_balance[_a0 _a1 _b0 _b1];
+ report ((_b0 * _a1) - (_a0 * _b1)) / (_a1 - _b1)
+end
+
 
 
 to-report get_price[turtle_id _disturber qty];
@@ -431,18 +504,8 @@ to-report get_price[turtle_id _disturber qty];
   let _b1 [b1] of turtle turtle_id
 
   (ifelse disturber = _disturber
-    [
-      ; ==================================================
-      ; calcula o novo preco da demanda
-      ; ==================================================
-      set _price calc_price_v2 _a0 _a1 qty
-      ; show (word "soy palm: " _a0 " " _a1 "x" qty)
-
-      ; ==================================================
-      ; desloca a oferta e encontra o novo intercept
-      ; ==================================================
-      let __b0 calc_intercept _b1 qty _price
-      ask turtle turtle_id [ set b0 __b0]
+    [; desloca oferta
+      shift_supply turtle_id qty
     ]
     ;
     [ ; desloca a demanda
@@ -452,7 +515,7 @@ to-report get_price[turtle_id _disturber qty];
 
   ask turtle turtle_id [ set price _price]
   ask turtle turtle_id [ set quantity qty]
-  report round _price
+  report round [price] of turtle turtle_id
 end
 
 
@@ -619,21 +682,6 @@ qty_palm
 500
 5000
 4000.0
-10
-1
-Year Ktons
-VERTICAL
-
-SLIDER
-70
-130
-103
-390
-qty_palm_kernel
-qty_palm_kernel
-0
-400
-260.0
 10
 1
 Year Ktons
@@ -847,22 +895,22 @@ HORIZONTAL
 
 MONITOR
 993
-10
-1085
-55
-NIL
-get_soy_price
+59
+1101
+104
+Soybean Price
+[price] of turtle 3
 17
 1
 11
 
 MONITOR
 993
-57
+12
 1090
-102
-NIL
-get_palm_price
+57
+Palm Price
+[price] of turtle 0
 17
 1
 11
@@ -898,15 +946,30 @@ PENS
 "palm" 1.0 0 -7500403 true "" "plot qty_palm * 100 / total_qty"
 
 MONITOR
-949
-164
-1006
-209
+872
+74
+977
+119
 NIL
 deficit
 17
 1
 11
+
+SLIDER
+70
+130
+103
+390
+qty_palm_kernel
+qty_palm_kernel
+0
+400
+260.0
+10
+1
+Year Ktons
+VERTICAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -1324,7 +1387,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.2.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
