@@ -174,8 +174,8 @@ to create_agents
     set label "Rapeseed"
     set a0 1900
     set a1 -0.45
-    set b0 1300
-    set b1 0.4
+    set b0 733.15; 1300
+    set b1 0.6; 0.4
   ]
 
   create-commodities 1 [
@@ -186,8 +186,8 @@ to create_agents
     set label "Sunflower"
     set a0 1800
     set a1 -0.45
-    set b0 1100
-    set b1 0.4
+    set b0 852.3 ;1100
+    set b1 0.15 ;0.4
   ]
 
   ask commodities[
@@ -558,7 +558,7 @@ qty_sunflower
 qty_sunflower
 0
 2000
-90.0
+940.0
 10
 1
 Year Ktons
