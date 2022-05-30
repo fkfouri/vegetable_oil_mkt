@@ -453,89 +453,6 @@ end
 ;#######################################################
 
 
-to-report calc_value[#term_0 #term_1 #term_2 #exo1 #exo2];
-  report #term_0 + (#term_1 * #exo1) + (#term_2 * #exo2)
-end
-
-to-report calc_price[#term_0 #term_1 #term_2 #qty #exo1];
-  report (#qty - #term_0 - (#term_2 * #exo1)) / #term_1
-end
-
-
-to-report soy_analysis[];
-  let qty qty_soybean;
-
-  let π0 62.31979354738984
-  let π1 0.6575061794593828
-  let π2 0.9783530310857801
-  let π3 -464.1162227304298
-  let π4 0.38522674032676246
-  let π5 -0.27406553067139683
-
-  let α0 1265.1
-  let α1 -0.2801
-  let α2 0.5694
-  let β0 1211.1
-  let β1 0.5859
-  let β2 -0.8473
-
-  let qo qty_soybean
-  let qd calc_value π3 π4 π5 income fertilizer
-  let P calc_value π0 π1 π2 income fertilizer
-
-  ;let demand calc_value α0 α1 α2 Q income
-  ;let source calc_value β0 β1 β2 Q fertilizer
-
-  let demand calc_price α0 α1 α2 qty income
-  report 0
-end;
-
-
-
-to-report get_palm_price_v1[];
-
-
-  let α0 -668.11;
-  let α1 -0.6575;
-  let α2 5.3132;
-
-  let β0 122.66
-  let β1 0.9103
-  let β2 0.0899
-
-  let _price 0
-  ; let demand calc_value α0 α1 α2 qty income
-  ;let _price calc_value β0 β1 β2 qty fertilizer
-
-  (ifelse  disturber = "palm" [
-      ; desloca a oferta
-      let qty qty_palm;
-      set _price calc_value β0 β1 β2 qty fertilizer
-    ]
-    ;
-    [
-      ; desloca a demanda
-      let qty qty_palm + deficit
-;      show (word "palm qty: " qty_palm " -> " qty)
-      set _price calc_value α0 α1 α2 qty income
-    ]
-  )
-
-
-  ; report round (demand + source) / 2
-  report round _price
-
-end
-
-
-
-to-report tot_supply []; Funcao que retorna o total volume de commodities
-  report  qty_soybean + qty_palm + qty_rapeseed + qty_sunflower
-end;
-
-to-report tot_demand []; Funcao que retorna o total de demanda commodities. Tentei fazer o incremento de 4% ao ano.
-  report tot_supply + (ticket_counter / 365) * 0.04 * tot_supply;  tot_supply * (ticket_counter - 1) * 0.04 / tot_supply
-end;
 
 to-report get_pression[]; Funcao que gera um randomico para [-2, -1, 0, 1, 2]
  report random 5 - 2;
@@ -569,10 +486,10 @@ ticks
 30.0
 
 BUTTON
-45
-32
-116
-65
+30
+30
+106
+63
 Setup
 setup
 NIL
@@ -586,10 +503,10 @@ NIL
 1
 
 BUTTON
-131
-31
-218
-65
+110
+30
+197
+64
 Scenery 1
 scenery_one
 NIL
@@ -603,15 +520,15 @@ NIL
 1
 
 SLIDER
-30
-130
-63
-390
+25
+125
+58
+385
 qty_palm
 qty_palm
 500
 5000
-1200.0
+4000.0
 10
 1
 Year Ktons
@@ -633,25 +550,25 @@ Year Ktons
 VERTICAL
 
 SLIDER
-150
-130
-183
-390
+155
+125
+188
+385
 qty_sunflower
 qty_sunflower
 0
 2000
-940.0
+90.0
 10
 1
 Year Ktons
 VERTICAL
 
 SLIDER
-105
-130
-138
-390
+110
+125
+143
+385
 qty_rapeseed
 qty_rapeseed
 0
@@ -663,10 +580,10 @@ Year Ktons
 VERTICAL
 
 MONITOR
-635
-5
-815
-66
+630
+10
+805
+71
 Vegetable total supply
 total_qty
 4
@@ -674,9 +591,9 @@ total_qty
 15
 
 BUTTON
-240
+225
 80
-330
+325
 113
 Run Model
 go
@@ -691,9 +608,9 @@ NIL
 1
 
 PLOT
-606
+620
 315
-969
+983
 536
 Price per oil
 Quantity
@@ -710,11 +627,12 @@ PENS
 "Palm" 1.0 0 -14070903 true "" "plot get_palm_price"
 "Rapessed" 1.0 0 -955883 true "" "plot get_rape_price"
 "Sunflower" 1.0 0 -6459832 true "" "plot get_sun_price"
+"Proxy" 1.0 0 -2674135 true "" "plot price_proxy"
 
 BUTTON
-240
+225
 10
-330
+325
 43
 Run once
 go
@@ -729,9 +647,9 @@ NIL
 1
 
 BUTTON
-240
+225
 45
-330
+325
 78
 Run slowly
 every 0.5 [go]
@@ -748,8 +666,8 @@ NIL
 PLOT
 246
 316
-586
-533
+610
+535
 Quantity
 NIL
 NIL
@@ -767,22 +685,11 @@ PENS
 "Sunflower" 1.0 0 -6459832 true "" "plot qty_sunflower"
 "Proxy" 1.0 0 -2674135 true "" "plot total_qty"
 
-MONITOR
-634
-74
-719
-119
-NIL
-get_pression
-17
-1
-11
-
 BUTTON
-236
-120
-334
-153
+225
+115
+325
+148
 Run medium
 every 0.1 [go]
 T
@@ -826,10 +733,10 @@ NIL
 HORIZONTAL
 
 MONITOR
-993
-59
-1101
-104
+925
+60
+1060
+105
 Soybean Price
 item 0 ([price] of commodities with [label = \"Soybean\"])
 17
@@ -837,10 +744,10 @@ item 0 ([price] of commodities with [label = \"Soybean\"])
 11
 
 MONITOR
-993
-12
-1090
-57
+925
+10
+1060
+55
 Palm Price
 item 0 ([price] of commodities with [label = \"Palm\"])
 17
@@ -848,9 +755,9 @@ item 0 ([price] of commodities with [label = \"Palm\"])
 11
 
 MONITOR
-874
+810
 10
-985
+921
 71
 NIL
 get_disturber
@@ -859,10 +766,10 @@ get_disturber
 15
 
 PLOT
-628
-147
-828
-297
+630
+125
+870
+300
 Market Share
 NIL
 NIL
@@ -880,10 +787,10 @@ PENS
 "Sunflower" 1.0 0 -6459832 true "" "plot qty_sunflower * 100 / total_qty"
 
 MONITOR
-872
-74
-977
-119
+630
+75
+730
+120
 NIL
 deficit
 17
@@ -925,10 +832,10 @@ NIL
 1
 
 MONITOR
-993
-108
-1090
-153
+925
+110
+1060
+155
 Rapessed Price
 item 0 ([price] of commodities with [label = \"Rapeseed\"])
 17
@@ -936,10 +843,10 @@ item 0 ([price] of commodities with [label = \"Rapeseed\"])
 11
 
 MONITOR
-991
-158
-1089
-203
+925
+160
+1060
+205
 Sunflower Price
 item 0 ([price] of commodities with [label = \"Sunflower\"])
 17
