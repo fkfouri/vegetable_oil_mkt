@@ -147,12 +147,12 @@ to create_agents
     set xcor pos * -1
     set ycor pos
     set label "Palm"
-    set a0 -1016.1
-    set a1 -1.5209
-    set a2 8.0809
-    set b0 -1364.6
-    set b1 11.125
-    set b2 -10.127
+    set a0 -668.11
+    set a1 -0.6575
+    set a2  5.3132
+    set b0 122.66
+    set b1 0.0899
+    set b2 0.9103
   ]
 
 
@@ -162,12 +162,12 @@ to create_agents
     set xcor pos * -1;
     set ycor pos * -1;
     set label "Soybean";
-    set a0 1265.1
-    set a1 -0.2801
-    set a2 0.5694
-    set b0 1211.1
-    set b1 0.5859
-    set b2 -0.8473
+    set a0 4516.1
+    set a1 -3.5698
+    set a2  2.0327
+    set b0 -2067.1
+    set b1  1.7068
+    set b2 1.4461
   ]
 
   create-commodities 1 [
@@ -176,12 +176,12 @@ to create_agents
     set xcor pos
     set ycor pos
     set label "Rapeseed"
-    set a0 -300.59
-    set a1 -0.2851
-    set a2 1.2719
-    set b0 -668.79
-    set b1 1.8833
-    set b2 -2.0687
+    set a0  -1054.3
+    set a1 -3.5075
+    set a2 4.4611
+    set b0 355.11
+    set b1 0.5310
+    set b2 1.0984
   ]
 
   create-commodities 1 [
@@ -190,12 +190,12 @@ to create_agents
     set xcor pos
     set ycor pos * -1
     set label "Sunflower"
-    set a0 -529.51
-    set a1 -0.5377
-    set a2 2.3949
-    set b0 -2081.5
-    set b1 6.7882
-    set b2 -10.275
+    set a0 -984.80
+    set a1 -1.8599
+    set a2  4.4541
+    set b0 306.64
+    set b1 0.1473
+    set b2 1.5136
   ]
 
   ask commodities[
@@ -373,12 +373,12 @@ to shift_supply[turtle_id qty]
   ; ==================================================
   ; calcula o novo preco pela curva da DEMANDA
   ; ==================================================
-  let _price calc_price_v2 _a0 _a1 qty
+  let _price calc_price_v2 _a0 _a1 _a2 qty income
 
   ; ==================================================
   ; desloca a OFERTA e encontra o novo intercept
   ; ==================================================
-  let _intercept calc_intercept _b1 qty _price
+  let _intercept calc_intercept _b1 _b2 qty _price fertilizer
   ;show (word "_price: " _price " _intercept:" _intercept)
 
   ; ==================================================
@@ -402,12 +402,12 @@ to shift_demand[turtle_id qty]
   ; ==================================================
   ; calcula o novo preco pela curva da OFERTA
   ; ==================================================
-  let _price calc_price_v2 _b0 _b1 qty
+  let _price calc_price_v2 _b0 _b1 _b2 qty fertilizer
 
   ; ==================================================
   ; desloca a DEMANDA e encontra o novo intercept
   ; ==================================================
-  let _intercept calc_intercept _a1 qty _price
+  let _intercept calc_intercept _a1 _a2 qty _price income
   ;show (word "_price: " _price " _intercept:" _intercept " qty:" qty)
 
   ; ==================================================
@@ -422,12 +422,13 @@ to shift_demand[turtle_id qty]
 end
 
 
-to-report calc_price_v2[#term_0 #term_1 #qty ];
- report #term_0 + (#term_1 * #qty)
+to-report calc_price_v2[#term_0 #term_1 #term_2 #qty #instr];
+  ;report #term_0 + (#term_1 * #qty)
+  report #term_0 + (#term_1 * #qty) + (#term_2 * #instr)
 end
 
-to-report calc_intercept[#term_1 #qty #price];
- report #price - (#term_1 * #qty)
+to-report calc_intercept[#term_1 #term_2 #qty #price #instr];
+ report #price - (#term_1 * #qty) - (#term_2 * #instr )
 end
 
 to-report calc_price_by_balance[_a0 _a1 _a2 _b0 _b1 _b2 _X _Y];
@@ -573,7 +574,7 @@ qty_sunflower
 qty_sunflower
 0
 2000
-940.0
+1380.0
 10
 1
 Year Ktons
@@ -741,7 +742,7 @@ fertilizer
 fertilizer
 100
 1500
-430.0
+1420.0
 1
 1
 NIL

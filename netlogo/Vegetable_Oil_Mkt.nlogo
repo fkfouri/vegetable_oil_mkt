@@ -162,7 +162,7 @@ to create_agents
     set label "Soybean";
     set a0 2400
     set a1 -0.5
-    set b0 1000
+    set b0 800
     set b1 0.2
   ]
 
@@ -172,10 +172,10 @@ to create_agents
     set xcor pos
     set ycor pos
     set label "Rapeseed"
-    set a0 1900
-    set a1 -0.45
-    set b0 733.15; 1300
-    set b1 0.6; 0.4
+    set a0 900
+    set a1 -0.35
+    set b0 1533.15; 1300
+    set b1 0.18; 0.4
   ]
 
   create-commodities 1 [
@@ -186,7 +186,7 @@ to create_agents
     set label "Sunflower"
     set a0 1800
     set a1 -0.45
-    set b0 852.3 ;1100
+    set b0 1252.3 ;1100
     set b1 0.15 ;0.4
   ]
 
@@ -210,7 +210,7 @@ to scenery_one
   set qty_palm            4000
   set qty_rapeseed        530
   set qty_soybean         2000 ;(1640)
-  set qty_sunflower       (940)
+  set qty_sunflower       1500 ;(940)
   set income              730
   set fertilizer          390
 
@@ -346,6 +346,7 @@ to market_analysis[turtle_id qty];
 
   if ([price] of turtle turtle_id <= 0) [
     let _price calc_price_by_balance _a0 _a1 _b0 _b1
+;    let _price calc_price_v2 _a0 _a1 qty
     ask turtle turtle_id [ set price (precision _price 2)]
   ]
 
@@ -543,7 +544,7 @@ qty_soybean
 qty_soybean
 500
 3000
-2000.0
+3000.0
 10
 1
 Year Ktons
@@ -557,8 +558,8 @@ SLIDER
 qty_sunflower
 qty_sunflower
 0
-2000
-940.0
+3000
+500.0
 10
 1
 Year Ktons
@@ -572,7 +573,7 @@ SLIDER
 qty_rapeseed
 qty_rapeseed
 0
-800
+3000
 530.0
 10
 1
@@ -613,10 +614,10 @@ PLOT
 983
 536
 Price per oil
-Quantity
+time
 Price
 0.0
-100.0
+20.0
 0.0
 500.0
 true
@@ -669,10 +670,10 @@ PLOT
 610
 535
 Quantity
-NIL
-NIL
+time
+quantity
 0.0
-10.0
+20.0
 0.0
 10.0
 true
@@ -766,15 +767,15 @@ get_disturber
 15
 
 PLOT
-630
-125
-870
-300
+625
+137
+919
+312
 Market Share
-NIL
-NIL
+time
+%
 0.0
-100.0
+20.0
 0.0
 100.0
 true
