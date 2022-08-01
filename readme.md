@@ -10,8 +10,8 @@
 
 - Para ambiente Windows:   
 ```
-python -m venv .env-win-tese
-.\.env-win-tese\Scripts\activate
+python -m venv .env-win
+.\.env-win\Scripts\activate
 python.exe -m pip install --upgrade pip
 ``` 
 
